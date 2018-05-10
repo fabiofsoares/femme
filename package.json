@@ -1,0 +1,26 @@
+{
+  "name": "femme",
+  "version": "1.0.0",
+  "description": "Projet API ECV Digital 2018",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabiofsoares/femme.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabiofsoares/femme/issues"
+  },
+  "homepage": "https://github.com/fabiofsoares/femme#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
