@@ -2,487 +2,1455 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
-var CountrieSchema = new Schema({    
+var CountrieSchema = new Schema({	
     "_id": {
-    "type": "string"
+        "type": "object",
+        "properties": {
+        "$oid": {
+            "type": "string"
+        }
+        },
+        "required": [
+        "$oid"
+        ]
     },
     "country": {
-    "type": "string"
+        "type": "string"
     },
     "statistical": {
-    "type": "array",
-    "items": [
+        "type": "array",
+        "items": [
         {
-        "type": "object",
-        "properties": {
+            "type": "object",
+            "properties": {
             "year": {
-            "type": "string"
+                "type": "string"
             },
             "data": {
-            "type": "array",
-            "items": [
+                "type": "array",
+                "items": [
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
+                        },
+                        "ratio": {
+                            "type": "integer"
                         }
+                        },
+                        "required": [
+                        "m",
+                        "f",
+                        "ratio"
+                        ]
+                    }
                     },
                     "required": [
-                        "m",
-                        "f"
-                    ]
-                    }
-                },
-                "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
+                        },
+                        "ratio": {
+                            "type": "number"
                         }
+                        },
+                        "required": [
+                        "m",
+                        "f",
+                        "ratio"
+                        ]
+                    }
                     },
                     "required": [
-                        "m",
-                        "f"
-                    ]
-                    }
-                },
-                "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 },
                 {
-                "type": "object",
-                "properties": {
-                    "type": {
-                    "type": "string"
-                    },
-                    "source": {
-                    "type": "string"
-                    },
-                    "data": {
                     "type": "object",
                     "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
                         "m": {
-                        "type": "integer"
+                            "type": "integer"
                         },
                         "f": {
-                        "type": "integer"
+                            "type": "integer"
                         }
-                    },
-                    "required": [
+                        },
+                        "required": [
                         "m",
                         "f"
-                    ]
+                        ]
                     }
-                },
-                "required": [
+                    },
+                    "required": [
                     "type",
                     "source",
                     "data"
-                ]
+                    ]
                 }
-            ]
+                ]
             }
-        },
-        "required": [
+            },
+            "required": [
             "year",
             "data"
-        ]
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+            "year": {
+                "type": "string"
+            },
+            "data": {
+                "type": "array",
+                "items": [
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        },
+                        "ratio": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f",
+                        "ratio"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        },
+                        "ratio": {
+                            "type": "number"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f",
+                        "ratio"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                }
+                ]
+            }
+            },
+            "required": [
+            "year",
+            "data"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+            "year": {
+                "type": "string"
+            },
+            "data": {
+                "type": "array",
+                "items": [
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        },
+                        "ratio": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f",
+                        "ratio"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        },
+                        "ratio": {
+                            "type": "number"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f",
+                        "ratio"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                        "m": {
+                            "type": "integer"
+                        },
+                        "f": {
+                            "type": "integer"
+                        }
+                        },
+                        "required": [
+                        "m",
+                        "f"
+                        ]
+                    }
+                    },
+                    "required": [
+                    "type",
+                    "source",
+                    "data"
+                    ]
+                }
+                ]
+            }
+            },
+            "required": [
+            "year",
+            "data"
+            ]
         }
-    ]
+        ]
     },
     "general": {
-    "type": "object",
-    "properties": {
-        "year": {
-        "type": "integer"
-        },
-        "source": {
-        "type": "string"
-        },
-        "data": {
-        "type": "object",
-        "properties": {
-            "area": {
-            "type": "integer"
+        "type": "array",
+        "items": [
+        {
+            "type": "object",
+            "properties": {
+            "year": {
+                "type": "integer"
             },
-            "population": {
-            "type": "integer"
+            "source": {
+                "type": "string"
             },
-            "pib": {
-            "type": "integer"
-            },
-            "ppa": {
-            "type": "integer"
-            },
-            "idh": {
-            "type": "integer"
-            },
-            "unemployment": {
-            "type": "integer"
+            "data": {
+                "type": "object",
+                "properties": {
+                "area": {
+                    "type": "integer"
+                },
+                "population": {
+                    "type": "integer"
+                },
+                "pib": {
+                    "type": "integer"
+                },
+                "ppa": {
+                    "type": "integer"
+                },
+                "idh": {
+                    "type": "integer"
+                },
+                "unemployment": {
+                    "type": "integer"
+                }
+                },
+                "required": [
+                "area",
+                "population",
+                "pib",
+                "ppa",
+                "idh",
+                "unemployment"
+                ]
             }
+            },
+            "required": [
+            "year",
+            "source",
+            "data"
+            ]
         },
-        "required": [
-            "area",
-            "population",
-            "pib",
-            "ppa",
-            "idh",
-            "unemployment"
-        ]
+        {
+            "type": "object",
+            "properties": {
+            "year": {
+                "type": "integer"
+            },
+            "source": {
+                "type": "string"
+            },
+            "data": {
+                "type": "object",
+                "properties": {
+                "area": {
+                    "type": "integer"
+                },
+                "population": {
+                    "type": "integer"
+                },
+                "pib": {
+                    "type": "integer"
+                },
+                "ppa": {
+                    "type": "integer"
+                },
+                "idh": {
+                    "type": "integer"
+                },
+                "unemployment": {
+                    "type": "integer"
+                }
+                },
+                "required": [
+                "area",
+                "population",
+                "pib",
+                "ppa",
+                "idh",
+                "unemployment"
+                ]
+            }
+            },
+            "required": [
+            "year",
+            "source",
+            "data"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+            "year": {
+                "type": "string"
+            },
+            "source": {
+                "type": "string"
+            },
+            "data": {
+                "type": "object",
+                "properties": {
+                "area": {
+                    "type": "integer"
+                },
+                "population": {
+                    "type": "integer"
+                },
+                "pib": {
+                    "type": "integer"
+                },
+                "ppa": {
+                    "type": "integer"
+                },
+                "idh": {
+                    "type": "integer"
+                },
+                "unemployment": {
+                    "type": "integer"
+                }
+                },
+                "required": [
+                "area",
+                "population",
+                "pib",
+                "ppa",
+                "idh",
+                "unemployment"
+                ]
+            }
+            },
+            "required": [
+            "year",
+            "source",
+            "data"
+            ]
         }
-    },
-    "required": [
-        "year",
-        "source",
-        "data"
-    ]
-    }
-      
+        ]
+    }  
 });
-
 module.exports = mongoose.model('Countries', CountrieSchema);

@@ -1,0 +1,379 @@
+{
+  "_id": {
+    "$oid": "5adf69b231ea161baf9ff0c6"
+  },
+  "country": "af-ZA",
+  "statistical": [
+	{
+      "year": "2019",
+      "data": [
+        {
+          "type": "esperance de vie",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 200,
+            "f": 800,
+			ratio: 4
+          }
+        },
+        {
+          "type": "taux de victimisation",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 100,
+            "f": 3,
+			ratio: 0.03
+          }
+        },
+        {
+          "type": "acces aux soins",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt primaire",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt secondaire",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt superieur",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "salaire moyen",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "chomage",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "temps de travail",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30           
+          }
+        },
+        {
+          "type": "insertion professionnelle",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "pauvrete",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "population par sexe",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "representation en politique",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        }
+      ]
+    },
+	{
+      "year": "2018",
+      "data": [
+        {
+          "type": "esperance de vie",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 200,
+            "f": 800,
+			ratio: 4
+          }
+        },
+        {
+          "type": "taux de victimisation",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 100,
+            "f": 3,
+			ratio: 0.03
+          }
+        },
+        {
+          "type": "acces aux soins",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt primaire",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt secondaire",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt superieur",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "salaire moyen",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "chomage",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "temps de travail",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30           
+          }
+        },
+        {
+          "type": "insertion professionnelle",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "pauvrete",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "population par sexe",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "representation en politique",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        }
+      ]
+    },
+    {
+      "year": "2017",
+      "data": [
+        {
+          "type": "esperance de vie",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 200,
+            "f": 800,
+			ratio: 4
+          }
+        },
+        {
+          "type": "taux de victimisation",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 100,
+            "f": 3,
+			ratio: 0.03
+          }
+        },
+        {
+          "type": "acces aux soins",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt primaire",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt secondaire",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "enseignemt superieur",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "salaire moyen",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "chomage",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "temps de travail",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30           
+          }
+        },
+        {
+          "type": "insertion professionnelle",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "pauvrete",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "population par sexe",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        },
+        {
+          "type": "representation en politique",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30            
+          }
+        }
+      ]
+    } 
+  ],
+  "general": [
+	{	 
+		"year": "2019",
+		"source": "http://www.google.fr",
+		"data":{
+		  "area":123456,
+		  "population":123456,      
+		  "pib":123456,
+		  "ppa":123456,
+		  "idh":123456,
+		  "unemployment":123456
+		}	
+	},
+	{	 
+		"year": "2018",
+		"source": "http://www.google.fr",
+		"data":{
+		  "area":123456,
+		  "population":123456,      
+		  "pib":123456,
+		  "ppa":123456,
+		  "idh":123456,
+		  "unemployment":123456
+		}	
+	},
+	{	 
+		"year": "2017",
+		"source": "http://www.google.fr",
+		"data":{
+		  "area":123456,
+		  "population":123456,      
+		  "pib":123456,
+		  "ppa":123456,
+		  "idh":123456,
+		  "unemployment":123456
+		}	
+	}
+  ]
+}

@@ -34,11 +34,34 @@ exports.createCountry = function(req, res) {
     });
 };
 
-exports.getCountry = function(req, res) {
+exports.getCountry = function(req, res) {    
     Countries.findOne({country: req.params.country}, function(err,country) { 
         if (err){
             res.send(err);
         }        
         res.json(country);    
     });
+  };
+
+  exports.getCountryType = function(req, res) {
+    let query;
+    
+    if(req.params.type == 'general'){
+        query = Countries.find(
+            { country : req.params.country },           
+            { general : { $elemMatch: { year : req.params.year }}}        
+        )         
+    }else{
+        query = Countries.find(
+            { country : req.params.country },
+            { statistical : { $elemMatch: { year : req.params.year }}}
+        )      
+         
+    } 
+    query.exec(function (err,country) { 
+        if (err){
+            res.send(err);
+        }        
+        res.json(country);    
+    }); 
   };

@@ -16,4 +16,9 @@ module.exports = function(app) {
         .get(femme.getCountry)
         /*.put(femme.updateCountry)
         .delete(todoList.deleteCountry); */
+    
+    app.route('/:country/:type?/:year?')
+        .get(femme.getCountryType)
+    
+    
 };
