@@ -10,6 +10,8 @@ N'oublie de pas de configurer le fichier 'server.js' pour pointer ta base de don
 ## Routes 
 
 1. /
+
     hello world (home page)
 2. /all
+
     retour de tous les données de la base
