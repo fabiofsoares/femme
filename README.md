@@ -3,10 +3,12 @@
 1. npm install
 2. npm run server
 
-##MongoDB
+## MongoDB
+
 N'oublie de pas de configurer le fichier 'server.js' pour pointer ta base de donnée
 
-##Routes  
+## Routes 
+
 1. /
     hello world (home page)
 2. /all
