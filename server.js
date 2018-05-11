@@ -21,4 +21,6 @@ app.listen(port, host, function () {
     console.log('Femme app listening on : ' + host + ':' + port)
 })
 
-
+app.use(function(req, res) {
+    res.status(404).send({url: req.originalUrl + ' not found!'})
+});
