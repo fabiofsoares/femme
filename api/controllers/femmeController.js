@@ -6,15 +6,6 @@ exports.hello = function(req, res) {
     res.send('Hello World!') 
 };
 
-exports.allCountries = function(req, res) {
-    Countries.find({}, function(err, countrie) {
-        if (err){
-            res.send(err);
-        }            
-        res.json(countrie);
-    }); 
-};
-
 exports.getAllCountries = function(req, res) {
     Countries.find({}, function(err, countries) {
         if (err){
@@ -41,9 +32,17 @@ exports.getCountry = function(req, res) {
         }        
         res.json(country);    
     });
-  };
+};
+exports.updateCountry = function(req, res) {    
+    Countries.findOneAndUpdate({country: req.params.country}, req.body, {new: true}, function(err, country) {
+        if (err){
+            res.send(err);
+        }          
+        res.json(country);
+    });
+};
 
-  exports.getCountryType = function(req, res) {
+exports.getCountryType = function(req, res) {
     let query;
     
     if(req.params.type == 'general'){
@@ -64,4 +63,4 @@ exports.getCountry = function(req, res) {
         }        
         res.json(country);    
     }); 
-  };
+};
