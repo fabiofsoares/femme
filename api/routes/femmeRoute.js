@@ -4,10 +4,10 @@ module.exports = function(app) {
 
     let femme = require('../controllers/femmeController');
    
-    app.route('/').get(femme.hello)    
+    app.route('/').get(femme.getAll)    
     
     app.route('/countries')
-        .get(femme.getAllCountries)
+        .get(femme.getCountriesCurientYear)
         .post(femme.createCountry)
     
     app.route('/:country')
@@ -16,6 +16,9 @@ module.exports = function(app) {
     
     app.route('/:country/:type?/:year?')
         .get(femme.getCountryType)
+    
+    app.route('/:country/:type?/:year?/:donne?')
+        .get(femme.getCountryType2)
     
     
 };
