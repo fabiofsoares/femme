@@ -41,3 +41,17 @@ $ mongod
 
 Import :
 mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JSON FILE>
+
+
+
+## todo charline 
+- grosse requete country + filtre en / 
+- premiere requete / 
+- token
+- gestion des erreurs 
+- wrapper
+
+## todo Fabio 
+- put
+- delete 
+- cache
