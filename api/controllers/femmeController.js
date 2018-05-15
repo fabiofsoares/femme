@@ -16,6 +16,7 @@ exports.getAll = function(req, res) {
     }); 
 };
 
+//TODO -> Ce code ne marche pas
 exports.getCountriesCurientYear = function(req, res) {
     query = Countries.find({
         $and : [
@@ -42,7 +43,7 @@ exports.createCountry = function(req, res) {
 };
 
 exports.getCountry = function(req, res) {    
-    Countries.findOne({country: req.params.country}, function(err,country) { 
+    Countries.findOne({name: req.params.country}, function(err,country) { 
         if (err){
             res.send(err);
         }        
@@ -51,7 +52,7 @@ exports.getCountry = function(req, res) {
 };
 
 exports.updateCountry = function(req, res) {
-    Countries.findOneAndUpdate({country: req.params.country}, req.body, {new: true}, function(err, country) {
+    Countries.findOneAndUpdate({name: req.params.country}, req.body, {new: true}, function(err, country) {
         if (err){
             res.send(err);
         }
@@ -62,15 +63,15 @@ exports.updateCountry = function(req, res) {
 exports.getCountryType = function(req, res) {
     let query;
     
-    if(req.params.type === 'general'){
+    if(req.params.type === 'gender'){
         query = Countries.find(
-            { country : req.params.country },           
-            { general : { $elemMatch: { year : req.params.year }},  country : req.params.country }
+            { name : req.params.country },           
+            { gender : { $elemMatch: { year : req.params.year }},  name : req.params.country }
         )
     }else{
         query = Countries.find(
-            { country : req.params.country },
-            { statistical : { $elemMatch: { year : req.params.year }}}
+            { name : req.params.country },
+            { general : { $elemMatch: { year : req.params.year }}, name : req.params.country }
         )      
          
     } 
@@ -81,34 +82,6 @@ exports.getCountryType = function(req, res) {
         res.json(country);
     });
 };
-
-exports.getCountryType2 = function(req, res) {
-    console.log('donne', req.params.donne)
-    let query;
-
-    if(req.params.type === 'general'){
-        query = Countries.find(
-            {  },
-            { general : { $elemMatch: { year : req.params.year }},  country : req.params.country }
-        )
-    }else{
-        query = Countries.find(
-            { country : req.params.country },
-            { statistical : { $elemMatch: { year : req.params.year,  }},  country : req.params.country }
-
-        )
-
-    }
-    query.exec(function (err,country) {
-        if (err){
-            res.send(err);
-        }
-        res.json(country);
-    });
-};
-
-
-
 
 exports.c_hello = function(req, res) {
     res.sendFile('views/form.html', { root: 'api'})
