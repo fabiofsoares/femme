@@ -1,0 +1,262 @@
+{
+  "name" : "en",
+  "gender": [
+    {
+      "year": "2016",
+      "data": [
+        {
+          "type": "life_expectancy",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 79,
+            "f": 80,
+            "ratio": 1.0126582278
+          }
+        },
+        {
+          "type": "victimization",
+          "source": "http://www.lepoint.fr/societe/123-femmes-et-34-hommes-sont-morts-en-2016-victimes-de-leur-conjoint-01-09-2017-2153889_23.php",
+          "data": {
+            "m": 18,
+            "f": 102,
+            "ratio": 5.6666666667
+          }
+        },
+        {
+          "type": "health_care",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30,
+            "ratio": 0.7142857143
+          }
+        },
+        {
+          "type": "primary_school",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 100,
+            "f": 100,
+            "ratio": 1
+          }
+        },
+        {
+          "type": "secondary_school",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 100,
+            "f": 100,
+            "ratio": 1
+          }
+        },
+        {
+          "type": "higher_education",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 60,
+            "f": 80,
+            "ratio": 1.3333333333
+          }
+        },
+        {
+          "type": "salary",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 1700,
+            "f": 900,
+            "ratio": 0.5294117647
+          }
+        },
+        {
+          "type": "unemployment",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 12,
+            "f": 80,
+            "ratio": 6.6666666667
+          }
+        },
+        {
+          "type": "work_time",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 28,
+            "ratio": 0.6666666667
+          }
+        },
+        {
+          "type": "occupational_integration",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 98,
+            "f": 55,
+            "ratio": 0.5612244898
+          }
+        },
+        {
+          "type": "poverty",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 22,
+            "f": 30,
+            "ratio": 1.3636363636
+          }
+        },
+        {
+          "type": "population_percent",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 59,
+            "f": 41,
+            "ratio": 0.6949152542
+          }
+        },
+        {
+          "type": "politic",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 650,
+            "f": 50,
+            "ratio": 0.07692307692
+          }
+        }
+      ]
+    },
+    {
+      "year": "2015",
+      "data": [
+        {
+          "type": "life_expectancy",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 75,
+            "f": 79
+          }
+        },
+        {
+          "type": "victimization",
+          "source": "http://www.lepoint.fr/societe/123-femmes-et-34-hommes-sont-morts-en-2016-victimes-de-leur-conjoint-01-09-2017-2153889_23.php",
+          "data": {
+            "m": 34,
+            "f": 122
+          }
+        },
+        {
+          "type": "health_care",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 42,
+            "f": 30
+          }
+        },
+        {
+          "type": "primary_school",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 100,
+            "f": 100
+          }
+        },
+        {
+          "type": "secondary_school",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 100,
+            "f": 90
+          }
+        },
+        {
+          "type": "higher_education",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 60,
+            "f": 85
+          }
+        },
+        {
+          "type": "salary",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 1700,
+            "f": 800
+          }
+        },
+        {
+          "type": "unemployment",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 12,
+            "f": 84
+          }
+        },
+        {
+          "type": "work_time",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 45,
+            "f": 27.5
+          }
+        },
+        {
+          "type": "occupational_integration",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 98,
+            "f": 55
+          }
+        },
+        {
+          "type": "poverty",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 22,
+            "f": 32
+          }
+        },
+        {
+          "type": "population_percent",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 58,
+            "f": 42
+          }
+        },
+        {
+          "type": "politic",
+          "source": "http://www.google.fr",
+          "data": {
+            "m": 660,
+            "f": 40
+          }
+        }
+      ]
+    }
+  ],
+  "general": [
+    {
+      "year": "2016",
+      "source": "http://www.general.en",
+      "data": {
+        "area": 246690,
+        "population": 65648100,
+        "pib": 2849.345,
+        "ppa": 2679.325,
+        "idh": 0.909,
+        "country_unemployment": 5.376
+      }
+    },
+    {
+      "year": "2015",
+      "source": "http://www.general.en",
+      "data": {
+        "area": 246690,
+        "population": 65648100,
+        "pib": 2849.345,
+        "ppa": 2679.325,
+        "idh": 0.909,
+        "country_unemployment": 5.376
+      }
+    }
+  ]
+}

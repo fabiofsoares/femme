@@ -9,7 +9,7 @@ let routes = require('./api/routes/femmeRoute'),
     Countries = require('./api/models/femmeModel');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/local'); 
+mongoose.connect("mongodb://127.0.0.1:27017/ecv-api");
         
         
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fr-fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+
+    <style>
+
+        * {
+            padding: 0;
+            margin: 0;
+
+            box-sizing: border-box;
+
+            font-family: sans-serif;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        form {
+            background-color: lightgrey;
+            display: inline-block;
+            padding: 20px;
+        }
+
+        .group {
+            border: solid 1px darkgrey;
+            padding: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .group:last-child{
+            margin-bottom: 0;
+        }
+
+        .button {
+            text-align: center;
+        }
+
+        input, button {
+            padding: 5px 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <h1>TO SEND :</h1>
+
+    <form action="http://127.0.0.1:3000/c_data" method="get">
+
+
+
+        <!--YEARS-->
+        <div class="group">
+
+            <div class="group">
+
+                <p>Filter with year ?</p>
+
+                <div>
+
+                    <!--TODO : ajouter + récente et + vieille-->
+
+                    <input type="radio" id="yearTrue" name="year" value="true" checked>
+
+                    <label for="yearTrue">Yes</label>
+
+                    <input type="radio" id="yearFalse" name="year" value="false">
+
+                    <label for="yearFalse">No</label>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="group">
+
+                <p>Year.s :</p>
+
+                <div id="years_c">
+                </div>
+
+                <input type="button" id="add_year" value="+">
+
+            </div>
+
+        </div>
+
+
+
+
+        <!--COUNTRIES-->
+        <div class="group">
+
+            <div class="group">
+
+                <p>Filter with country ?</p>
+
+                <div>
+
+                    <input type="radio" id="countryTrue" name="country" value="true" checked>
+
+                    <label for="countryTrue">Yes</label>
+
+                    <input type="radio" id="countryFalse" name="country" value="false">
+
+                    <label for="countryFalse">No</label>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="group">
+
+                <p>Country.ies :</p>
+
+                <div>
+
+                    <input type="checkbox" name="country_array[]" id="en" value="en" >
+                    <label for="en">EN</label>
+
+                    <br>
+
+                    <input type="checkbox" name="country_array[]" id="fr" value="fr">
+                    <label for="fr">FR</label>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!--GENDER-->
+        <div class="group">
+
+            <div class="group">
+
+                <p>Show gender data ?</p>
+
+                <div>
+
+                    <input type="radio" id="genderTrue" name="gender" value="true" checked>
+
+                    <label for="genderTrue">Yes</label>
+
+                    <input type="radio" id="genderFalse" name="gender" value="false">
+
+                    <label for="genderFalse">No</label>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="group">
+
+                <p>Spécific gender data :</p>
+
+                <div>
+
+                    <input type="checkbox" name="gender_array[]" id="life_expectancy" value="life_expectancy">
+                    <label for="life_expectancy">life_expectancy</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="victimization" value="victimization">
+                    <label for="victimization">victimization</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="health_care" value="health_care">
+                    <label for="health_care">health_care</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="primary_school" value="primary_school">
+                    <label for="primary_school">primary_school</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="secondary_school" value="secondary_school">
+                    <label for="secondary_school">secondary_school</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="higher_education" value="higher_education">
+                    <label for="higher_education">higher_education</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="salary" value="salary">
+                    <label for="salary">salary</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="unemployment" value="unemployment">
+                    <label for="unemployment">unemployment</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="work_time" value="work_time">
+                    <label for="work_time">work_time</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="occupational_integration" value="occupational_integration">
+                    <label for="occupational_integration">occupational_integration</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="poverty">
+                    <label for="poverty">poverty</label>
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="population_percent" value="population_percent">
+                    <label for="population_percent">population_percent</label>
+
+
+                    <br>
+
+                    <input type="checkbox" name="gender_array[]" id="politic" value="politic">
+                    <label for="politic">politic</label>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!--GENERAL-->
+        <div class="group">
+
+            <div class="group">
+
+                <p>Show general data ?</p>
+
+                <div>
+
+                    <input type="radio" id="generalTrue" name="general" value="true" checked>
+
+                    <label for="generalTrue">Yes</label>
+
+                    <input type="radio" id="generalFalse" name="general" value="false">
+
+                    <label for="generalFalse">No</label>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="group">
+
+                <p>Spécific general data :</p>
+
+                <div>
+
+                    <input type="checkbox" name="general_array[]" id="area" value="area">
+                    <label for="area">area</label>
+
+                    <br>
+
+                    <input type="checkbox" name="general_array[]" id="population" value="population">
+                    <label for="population">population</label>
+
+                    <br>
+
+                    <input type="checkbox" name="general_array[]" id="pib" value="pib">
+                    <label for="pib">pib</label>
+
+                    <br>
+
+                    <input type="checkbox" name="general_array[]" id="ppa" value="ppa">
+                    <label for="ppa">ppa</label>
+
+                    <br>
+
+                    <input type="checkbox" name="general_array[]" id="idh" value="idh">
+                    <label for="idh">idh</label>
+
+                    <br>
+
+                    <input type="checkbox" name="general_array[]" id="country_unemployment" value="country_unemployment">
+                    <label for="country_unemployment">country unemployment</label>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <!--GENDER SEPERIORITY-->
+        <div class="group">
+
+            <div class="group">
+
+                <p>Gender superiority ?</p>
+
+                <div>
+
+                    <input type="radio" id="genderCompareTrue" name="genderCompare" value="true" checked>
+
+                    <label for="genderCompareTrue">Yes</label>
+
+                    <input type="radio" id="genderCompareFalse" name="genderCompare" value="false">
+
+                    <label for="genderCompareFalse">No</label>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="group">
+
+                <p>Filter :</p>
+
+                <div>
+
+                    <input type="radio" id="genderCompareWoman" name="genderCompareSexe" value="f" checked>
+
+                    <label for="genderCompareWoman">Woman</label>
+
+                    <input type="radio" id="genderCompareMan" name="genderCompareSexe" value="m">
+
+                    <label for="genderCompareMan">Man</label>
+
+                </div>
+
+
+                <div>
+
+                    <input type="radio" id="genderSuperior" name="genderCompareOperation" value=">" checked>
+
+                    <label for="genderSuperior">Superior</label>
+
+                    <input type="radio" id="genderInferior" name="genderCompareOperation" value="<">
+
+                    <label for="genderInferior">Inferior</label>
+
+                    <input type="radio" id="genderSuperiorEqual" name="genderCompareOperation" value=">=">
+
+                    <label for="genderSuperiorEqual">Superior or equals</label>
+
+                    <input type="radio" id="genderInferiorEqual" name="genderCompareOperation" value="<=">
+
+                    <label for="genderInferiorEqual">Inferior Equal</label>
+
+                    <input type="radio" id="genderEqual" name="genderCompareOperation" value="===">
+
+                    <label for="genderEqual">Equal</label>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="button">
+            <button type="submit">Send</button>
+        </div>
+
+
+    </form>
+
+
+    <script>
+
+
+        // TODO : cacher si click sur non ?
+
+
+        // ajouter une année
+        $add_year = document.getElementById("add_year")
+        $years_c = document.getElementById("years_c")
+
+        $add_year.addEventListener('click', function(){
+
+            let br = document.createElement('br')
+
+            let input = document.createElement('input')
+            input.setAttribute('name', 'year_array[]')
+            input.setAttribute('type', 'number')
+            input.setAttribute('required', 'true')
+
+            $years_c.appendChild(br)
+            $years_c.appendChild(input)
+        })
+
+
+    </script>
+
+
+</body>
+</html>
