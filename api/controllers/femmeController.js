@@ -18,7 +18,7 @@ exports.getAll = function(req, res) {
 
 //TODO -> Ce code ne marche pas
 exports.getCountriesCurientYear = function(req, res) {
-    query = Countries.find({
+    let query = Countries.find({
         $and : [
             { general : { $elemMatch: { year : '2018' }} },
             { statistical : { $elemMatch: { year : '2018' }}}
@@ -116,7 +116,7 @@ exports.c_countries_name = function(req, res) {
 
             for (let data of datas) names.push(data.name)
 
-            let namesJSON = JSON.stringify({data: names})
+            let namesJSON = JSON.stringify({status: 'success', data: names})
 
             res.json(namesJSON)
 
@@ -130,7 +130,6 @@ exports.c_sources = function(req, res) {
 
     // tableau à renvoyer une fois trier
     let sources= []
-
 
     // récupère nos données
     Countries.
@@ -166,7 +165,7 @@ exports.c_sources = function(req, res) {
                     return !pos || item !== array[pos - 1];
                 })
 
-            let sourcesJSON = JSON.stringify({data: sourcesOrdered})
+            let sourcesJSON = JSON.stringify({status: 'success', data: sourcesOrdered})
 
             res.json(sourcesJSON)
 
@@ -175,6 +174,8 @@ exports.c_sources = function(req, res) {
 
 
 exports.c_data = function(req, res) {
+
+    let datasFilteredJSON;
 
     // paramètres de base
     let select = ['general', 'gender', 'name']
@@ -367,8 +368,8 @@ exports.c_data = function(req, res) {
 
 
                 // if empty remove
-                // gender
 
+                // gender
                 if ( showGender === "true" ) {
 
                     for (let indexData = 0; indexData < datasFiltered[indexCountry]['gender'].length; indexData++ ) {
@@ -403,16 +404,22 @@ exports.c_data = function(req, res) {
 
 
                 // si les deux vide on enlève
+
                 if (datasFiltered[indexCountry].general === undefined && datasFiltered[indexCountry].gender === undefined ) {
 
                     datasFiltered.splice(indexCountry, 1)
                     indexCountry--
 
+                    datasFilteredJSON = JSON.stringify({status: 'empty', data: null})
+
+                }
+
+                else {
+
+                    datasFilteredJSON = JSON.stringify({status: 'success', data: datasFiltered})
+
                 }
             }
-
-
-            let datasFilteredJSON = JSON.stringify({data: datasFiltered})
 
             res.json(datasFilteredJSON)
         })
