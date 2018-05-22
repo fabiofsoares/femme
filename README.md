@@ -56,11 +56,8 @@ mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JS
 - Autocomplétion ?
 - repasser les requêtes en paramètres !!
 - heroku 
-- HTTPS /!\ 
+- HTTPS /!\ : let's encrypt >>> pour avoir un certificat https
 - Cross Site Request Forgery CSRF : voir si plugin
-
-
-- let's encrypt >>> pour avoir un certificat https
 
 
 ## todo Fabio 
@@ -72,6 +69,7 @@ mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JS
 
 
 ## mel : 
+- remplir 5 pays minimun
 - rajouter requêtes F. dans /
 - rajouter routes dans 404
 
