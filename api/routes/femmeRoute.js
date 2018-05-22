@@ -14,34 +14,23 @@ module.exports = function(app) {
 
     app.route('/c_sources').get(femme.c_sources)
 
-    app.route('/c_data').get(femme.c_data)
-
-
-
-
-    app.route('/countries')
-        .get(femme.getCountriesCurientYear)
-        .post(femme.createCountry)
-
-
-
-    // TODO : erreur
-    app.route('/country/:country')
-        .get(femme.getCountry)
-        .put(femme.updateCountry)
-
-
+    app.route('/c_data').get(femme.c_data)    
     
-    app.route('/country/:country/:type?/:year?')
-        .get(femme.getCountryType)
+    app.route('/country/:country').get(femme.getCountry)  
+
+    app.route('/country/:country/:type?/:year?').get(femme.getCountryType)
     
-    /* app.route('/:country/:type?/:year?/:donne?')
-        .get(femme.getCountryType2) */
+    //Page Admin
+    app.route('/admin').get(femme.admin)
 
+    app.route('/admin/new-country').post(femme.newCountry)    
+    
+    app.route('/admin/add-gender').post(femme.addGender)
+    
+    app.route('/admin/add-general').post(femme.addGeneral)
 
-    // app.route('/:country/:type?/:year?')
-    //     .get(femme.getCountryType)
+    app.route('/admin/update-general').post(femme.updateGeneral)
 
-
+    app.route('/admin/delete-country').post(femme.deleteCountry)
 
 };

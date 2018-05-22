@@ -6,83 +6,6 @@ let mongoose = require('mongoose'),
 exports.hello = function(req, res) {
     res.send('Hello World!') 
 };
-
-exports.getAll = function(req, res) {
-    Countries.find({}, function(err, countries) {
-        if (err){
-            res.send(err);
-        }            
-        res.json(countries);
-    }); 
-};
-
-//TODO -> Ce code ne marche pas
-exports.getCountriesCurientYear = function(req, res) {
-    let query = Countries.find({
-        $and : [
-            { general : { $elemMatch: { year : '2018' }} },
-            { statistical : { $elemMatch: { year : '2018' }}}
-        ]
-    })
-    query.exec(function (err,country) {
-        if (err){
-            res.send(err);
-        }
-        res.json(country);
-    }); 
-};
-
-exports.createCountry = function(req, res) {
-    let newCountry = new Countries(req.body);
-    newCountry.save(function(err, country) {
-      if (err){
-        res.send(err);
-      }        
-      res.json(country);
-    });
-};
-
-exports.getCountry = function(req, res) {    
-    Countries.findOne({name: req.params.country}, function(err,country) { 
-        if (err){
-            res.send(err);
-        }        
-        res.json(country);    
-    });
-};
-
-exports.updateCountry = function(req, res) {
-    Countries.findOneAndUpdate({name: req.params.country}, req.body, {new: true}, function(err, country) {
-        if (err){
-            res.send(err);
-        }
-        res.json(country);
-    });
-};
-
-exports.getCountryType = function(req, res) {
-    let query;
-    
-    if(req.params.type === 'gender'){
-        query = Countries.find(
-            { name : req.params.country },           
-            { gender : { $elemMatch: { year : req.params.year }},  name : req.params.country }
-        )
-    }else{
-        query = Countries.find(
-            { name : req.params.country },
-            { general : { $elemMatch: { year : req.params.year }}, name : req.params.country }
-        )      
-         
-    } 
-    query.exec(function (err,country) {
-        if (err){
-            res.send(err);
-        }
-        res.json(country);
-    });
-};
-
 exports.c_hello = function(req, res) {
     res.sendFile('views/form.html', { root: 'api'})
 }
@@ -99,8 +22,6 @@ exports.c_all = function(req, res) {
 
         })
 }
-
-
 
 // récupère uniquement les noms des pays
 exports.c_countries_name = function(req, res) {
@@ -122,7 +43,6 @@ exports.c_countries_name = function(req, res) {
 
         })
 }
-
 
 // récupérer toutes les sources
 // TODO : - trier sources directement dans la requete
@@ -171,7 +91,6 @@ exports.c_sources = function(req, res) {
 
         })
 }
-
 
 exports.c_data = function(req, res) {
 
@@ -423,4 +342,278 @@ exports.c_data = function(req, res) {
 
             res.json(datasFilteredJSON)
         })
+}
+
+exports.getAll = function(req, res) {
+    Countries.find({}, function(err, countries) {
+        if (err){
+            res.send(err);
+        }            
+        res.json(countries);
+    }); 
+};
+
+exports.getCountry = function(req, res) {    
+    Countries.findOne({name: req.params.country}, function(err,country) { 
+        if (err){
+            res.send(err);
+        }        
+        res.json(country);    
+    });
+};
+
+exports.getCountryType = function(req, res) {
+    let query;
+    
+    if(req.params.type === 'gender'){
+        query = Countries.find(
+            { name : req.params.country },           
+            { gender : { $elemMatch: { year : req.params.year }},  name : req.params.country }
+        )
+    }else{
+        query = Countries.find(
+            { name : req.params.country },
+            { general : { $elemMatch: { year : req.params.year }}, name : req.params.country }
+        )      
+         
+    } 
+    query.exec(function (err,country) {
+        if (err){
+            res.send(err);
+        }
+        res.json(country);
+    });
+};
+
+exports.admin = function(req, res) {
+    res.sendFile('views/admin.html', { root: 'api'})
+}
+
+exports.newCountry = function(req, res) {    
+    let item = {
+        name : req.body.name        
+    }    
+    let newCountry = new Countries(item);
+    newCountry.save(function(err, country) {
+      if (err){
+        res.send(err);
+      }        
+      res.redirect('/');
+    });    
+}
+
+exports.addGender = function(req, res){
+    let id = req.body.id,
+    item = {
+        year: req.body.year,
+        data: [
+            {
+                type: 'victimization',
+                source: req.body.source_0,
+                data:{
+                        m: req.body.dataM_0,
+                        f: req.body.dataF_0
+                    }
+            },
+            {
+                type: 'health_care',
+                source: req.body.source_1,
+                data:{
+                        m: req.body.dataM_1,
+                        f: req.body.dataF_1
+                    }
+            },
+            {
+                type: 'primary_school',
+                source: req.body.source_2,
+                data:{
+                        m: req.body.dataM_2,
+                        f: req.body.dataF_2
+                    }
+            },
+            {
+                type: 'secondary_school',
+                source: req.body.source_3,
+                data:{
+                        m: req.body.dataM_3,
+                        f: req.body.dataF_3
+                    }
+            },
+            {
+                type: 'higher_education',
+                source: req.body.source_4,
+                data:{
+                        m: req.body.dataM_4,
+                        f: req.body.dataF_4
+                    }
+            },
+            {
+                type: 'salary',
+                source: req.body.source_5,
+                data:{
+                        m: req.body.dataM_5,
+                        f: req.body.dataF_5
+                    }
+            },
+            {
+                type: 'unemployment',
+                source: req.body.source_6,
+                data:{
+                        m: req.body.dataM_6,
+                        f: req.body.dataF_6
+                    }
+            },
+            {
+                type: 'work_time',
+                source: req.body.source_7,
+                data:{
+                        m: req.body.dataM_7,
+                        f: req.body.dataF_7
+                    }
+            },
+            {
+                type: 'occupational_integration',
+                source: req.body.source_8,
+                data:{
+                        m: req.body.dataM_8,
+                        f: req.body.dataF_8
+                    }
+            },
+            {
+                type: 'poverty',
+                source: req.body.source_9,
+                data:{
+                        m: req.body.dataM_9,
+                        f: req.body.dataF_9
+                    }
+            },
+            {
+                type: 'population_percent',
+                source: req.body.source_10,
+                data:{
+                        m: req.body.dataM_10,
+                        f: req.body.dataF_10
+                    }
+            },
+            {
+                type: 'politic',
+                source: req.body.source_11,
+                data:{
+                        m: req.body.dataM_11,
+                        f: req.body.dataF_11
+                    }
+            }
+        ]
+    };
+    Countries.findById(id, function(err, country){
+        if(err){
+            console.error('error, country not found !');
+        }
+        country.gender.push(item);
+        country.save();
+        res.redirect('/admin');
+    })
+}
+
+exports.addGeneral = function(req, res){
+    let id = req.body.id;
+    let item = {
+        year: req.body.year,
+        source : req.body.source,
+        data : {
+            area : req.body.area,
+            population : req.body.population,
+            pib : req.body.pib,
+            ppa : req.body.ppa,
+            idh : req.body.idh,
+            country_unemployment : req.body.country_unemployment
+        }
+    };
+    Countries.findById(id, function(err, country){
+        if(err){
+            console.error('error, country not found !');
+        }
+        country.general.push(item);
+        country.save();
+        res.redirect('/admin');
+    })
+}
+
+exports.deleteCountry = function(req, res){
+    var id = req.body.id;    
+    Countries.findByIdAndRemove(id).exec();
+    res.redirect('/admin');
+}
+
+exports.updateCountry = function(req, res){
+    let id = req.body.id;
+    Countries.findById(id, function(err, country) {
+        if (err) {
+            console.error('error, country not found');
+        }    
+        country.name = req.body.name;
+        country.save();
+    })
+    res.redirect('/admin');
+}
+
+
+exports.updateGender = function(req, res){
+    let id = req.body.id,
+        year = req.body.year;
+
+    Countries.find( { name : req.params.country }, 
+        { gender : { $elemMatch: { year : req.params.year }}});
+    
+    query.exec(function (err,country) {
+        if (err) {
+            console.error('error, country/year not found');
+        }
+        for(var i = 0; i < 12; i++){
+            country.data[i].source = req.body.source_+i;
+            country.data[i].data.m = req.body.dataM_+i;
+            country.data[i].data.f = req.body.dataF_+i;
+        }    
+        country.save();
+        res.redirect('/admin');         
+    
+    });
+    
+}
+
+exports.updateGeneral = function(req, res){
+   
+         
+    let query = Countries.find(
+            { _id : req.body.id },
+            { general : { $elemMatch: { year : req.body.year }} }
+        ) 
+        query.exec(function (err,country) {
+            if (err){
+                res.send(err);
+            }
+            for (var key in country) {
+                console.log(country[key])             
+                
+            }
+            //res.json(country.year);
+        });
+   
+    
+   /*  query.exec(function (err,country) {
+        if (err) {
+            console.error('error, country/year not found');
+        }
+        /* country.general.data.area = req.body.area;  
+        country.general.data.population = req.body.population;  
+        country.general.data.pib = req.body.pib;  
+        country.general.data.ppa = req.body.ppa;  
+        country.general.data.idh = req.body.idh;  
+        country.general.data.country_unemployment = req.body.country_unemployment;  
+        
+        country.save(); */
+       /*  console.log(query.general)
+        res.redirect('/admin');      */   
+    
+   // });     
 }
