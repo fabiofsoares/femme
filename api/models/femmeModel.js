@@ -9,5 +9,3 @@ const schemaGenerated = Generator.json('Countrie', json)
 const CountrieSchema = new Schema(schemaGenerated.properties)
 
 module.exports = mongoose.model('Countries', CountrieSchema)
-
-

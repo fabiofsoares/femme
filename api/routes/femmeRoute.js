@@ -19,49 +19,23 @@ module.exports = function(app) {
     app.get("/countries/:countries?/:years?/:general?/:gender?/:sex?/:operator?", user.checkAuth, femme.getData)
     app.post("/countries/:countries?/:years?/:general?/:gender?/:sex?/:operator?", user.checkAuth, femme.getData)
 
+
+    // TODO : authentification puis token
+    // TODO : changer mdp
     app.put("/users/:email/:password/:name?/", user.register)
 
     app.delete("/users/:email", user.checkAuth, user.delete)
 
 
-    // TODO : changer mdp
-    // TODO : authentification puis token
+    app.route('/admin').get(femme.admin)
 
-    //
+    app.route('/admin/new-country').post(femme.newCountry)
 
-    // app.route('/users/token').get(user.testToken)
+    app.route('/admin/add-gender').post(femme.addGender)
 
-    // app.route('/countries').get(femme.getData)
+    app.route('/admin/add-general').post(femme.addGeneral)
 
-    // app.route('/countries').get(femme.getAll)
+    app.route('/admin/update-general').post(femme.updateGeneral)
 
-    // app.route('/countries').get(femme.getAll)
-
-    // app.route('/countries/sources/year/:year?').get(femme.getSources)
-
-    // app.route('/filter/').get(femme.c_data)
-
-
-    // app.route('/countries')
-    //     .get(femme.getCountriesCurientYear)
-    //     .post(femme.createCountry)
-
-
-
-    // // TODO : erreur
-    // app.route('/country/:country')
-    //     .get(femme.getCountry)
-    //     .put(femme.updateCountry)
-
-
-
-    // app.route('/country/:country/:type?/:year?')
-    //     .get(femme.getCountryType)
-
-    /* app.route('/:country/:type?/:year?/:donne?')
-        .get(femme.getCountryType2) */
-
-
-    // app.route('/:country/:type?/:year?')
-    //     .get(femme.getCountryType)
-}
+    app.route('/admin/delete-country').post(femme.deleteCountry)
+};

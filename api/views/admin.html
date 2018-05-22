@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Femme | Admin</title>
+
+    <style>
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            width: 1100px;
+            margin: 0 auto;
+        }
+        section {
+            border: 1px solid #000;
+            width: 49%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Page Admin</h1>
+    <div class="container">       
+        <section class="insert">
+            <h3>New Country</h3>
+            <form action="/admin/new-country" method="post">
+                <div class="input">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>                                         
+                <button type="submit">INSERT</button>
+            </form>
+        </section>
+        <section class="insert">
+            <h3>Add Gender</h3>
+            <form action="/admin/add-gender" method="post">
+                <div class="input">
+                        <label>ID County :<input type="text" id="id" name="id"></label>
+                        <label>Year :<input type="text" id="year" name="year"></label>                   
+                </div>
+                <div class="input">
+                    <label>Victimization</label><br>
+                    <input placeholder='Source' type="text" id="source_0" name="source_0">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_0" name="dataM_0">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_0" name="dataF_0">
+                </div>
+                <div class="input">
+                    <label>Health Care</label><br>
+                    <input placeholder='Source' type="text" id="source_1" name="source_1">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_1" name="dataM_1">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_1" name="dataF_1">
+                </div>
+                <div class="input">
+                    <label>Primary school</label><br>
+                    <input placeholder='Source' type="text" id="source_2" name="source_2">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_2" name="dataM_2">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_2" name="dataF_2">
+                </div>
+                <div class="input">
+                    <label>Secondary school</label><br>
+                    <input placeholder='Source' type="text" id="source_3" name="source_3">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_3" name="dataM_3">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_3" name="dataF_3">
+                </div>
+                <div class="input">
+                    <label>Higher education</label><br>
+                    <input placeholder='Source' type="text" id="source_4" name="source_4">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_4" name="dataM_4">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_4" name="dataF_4">
+                </div>
+                <div class="input">
+                    <label>Salary</label><br>
+                    <input placeholder='Source' type="text" id="source_5" name="source_5">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_5" name="dataM_5">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_5" name="dataF_5">
+                </div>
+                <div class="input">
+                    <label>Unemployment</label><br>
+                    <input placeholder='Source' type="text" id="source_6" name="source_6">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_6" name="dataM_6">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_6" name="dataF_6">
+                </div> 
+                <div class="input">
+                    <label>Work time</label><br>
+                    <input placeholder='Source' type="text" id="source_7" name="source_7">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_7" name="dataM_7">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_7" name="dataF_7">
+                </div> 
+                <div class="input">
+                    <label>Occupational integration</label><br>
+                    <input placeholder='Source' type="text" id="source_8" name="source_8">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_8" name="dataM_8">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_8" name="dataF_8">
+                </div>
+                <div class="input">
+                    <label>Poverty</label><br>
+                    <input placeholder='Source' type="text" id="source_9" name="source_9">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_9" name="dataM_9">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_9" name="dataF_9">
+                </div> 
+                <div class="input">
+                    <label>Population percent</label><br>
+                    <input placeholder='Source' type="text" id="source_10" name="source_10">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_10" name="dataM_10">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_10" name="dataF_10">
+                </div>
+                <div class="input">
+                    <label>Politic</label><br>
+                    <input placeholder='Source' type="text" id="source_11" name="source_11">
+                    <input placeholder='Male' class="input_data" type="text" id="dataM_11" name="dataM_11">
+                    <input placeholder='Female' class="input_data" type="text" id="dataF_11" name="dataF_11">
+                </div>                                            
+                <button type="submit">INSERT</button>
+            </form>
+        </section>
+        <section class="insert">
+            <h3>Add General</h3>
+            <form action="/admin/add-general" method="post">
+                
+                <div class="input">
+                    <label>ID County :<input type="text" id="id" name="id"></label><br>
+                    <label>Year :<input type="text" id="year" name="year"></label><br>
+                    <label>Source :<input type="text" id="source" name="source"></label>                 
+                </div>                
+                <div class="input">
+                    <h4>Data :</h4>
+                    <label>Area : <input type="text" id="area" name="area"></label><br>
+                    <label>Population : <input type="text" id="population" name="population"></label><br>
+                    <label>PIB : <input type="text" id="pib" name="pib"></label><br>
+                    <label>PPA : <input type="text" id="ppa" name="ppa"></label><br>
+                    <label>IDH : <input type="text" id="idh" name="idh"></label><br>
+                    <label>Country unemployment : <input type="text" id="country_unemployment" name="country_unemployment"></label>                                        
+                </div>                                             
+                <button type="submit">INSERT</button>
+            </form>
+        </section>
+        <section class="insert">
+                <h3>Delete Country</h3>
+                <form action="/admin/delete-country" method="post">                   
+                    <div class="input">
+                        <label>ID County :<input type="text" id="id" name="id"></label>                        
+                    </div>                                    
+                    <button type="submit">DELETE</button>
+                </form>
+        </section>                   
+    </div>
+</body>
+</html>
