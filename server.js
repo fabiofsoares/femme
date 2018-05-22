@@ -19,9 +19,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/ecv-api")
 app.use( bodyParser.urlencoded({ extended: true }) )
 app.use( bodyParser.json() )
 
-routes(app);
-
-
+routes(app)
 
 
 app.use(function(req, res) {
@@ -78,36 +76,6 @@ app.use(function(req, res) {
     res.status(404)
     res.send( notFoundResponse )
 });
-
-
-
-
-function authChecker(req, res, next) {
-
-    let secret = "charline"
-
-    let testTokenResponse = {}
-
-    let tokenFull = req.headers.authorization
-    let tokenSpaceIndex = tokenFull.indexOf(' ')
-    let token = tokenFull.slice(tokenSpaceIndex + 1, tokenFull.length )
-
-    jwt.verify(token, secret, function(err, decoded) {
-
-        if (err) {
-            testTokenResponse.status     = "error"
-            testTokenResponse.message    = err
-
-            res.status(400)
-            res.json( testTokenResponse )
-        }
-
-        else {
-
-            next()
-        }
-    })
-}
 
 
 
