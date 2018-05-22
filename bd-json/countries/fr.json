@@ -1,8 +1,8 @@
 {
-  "name": "fr",
+  "code": "fr",
   "gender": [
     {
-      "year": "2016",
+      "year": 2016,
       "data": [
         {
           "type": "victimization",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "year": "2015",
+      "year": 2015,
       "data": [
         {
           "type": "life_expectancy",
@@ -215,7 +215,7 @@
   ],
   "general": [
     {
-      "year": "2016",
+      "year": 2016,
       "source": "http://www.general.fr",
       "data": {
         "area": 672051,

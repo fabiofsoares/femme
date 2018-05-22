@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Account</title>
+</head>
+<body>
+
+<p>
+    Error with your registration make sure all fields are filled
+</p>
+
+<form action="http://127.0.0.1:3000/users/register" method="post" id="connect">
+
+    <label for="name">Enter your name
+        <input type="text" name="name" id="name" required>
+    </label>
+
+    <label for="email">Enter your email
+        <input type="text" name="email" id="email" required>
+    </label>
+
+    <label for="password">Enter your password
+        <input type="password" name="password" id="password" required>
+    </label>
+
+    <input type="submit" value="envoyer">
+
+</form>
+
+
+</body>
+</html>

@@ -45,13 +45,37 @@ mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JS
 
 
 ## todo charline 
-- grosse requete country + filtre en / 
-- premiere requete / 
-- token
-- gestion des erreurs 
-- wrapper
+- OK : grosse requete country + filtre en / 
+- OK : enlever toutes les ID dans les renvoie de données
+- OK : gestion des erreurs messages personnalisés + renvoyer code HTTP
+- OK : wrapper
+- OK : 404 -> proposition de routes
+- OK : premiere requete / 
+- OK : token
+- CORS ? -> avec l'enregistrement des users
+- Autocomplétion ?
+- repasser les requêtes en paramètres !!
+- heroku 
+- HTTPS /!\ 
+- Cross Site Request Forgery CSRF : voir si plugin
+
+
+- let's encrypt >>> pour avoir un certificat https
+
 
 ## todo Fabio 
 - put
 - delete 
-- cache
+- cache : sur 2 ou 3 des routes > si pas de cache on le spécifie aussi
+- à vérifier avec le cache control
++++ ETag > forcer à enlever le cache si la ressource à été modifiée
+
+
+## mel : 
+- rajouter requêtes F. dans /
+- rajouter routes dans 404
+
+
+
+
+## TOKEN : A REVORI SI TOUT OK

@@ -1,8 +1,8 @@
 {
-  "name" : "en",
+  "code" : "en",
   "gender": [
     {
-      "year": "2016",
+      "year": 2016,
       "data": [
         {
           "type": "life_expectancy",
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "year": "2015",
+      "year": 2015,
       "data": [
         {
           "type": "life_expectancy",
@@ -235,7 +235,7 @@
   ],
   "general": [
     {
-      "year": "2016",
+      "year": 2016,
       "source": "http://www.general.en",
       "data": {
         "area": 246690,
@@ -247,7 +247,7 @@
       }
     },
     {
-      "year": "2015",
+      "year": 2015,
       "source": "http://www.general.en",
       "data": {
         "area": 246690,

@@ -2,11 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5d564f4-ad78-41eb-b74c-8bde6e41263e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/api/controllers/userController.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/api/models/userModel.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/api/views/create.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/api/views/createError.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/api/views/login.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/api/views/loginError.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/api/views/manage.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/bd-json/user/user.json" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/api/controllers/femmeController.js" afterPath="$PROJECT_DIR$/api/controllers/femmeController.js" />
+      <change beforePath="$PROJECT_DIR$/api/models/femmeModel.js" afterPath="$PROJECT_DIR$/api/models/femmeModel.js" />
       <change beforePath="$PROJECT_DIR$/api/routes/femmeRoute.js" afterPath="$PROJECT_DIR$/api/routes/femmeRoute.js" />
+      <change beforePath="$PROJECT_DIR$/api/views/form.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/bd-json/countries/en.json" afterPath="$PROJECT_DIR$/bd-json/countries/en.json" />
+      <change beforePath="$PROJECT_DIR$/bd-json/countries/fr.json" afterPath="$PROJECT_DIR$/bd-json/countries/fr.json" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,14 +30,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6865022">
+    <splitter split-orientation="horizontal" split-proportion="0.41852367">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="femmeRoute.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/api/routes/femmeRoute.js">
+          <file leaf-file-name="userController.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/api/controllers/userController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="248">
-                  <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="25" />
+                <state relative-caret-position="208">
+                  <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
                   <folding />
                 </state>
               </provider>
@@ -32,9 +46,9 @@
           <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="503">
-                    <caret line="56" column="7" lean-forward="false" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
+                <state split_layout="FIRST">
+                  <first_editor relative-caret-position="537">
+                    <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
                     <folding />
                   </first_editor>
                   <second_editor />
@@ -42,44 +56,34 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="create.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/api/views/create.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="416">
+                  <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="createError.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/api/views/createError.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="416">
+                  <caret line="26" column="45" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/server.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="208">
-                  <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.gitignore">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="16">
-                  <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="en.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bd-json/countries/en.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="16">
-                  <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="7" />
+                <state relative-caret-position="175">
+                  <caret line="84" column="13" lean-forward="true" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
                   <folding>
-                    <element signature="e#75#2878#0" expanded="false" />
+                    <element signature="e#906#1986#0" expanded="false" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="fr.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bd-json/countries/fr.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="207">
-                  <caret line="209" column="20" lean-forward="true" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="20" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -88,12 +92,18 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/package.json">
+          <file leaf-file-name="femmeController.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/api/controllers/femmeController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
-                  <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="13" />
-                  <folding />
+                <state relative-caret-position="-274">
+                  <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#858#1040#0" expanded="false" />
+                    <element signature="e#1083#1267#0" expanded="false" />
+                    <element signature="e#1313#1513#0" expanded="false" />
+                    <element signature="e#1560#2156#0" expanded="false" />
+                    <element signature="e#9930#19056#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -101,33 +111,29 @@
           <file leaf-file-name="femmeModel.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/api/models/femmeModel.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="96">
-                  <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#83#119#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="femmeController.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/api/controllers/femmeController.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4608">
-                  <caret line="437" column="34" lean-forward="true" selection-start-line="437" selection-start-column="34" selection-end-line="437" selection-end-column="34" />
+                <state relative-caret-position="176">
+                  <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="form.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/api/views/form.html">
+          <file leaf-file-name="femmeRoute.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/api/routes/femmeRoute.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-63">
-                  <caret line="339" column="0" lean-forward="true" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
-                  <folding>
-                    <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-                  </folding>
+                <state relative-caret-position="48">
+                  <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bd-json/user/user.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="80">
+                  <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -141,10 +147,16 @@
       <find>occupational integration</find>
       <find>year</find>
       <find>delete</find>
+      <find>getCountriesName</find>
+      <find>error</find>
+      <find>femmeController</find>
     </findStrings>
     <replaceStrings>
       <replace>occupational_integration</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/api</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -153,18 +165,30 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/bd-json/countries.json" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/test.json" />
         <option value="$USER_HOME$/current.json" />
         <option value="$PROJECT_DIR$/generateSchema.js" />
         <option value="$PROJECT_DIR$/bd-json/db-charline.json" />
-        <option value="$PROJECT_DIR$/api/models/femmeModel.js" />
         <option value="$PROJECT_DIR$/api/views/form.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/bd-json/countries/en.json" />
         <option value="$PROJECT_DIR$/bd-json/countries/fr.json" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/auth/AuthController.js" />
+        <option value="$PROJECT_DIR$/api/auth/AuthController.js" />
+        <option value="$PROJECT_DIR$/api/models/femmeModel.js" />
+        <option value="$PROJECT_DIR$/api/config.js" />
+        <option value="$PROJECT_DIR$/api/views/login.html" />
+        <option value="$PROJECT_DIR$/api/views/manage.html" />
+        <option value="$PROJECT_DIR$/api/routes/userRoute.js" />
+        <option value="$PROJECT_DIR$/api/models/userModel.js" />
+        <option value="$PROJECT_DIR$/api/views/loginError.html" />
+        <option value="$PROJECT_DIR$/api/views/create.html" />
+        <option value="$PROJECT_DIR$/api/views/createError.html" />
+        <option value="$PROJECT_DIR$/bd-json/user/user.json" />
+        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/api/controllers/femmeController.js" />
+        <option value="$PROJECT_DIR$/api/controllers/userController.js" />
         <option value="$PROJECT_DIR$/api/routes/femmeRoute.js" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
@@ -188,7 +212,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="1027" />
@@ -208,7 +232,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -224,6 +247,18 @@
             <path>
               <item name="femme" type="b2602c69:ProjectViewProjectNode" />
               <item name="femme" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="api" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="femme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="femme" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="api" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="femme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="femme" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="bd-json" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -232,10 +267,17 @@
               <item name="bd-json" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="countries" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="femme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="femme" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="bd-json" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="user" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -247,6 +289,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api" />
       <recent name="$PROJECT_DIR$/bd-json" />
     </key>
   </component>
@@ -277,18 +320,19 @@
       <updated>1526137393278</updated>
       <workItem from="1526137396625" duration="273000" />
       <workItem from="1526137834272" duration="37936000" />
-      <workItem from="1526393936310" duration="4313000" />
+      <workItem from="1526393936310" duration="39211000" />
+      <workItem from="1526990453731" duration="9280000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42522000" />
+    <option name="totallyTimeSpent" value="86700000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15811966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12332112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -297,7 +341,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33515283" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489083" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -318,8 +362,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15628816" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2521834" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12210012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -338,11 +382,83 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/controllers/userController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views/create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views/createError.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" column="45" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="784">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <element signature="e#906#1986#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/femmeController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1472">
+          <caret line="135" column="0" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+          <folding>
+            <element signature="e#858#1040#0" expanded="false" />
+            <element signature="e#1083#1267#0" expanded="false" />
+            <element signature="e#1313#1513#0" expanded="false" />
+            <element signature="e#1560#2156#0" expanded="false" />
+            <element signature="e#9930#19056#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/femmeModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bd-json/user/user.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/routes/femmeRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/routes/femmeRoute.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -356,7 +472,12 @@
         <state relative-caret-position="656">
           <caret line="159" column="20" lean-forward="false" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="20" />
           <folding>
-            <element signature="e#75#2878#0" expanded="false" />
+            <element signature="e#37#2882#0" expanded="false" />
+            <element signature="e#2888#5300#0" expanded="false" />
+            <element signature="e#3109#3377#0" expanded="false" />
+            <element signature="e#3387#3548#0" expanded="false" />
+            <element signature="e#3558#3724#0" expanded="false" />
+            <element signature="e#5319#5851#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -365,7 +486,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="e#72#2250#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -383,27 +506,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="1465" column="0" lean-forward="true" selection-start-line="1465" selection-start-column="0" selection-end-line="1465" selection-end-column="0" />
-          <folding>
-            <element signature="e#83#119#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views/form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5568">
-          <caret line="389" column="0" lean-forward="true" selection-start-line="389" selection-start-column="0" selection-end-line="389" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views/form.html" />
     <entry file="file://$PROJECT_DIR$/api/controllers/femmeController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5344">
           <caret line="384" column="0" lean-forward="true" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#858#1040#0" expanded="false" />
+            <element signature="e#1083#1267#0" expanded="false" />
+            <element signature="e#1313#1513#0" expanded="false" />
+            <element signature="e#1560#2156#0" expanded="false" />
+            <element signature="e#9930#19056#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -429,7 +547,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#906#1986#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -462,58 +582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views/form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-63">
-          <caret line="339" column="0" lean-forward="true" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/models/femmeModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#83#119#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bd-json/countries/fr.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="209" column="20" lean-forward="true" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/femmeController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4608">
-          <caret line="437" column="34" lean-forward="true" selection-start-line="437" selection-start-column="34" selection-end-line="437" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bd-json/countries.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -524,37 +592,171 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views/form.html" />
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es2017.sharedmemory.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="64" column="4" lean-forward="false" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bd-json/countries/fr.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="210" column="11" lean-forward="false" selection-start-line="210" selection-start-column="11" selection-end-line="210" selection-end-column="11" />
+          <folding>
+            <element signature="e#72#2250#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/response.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="1021" column="4" lean-forward="false" selection-start-line="1021" selection-start-column="4" selection-end-line="1021" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="13" />
+        <state relative-caret-position="352">
+          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bd-json/countries/en.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="7" />
+        <state relative-caret-position="112">
+          <caret line="261" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="261" selection-end-column="1" />
           <folding>
-            <element signature="e#75#2878#0" expanded="false" />
+            <element signature="e#37#2882#0" expanded="false" />
+            <element signature="e#2888#5300#0" expanded="false" />
+            <element signature="e#3109#3377#0" expanded="false" />
+            <element signature="e#3387#3548#0" expanded="false" />
+            <element signature="e#3558#3724#0" expanded="false" />
+            <element signature="e#5319#5851#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/config.js" />
+    <entry file="file://$PROJECT_DIR$/api/auth/AuthController.js" />
+    <entry file="file://$PROJECT_DIR$/api/views/manage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/routes/userRoute.js" />
+    <entry file="file://$PROJECT_DIR$/api/models/userModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views/loginError.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views/createError.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" column="45" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="84" column="13" lean-forward="true" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
+          <folding>
+            <element signature="e#906#1986#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/femmeController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-274">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#858#1040#0" expanded="false" />
+            <element signature="e#1083#1267#0" expanded="false" />
+            <element signature="e#1313#1513#0" expanded="false" />
+            <element signature="e#1560#2156#0" expanded="false" />
+            <element signature="e#9930#19056#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views/create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/userController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bd-json/user/user.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/femmeModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/routes/femmeRoute.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="25" />
+        <state relative-caret-position="48">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="503">
-            <caret line="56" column="7" lean-forward="false" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="537">
+            <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
             <folding />
           </first_editor>
           <second_editor />

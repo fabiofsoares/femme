@@ -1,36 +1,33 @@
-'use strict';
-let mongoose = require('mongoose'),
-    Countries = mongoose.model('Countries');
+'use strict'
+const   mongoose    = require('mongoose'),
+        Countries   = mongoose.model('Countries'),
+        domaine     = 'http://127.0.0.1:3000'
 
 
-exports.hello = function(req, res) {
-    res.send('Hello World!') 
-};
-
-exports.getAll = function(req, res) {
-    Countries.find({}, function(err, countries) {
-        if (err){
-            res.send(err);
-        }            
-        res.json(countries);
-    }); 
-};
+// exports.getAll = function(req, res) {
+//     Countries.find({}, function(err, countries) {
+//         if (err){
+//             res.send(err);
+//         }
+//         res.json(countries);
+//     });
+// };
 
 //TODO -> Ce code ne marche pas
-exports.getCountriesCurientYear = function(req, res) {
-    let query = Countries.find({
-        $and : [
-            { general : { $elemMatch: { year : '2018' }} },
-            { statistical : { $elemMatch: { year : '2018' }}}
-        ]
-    })
-    query.exec(function (err,country) {
-        if (err){
-            res.send(err);
-        }
-        res.json(country);
-    }); 
-};
+// exports.getCountriesCurientYear = function(req, res) {
+//     let query = Countries.find({
+//         $and : [
+//             { general : { $elemMatch: { year : '2018' }} },
+//             { statistical : { $elemMatch: { year : '2018' }}}
+//         ]
+//     })
+//     query.exec(function (err,country) {
+//         if (err){
+//             res.send(err);
+//         }
+//         res.json(country);
+//     });
+// };
 
 exports.createCountry = function(req, res) {
     let newCountry = new Countries(req.body);
@@ -83,214 +80,223 @@ exports.getCountryType = function(req, res) {
     });
 };
 
-exports.c_hello = function(req, res) {
-    res.sendFile('views/form.html', { root: 'api'})
+// exports.c_hello = function(req, res) {
+//     res.sendFile('views/login.html', { root: 'api'})
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+// REPRISE C :
+
+// TODO : spécifié les routes en expliquant les paramètres
+exports.showRoutes = function( req, res ) {
+
+    let routes = {}
+
+    routes.codes        = domaine + "/codes"
+    routes.sources      = domaine + "/sources/{country_code}/{year}/{cateogory}"
+    routes.countries    = domaine + "/countries/{country_code}/{year}/{general_filter}/{gender_filter}/{gender_compare_sex}/{gender_compare_oparator}"
+
+    routes.values = {
+        "country_code" : "international code",
+        "year" : "yyyy",
+        "cateogory" : "gender or general",
+        "general_filters" : "all or none or coma separated values",
+        "gender_filters" : "all or none or coma separated values",
+        "gender_compare_sex" : "f or m",
+        "gender_compare_operator" : "> or >= or < or <= or ="
+    }
+    res.json( routes )
 }
 
-exports.c_all = function(req, res) {
+exports.getCountriesCode = function( req, res ) {
 
     Countries.
-        find({}).
-        exec( function(err, datas) {
+        find( {} ).
+        select( "code" ).
+        exec( function( err, datas ) {
 
-            if (err) res.send(err)
+            let getCountriesNameResponse = {}
 
-            res.json(datas)
+            if (err) {
 
+                getCountriesNameResponse.status     = "error"
+                getCountriesNameResponse.message    = err
+
+                res.status(400)
+                res.json( getCountriesNameResponse )
+                return null
+            }
+
+            else {
+
+                let codes = []
+
+                for (let data of datas)
+                    codes.push(data.code)
+
+                getCountriesNameResponse.status     = "success"
+                getCountriesNameResponse.data       = codes
+            }
+
+            res.json( getCountriesNameResponse )
         })
 }
 
+exports.getSources = function( req, res ) {
+
+    let getSourcesResponse = {}
+    let filters = [{}]
+    let select = " -_id code"
 
 
-// récupère uniquement les noms des pays
-exports.c_countries_name = function(req, res) {
-
-    Countries.
-        find({}).
-        select('name').
-        exec( function(err, datas) {
-
-            if (err) res.send(err)
-
-            let names = []
-
-            for (let data of datas) names.push(data.name)
-
-            let namesJSON = JSON.stringify({status: 'success', data: names})
-
-            res.json(namesJSON)
-
-        })
-}
+    // récupération des filtres
+    let filterCountries     = req.params.countries      === 'all'   || !req.params.countries    ? false : req.params.countries.split(",")
+    let filterYears         = req.params.years          === 'all'   || !req.params.years        ? false : req.params.years.split(",")
+    let filterCategories    = req.params.categories     === 'all'   || !req.params.categories   ? false : req.params.categories.split(",")
 
 
-// récupérer toutes les sources
-// TODO : - trier sources directement dans la requete
-exports.c_sources = function(req, res) {
 
-    // tableau à renvoyer une fois trier
-    let sources= []
+    // convertir les année en nombre
+    for (let indexYears in filterYears) {
+
+
+        // GESTION ERREUR : si année pas encore finie / passée et pas au format yyyy
+        if ( filterYears[indexYears] >= ( new Date() ).getFullYear() || filterYears[indexYears].length < 4 ) {
+
+            getSourcesResponse.status       = "error"
+            getSourcesResponse.message      = "You must enter a previous year and respecting the format : yyyy "
+
+            res.status(400)
+            res.json(getSourcesResponse)
+            return null
+        }
+
+        filterYears[indexYears] = Number(filterYears[indexYears])
+    }
+
+
+    // 1 - si filtre par catégories
+    if ( filterCategories ) {
+
+        for ( let category of filterCategories) {
+
+            select += " " + category
+        }
+    }
+
+    else {
+
+        select += " general gender"
+    }
+
+
+    // 2 - si filtre par pays
+    if ( filterCountries ) {
+
+        filters.push( {code: { $in: filterCountries }} )
+    }
+
 
     // récupère nos données
     Countries.
-        find({}).
-        select( ['gender', 'general'] ).
-        exec( function(err, datas) {
+        find( {} ).
+        and( filters ).
+        select( select ).
+        sort( "code" ).
+        exec( function( err, datas ) {
 
+            if (err) {
 
-            // sépare nos données en deux catégories
-            let generalData = []
-            let genderData = []
+                getSourcesResponse.status       = "error"
+                getSourcesResponse.message      = err
 
-            for (let data of datas) {
-                generalData.push(data.general)
-                genderData.push(data.gender)
+                res.status(400)
+                res.json( getSourcesResponse )
+                return null
+
             }
 
+            else {
 
-            // récupére les sources dans nos deux tableaux
-            for (let general of generalData)
-                for (let i = 0; i < general.length; i++)
-                    sources.push(general[i].source)
-
-            for (let gender of genderData)
-                for (let genderYear of gender)
-                    for (let type of genderYear.data)
-                        sources.push(type.source)
+                let datasResponse = datas
+                let sources= []
 
 
-            // on trie notre tableau en effaçant les doublons
-            let sourcesOrdered =
-                sources.sort().filter(function (item, pos, array) {
-                    return !pos || item !== array[pos - 1];
-                })
+                for ( let indexCountry = 0; indexCountry < datasResponse.length; indexCountry++ ) {
 
-            let sourcesJSON = JSON.stringify({status: 'success', data: sourcesOrdered})
+                    // on enlève les données non comprises dans l'années
+                    if ( filterYears ) {
 
-            res.json(sourcesJSON)
+                        let generalData = datasResponse[indexCountry].general
+                        let genderData = datasResponse[indexCountry].gender
 
-        })
-}
+                        // general
+                        if ( !filterCategories || filterCategories.indexOf('general') > 0 ) {
 
+                            for ( let indexGeneral = 0; indexGeneral <  generalData.length; indexGeneral++) {
 
-exports.c_data = function(req, res) {
+                                let countryYear =  datasResponse[indexCountry].general[indexGeneral].year
 
-    let datasFilteredJSON;
+                                if ( filterYears.indexOf( countryYear ) < 0 ) {
 
-    // paramètres de base
-    let select = ['general', 'gender', 'name']
-
-    let year_array = null
-
-    // Todo : automatiser pour avoir tous les pays + catégories général et gender
-    let country_array = [
-        'en',
-        'fr'
-    ]
-
-    let gender_array = [
-        'life_expectancy',
-        'victimization',
-        'health_care',
-        'primary_school',
-        'secondary_school',
-        'higher_education',
-        'salary',
-        'unemployment',
-        'work_time',
-        'occupational_integration',
-        'poverty',
-        'population_percent',
-        'politic'
-    ]
-
-    let general_array = [
-        'area',
-        'population',
-        'pib',
-        'ppa',
-        'idh',
-        'country_unemployment'
-    ]
-
-    let gender_array_length_all = gender_array.length
-    let general_array_length_all = general_array.length
+                                    datasResponse[indexCountry].general.splice(indexGeneral, 1)
+                                    indexGeneral--
+                                }
+                            }
+                        }
 
 
+                        // gender
+                        if ( !filterCategories || filterCategories.indexOf('gender') > 0 ) {
 
+                            for ( let indexGender = 0; indexGender <  genderData.length; indexGender++) {
 
-    // récupère les paramètres de filtre de catégorie
-    let isFilterYear = req.query.year
-    let isFilterCountry = req.query.country
-    let showGender = req.query.gender
-    let showGeneral = req.query.general
-    let isGenderCompare = req.query.genderCompare
+                                let countryYear =  datasResponse[indexCountry].gender[indexGender].year
 
+                                if ( filterYears.indexOf( countryYear ) < 0 ) {
 
-
-
-    // on ajuste les données en fonctiondes paramètres envoyés
-
-    // 1 - ce que l'on va sélectionner pour renvoyer
-    if ( showGeneral === 'false' ) select.splice( select.indexOf('general'), 1)
-    if ( showGender === 'false' ) select.splice( select.indexOf('gender'), 1)
-
-    // si pas de filtres renvoie réponse vide
-    // TODO : renvoyer un message d'erreur
-    if ( showGeneral === 'false' && showGender === 'false' ) return res.json(null)
-
-
-    // 2 - les tableaux de filtres
-    if ( isFilterYear === 'true' && req.query.year_array !== undefined ) year_array = req.query.year_array
-    if ( isFilterCountry === 'true' && req.query.country_array !== undefined ) country_array = req.query.country_array
-    if ( showGender === 'true' && req.query.gender_array !== undefined ) gender_array = req.query.gender_array
-    if ( showGeneral === 'true' && req.query.general_array !== undefined ) general_array = req.query.general_array
-
-
-    let compareSexe = isGenderCompare ? req.query.genderCompareSexe : null
-    let compareOperation = isGenderCompare ? req.query.genderCompareOperation : null
-
-
-    Countries.
-        find({}).
-        select( select ).
-        in('name', country_array).
-        exec( function(err, datas) {
-
-
-            let datasFiltered = datas
-
-
-
-            for (let indexCountry = 0; indexCountry < datasFiltered.length; indexCountry++ ) {
-
-
-                // years general + gender
-                if ( year_array !== null ) {
-
-                    // for general
-                    if ( showGeneral === "true") {
-
-                        for ( let indexGeneral = 0; indexGeneral < datasFiltered[indexCountry].general.length; indexGeneral++ ) {
-
-                            if ( year_array.indexOf(datasFiltered[indexCountry].general[indexGeneral].year) < 0 ) {
-
-                                datasFiltered[indexCountry].general.splice(indexGeneral, 1)
-                                indexGeneral--
+                                    datasResponse[indexCountry].gender.splice(indexGender, 1)
+                                    indexGender--
+                                }
                             }
                         }
                     }
 
 
-                    // for gender
-                    if ( showGender === "true") {
 
-                        for ( let indexGender = 0; indexGender < datasFiltered[indexCountry].gender.length; indexGender++ ) {
+                    // on récupère les sources
+                    for (let property in datasResponse[indexCountry] ) {
 
-                            if ( year_array.indexOf(datasFiltered[indexCountry].gender[indexGender].year) < 0 ) {
+                        if ( property === "gender" && datasResponse[indexCountry].gender !== undefined ) {
 
-                                datasFiltered[indexCountry].gender.splice( indexGender, 1)
-                                indexGender--
+                            let genderData = datasResponse[indexCountry].gender
+
+                            for (let indexYear = 0; indexYear < genderData.length; indexYear++ ) {
+
+                                for ( let indexType = 0; indexType < genderData[indexYear].data.length; indexType++ ) {
+
+                                    sources.push(datasResponse[indexCountry].gender[indexYear].data[indexType].source)
+                                }
+                            }
+                        }
+
+                        else if ( property === "general" && datasResponse[indexCountry].general !== undefined ) {
+
+                            let generalData = datasResponse[indexCountry].general
+
+                            for (let indexYear = 0; indexYear < generalData.length; indexYear++ ) {
+
+                                sources.push(datasResponse[indexCountry].general[indexYear].source)
                             }
                         }
                     }
@@ -298,129 +304,354 @@ exports.c_data = function(req, res) {
 
 
 
+                // vérifie si l'on renvoie bien des données
+                if ( sources.length > 0 ) {
 
-                // general
-                if ( general_array.length !== general_array_length_all && showGeneral === "true" ) {
+                    getSourcesResponse.status   = "success"
 
-                    for ( let indexGeneral = 0; indexGeneral < datasFiltered[indexCountry].general.length; indexGeneral++ ) {
+                    // on trie notre tableau en enlevant les doublons
+                    getSourcesResponse.data     =
 
-                        for (let type in datasFiltered[indexCountry].general[indexGeneral].data) {
-
-                            if ( general_array.indexOf(type) < 0 ) {
-
-                                datasFiltered[indexCountry].general[indexGeneral].data[type] = undefined
-
-                            }
-                        }
-                    }
-                }
-
-
-
-                // genre
-                if ( gender_array.length !== gender_array_length_all && showGender === "true" ) {
-
-                    for ( let indexGender = 0; indexGender < datasFiltered[indexCountry].gender.length; indexGender++ ) {
-
-                        for (let indexData = 0; indexData < datasFiltered[indexCountry].gender[indexGender].data.length; indexData++ ) {
-
-                            if ( gender_array.indexOf(datasFiltered[indexCountry].gender[indexGender].data[indexData].type) < 0 ) {
-
-                                datasFiltered[indexCountry].gender[indexGender].data.splice( indexData, 1)
-                                // vu que l'on boucle sur le meem tableau on enlève 1 à l'index car ons upprime un éléménet
-                                // sinon ça décale tout !
-                                indexData--
-
-                            }
-                        }
-                    }
-                }
-
-
-
-
-                // supériorité genre
-                if ( isGenderCompare === "true" && showGender === "true" ) {
-
-                    for ( let indexGender = 0; indexGender < datasFiltered[indexCountry].gender.length; indexGender++ ) {
-
-                        for (let indexData = 0; indexData < datasFiltered[indexCountry].gender[indexGender].data.length; indexData++ ) {
-
-
-                            let f = datasFiltered[indexCountry].gender[indexGender].data[indexData].data.f
-                            let m = datasFiltered[indexCountry].gender[indexGender].data[indexData].data.m
-
-
-                            let second = compareSexe === "f" ? "m" : "f"
-                            let query = compareSexe + ' ' + compareOperation + ' ' + second
-
-
-                            if ( !eval(query) ) {
-
-                                datasFiltered[indexCountry].gender[indexGender].data.splice( indexData, 1)
-                                indexData--
-
-                            }
-                        }
-                    }
-                }
-
-
-
-                // if empty remove
-
-                // gender
-                if ( showGender === "true" ) {
-
-                    for (let indexData = 0; indexData < datasFiltered[indexCountry]['gender'].length; indexData++ ) {
-
-                        if ( datasFiltered[indexCountry]['gender'][indexData].data.length === 0 ) {
-
-                            datasFiltered[indexCountry]['gender'].splice(indexData, 1)
-                            indexData--
-
-                        }
-                    }
-
-                    if ( datasFiltered[indexCountry]['gender'].length === 0 ) {
-
-                        datasFiltered[indexCountry].gender = undefined
-
-                    }
-                }
-
-
-                //general
-
-                if ( showGeneral === "true" ) {
-
-                    if ( datasFiltered[indexCountry].general.length === 0 ) {
-
-                        datasFiltered[indexCountry].general = undefined
-
-                    }
-                }
-
-
-
-                // si les deux vide on enlève
-
-                if (datasFiltered[indexCountry].general === undefined && datasFiltered[indexCountry].gender === undefined ) {
-
-                    datasFiltered.splice(indexCountry, 1)
-                    indexCountry--
-
-                    datasFilteredJSON = JSON.stringify({status: 'empty', data: null})
-
+                        sources.sort().filter( function ( item, pos, array ) {
+                            return !pos || item !== array[pos - 1]
+                        })
                 }
 
                 else {
 
-                    datasFilteredJSON = JSON.stringify({status: 'success', data: datasFiltered})
+                    // renvoie un message d'erreur
+                    getSourcesResponse.status   = "error"
+                    getSourcesResponse.message  = "Empty result please remove some filters to get better results"
 
+                    res.status(400)
+                    res.json( getSourcesResponse )
+                    return null
                 }
             }
 
-            res.json(datasFilteredJSON)
+            res.json( getSourcesResponse )
         })
 }
+
+exports.getData = function( req, res ) {
+
+
+    let getDataResponse = {}
+    let filters = [{}]
+    let select = " -_id code"
+
+
+
+
+    // gestion des filtres
+
+    // 1 - pays
+    let filterCountries = req.params.countries  === 'all' || !req.params.countries ? false : req.params.countries.split(",")
+
+    if ( filterCountries ) {
+
+        filters.push( {code: { $in: filterCountries }} )
+    }
+
+
+
+    // 2 - années
+    let filterYears = req.params.years === 'all' || !req.params.years ? false : req.params.years.split(",")
+
+    for (let indexYears in filterYears) {
+
+        // GESTION ERREUR : si année pas encore finie / passée et pas au format yyyy
+        if ( filterYears[indexYears] >= ( new Date() ).getFullYear() || filterYears[indexYears].length < 4 ) {
+
+            getDataResponse.status      = "error"
+            getDataResponse.message     = "You must enter a previous year and respecting the format : yyyy "
+
+            res.status(400)
+            res.json( getDataResponse )
+            return null
+        }
+
+
+        filterYears[indexYears] = Number(filterYears[indexYears])
+    }
+
+
+
+
+    // 3 - données : GENERAL
+    let showGeneral = true
+    let generalFilters = []
+
+    if ( req.params.general ) {
+
+        if ( req.params.general === "none" ) {
+
+            showGeneral = false
+        }
+
+        else if ( req.params.general !== "all" ) {
+
+            generalFilters = req.params.general.split(",")
+        }
+    }
+
+
+
+    // 4 - données : GENRE
+    let showGender = true
+    let genderFilters = []
+
+    if ( req.params.gender ) {
+
+        if ( req.params.gender === "none" ) {
+
+            showGender = false
+        }
+
+        else if ( req.params.gender !== "all" ) {
+
+            genderFilters = req.params.gender.split(",")
+        }
+    }
+
+    if ( showGeneral ) select += " general"
+    if ( showGender ) select += " gender"
+
+    // GESTION ERREUR : si pas de données à afficher
+    if ( !showGeneral && !showGender) {
+
+        getDataResponse.status       = "error"
+        getDataResponse.message      = "You must select at least gender or general to get"
+
+
+        res.status(400)
+        res.json( getDataResponse )
+        return null
+    }
+
+
+
+    // 5 - Comparaison des sexes
+    let isGenderCompare = false
+    let sex = req.params.sex ? req.params.sex : false
+    let operator = req.params.operator ? req.params.operator : false
+    operator = operator === "=" ? "===" : operator
+
+    let allowedOperator = ["<", "<=", ">", ">=", "="]
+
+    // GESTION DES ERREURS :
+
+    // si uniquement un paramètres fournis pour comparaison des sexes
+    if ( sex && !operator || !sex && operator ) {
+
+        getDataResponse.status       = "error"
+        getDataResponse.message      = "If who want to filter with gender compare you must give sex parameter and operator parameter"
+
+        res.status(400)
+        res.json( getDataResponse )
+        return null
+    }
+
+    // si pas d'affichage des genres
+    else if ( sex && operator && !showGender) {
+
+        getDataResponse.status       = "error"
+        getDataResponse.message      = "If who want to filter with gender compare you must allowed gender"
+
+        res.status(400)
+        res.json( getDataResponse )
+        return null
+    }
+
+    // si mauvais genre fournis
+    else if ( sex && ( sex === "f" || sex !== "m" ) ) {
+        getDataResponse.status       = "error"
+        getDataResponse.message      = "Sex value can only be f or m"
+
+        res.status(400)
+        res.json( getDataResponse )
+        return null
+    }
+
+    // si mauvais operateur fournis
+    else if ( operator && ( allowedOperator.indexOf(operator) < 0 ) ) {
+        getDataResponse.status       = "error"
+        getDataResponse.message      = "Operator value can only be : " + allowedOperator.toString()
+
+        res.status(400)
+        res.json( getDataResponse )
+        return null
+    }
+
+    else if ( sex && showGender && operator ) {
+        isGenderCompare = true
+    }
+
+
+    Countries.
+        find( {} ).
+        and( filters ).
+        select( select ).
+        sort( "code" ).
+        exec( function(err, datas) {
+
+            if (err) {
+
+                getDataResponse.status       = "error"
+                getDataResponse.message      = err
+
+                res.status(400)
+                res.json( getDataResponse )
+                return null
+            }
+
+            else {
+
+                let datasResponse = datas
+
+                for ( let indexCountry = 0; indexCountry < datasResponse.length; indexCountry++ ) {
+
+
+                    // filtre années
+                    if ( filterYears ) {
+
+                        // 1 - general
+                        if ( showGeneral ) {
+
+                            let generalData = datasResponse[indexCountry].general
+
+                            for ( let indexGeneral = 0; indexGeneral <  generalData.length; indexGeneral++) {
+
+                                let countryYear =  generalData[indexGeneral].year
+
+                                if ( filterYears.indexOf( countryYear ) < 0 ) {
+
+                                    datasResponse[indexCountry].general.splice(indexGeneral, 1)
+                                    indexGeneral--
+                                }
+                            }
+                        }
+
+                        // 2 - genres
+                        if ( showGender ) {
+
+                            let genderData = datasResponse[indexCountry].gender
+
+                            for ( let indexGender = 0; indexGender <  genderData.length; indexGender++) {
+
+                                let countryYear =  datasResponse[indexCountry].gender[indexGender].year
+
+                                if ( filterYears.indexOf( countryYear ) < 0 ) {
+
+                                    datasResponse[indexCountry].gender.splice(indexGender, 1)
+                                    indexGender--
+                                }
+                            }
+                        }
+
+                        // enlève si vide
+                        if ( showGeneral && datasResponse[indexCountry].general.length === 0) {
+                            datasResponse[indexCountry].general = undefined
+                        }
+
+                        if ( showGender && datasResponse[indexCountry].gender.length === 0 ) {
+                            datasResponse[indexCountry].gender = undefined
+                        }
+                    }
+
+
+
+                    // filtre general
+                    if ( generalFilters.length > 0 && showGeneral && datasResponse[indexCountry].general ) {
+
+                        for ( let indexGeneral = 0; indexGeneral < datasResponse[indexCountry].general.length; indexGeneral++ ) {
+
+                            for (let type in datasResponse[indexCountry].general[indexGeneral].data ) {
+
+                                if ( generalFilters.indexOf(type) < 0 ) {
+
+                                    datasResponse[indexCountry].general[indexGeneral].data[type] = undefined
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    // filtre gender
+                    if ( genderFilters.length > 0 && showGender && datasResponse[indexCountry].gender ) {
+
+                        for ( let indexGender = 0; indexGender < datasResponse[indexCountry].gender.length; indexGender++ ) {
+
+                            for (let indexData = 0; indexData < datasResponse[indexCountry].gender[indexGender].data.length; indexData++ ) {
+
+                                if ( genderFilters.indexOf(datasResponse[indexCountry].gender[indexGender].data[indexData].type) < 0 ) {
+
+                                    datasResponse[indexCountry].gender[indexGender].data.splice( indexData, 1)
+                                    indexData--
+                                }
+                            }
+                        }
+                    }
+
+
+                    // filtre par comparaison genres
+                    if ( isGenderCompare && showGender ) {
+
+                        for ( let indexGender = 0; indexGender < datasResponse[indexCountry].gender.length; indexGender++ ) {
+
+                            for (let indexData = 0; indexData < datasResponse[indexCountry].gender[indexGender].data.length; indexData++ ) {
+
+
+                                let f = datasResponse[indexCountry].gender[indexGender].data[indexData].data.f
+                                let m = datasResponse[indexCountry].gender[indexGender].data[indexData].data.m
+
+
+                                let second = sex === "f" ? "m" : "f"
+                                let query = sex + ' ' + operator + ' ' + second
+
+
+                                if ( !eval(query) ) {
+
+                                    datasResponse[indexCountry].gender[indexGender].data.splice( indexData, 1)
+                                    indexData--
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // TODO : vérifie si l'on renvoie bien des données
+                res.json( datasResponse )
+            }
+        })
+}
+
+
+
+
+// exports.getAll = function( req, res ) {
+//
+//     Countries.
+//     find({}).
+//     sort("code").
+//     exec( function( err, datas ) {
+//
+//         let getAllResponse = {}
+//
+//         if ( err ) {
+//             getAllResponse.status   = "error"
+//             getAllResponse.message  = err
+//         }
+//
+//         else {
+//             getAllResponse.status   = "success"
+//             getAllResponse.data     = datas
+//         }
+//
+//         res.json(getAllResponse)
+//     })
+//
+// }
+
+
