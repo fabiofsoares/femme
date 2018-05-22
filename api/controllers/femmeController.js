@@ -84,17 +84,6 @@ exports.getCountryType = function(req, res) {
 //     res.sendFile('views/login.html', { root: 'api'})
 // }
 
-
-
-
-
-
-
-
-
-
-
-
 // REPRISE C :
 
 // TODO : spécifié les routes en expliquant les paramètres
@@ -339,10 +328,6 @@ exports.getData = function( req, res ) {
     let getDataResponse = {}
     let filters = [{}]
     let select = " -_id code"
-
-exports.c_data = function(req, res) {
-
-
 
     // gestion des filtres
 
