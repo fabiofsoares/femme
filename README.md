@@ -40,7 +40,7 @@ START :
 $ mongod
 
 Import :
-mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JSON FILE>
+mongoimport --db ecv-api --collection countries --type json --file <JSON FILE>
 
 
 
@@ -56,22 +56,23 @@ mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JS
 - Autocomplétion ?
 - repasser les requêtes en paramètres !!
 - heroku 
-- HTTPS /!\ 
+- HTTPS /!\ : let's encrypt >>> pour avoir un certificat https
 - Cross Site Request Forgery CSRF : voir si plugin
 
 
-- let's encrypt >>> pour avoir un certificat https
-
-
 ## todo Fabio 
-- put
-- delete 
+OK put
+OK put-general
+OK put-gender
+- update-general  
+- update-gender  
 - cache : sur 2 ou 3 des routes > si pas de cache on le spécifie aussi
 - à vérifier avec le cache control
 +++ ETag > forcer à enlever le cache si la ressource à été modifiée
 
 
 ## mel : 
+- remplir 5 pays minimun
 - rajouter requêtes F. dans /
 - rajouter routes dans 404
 
