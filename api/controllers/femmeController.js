@@ -250,8 +250,6 @@ exports.getData = function( req, res ) {
     let filters = [{}]
     let select = " -_id code"
 
-
-
     // gestion des filtres
 
     // 1 - pays
@@ -546,7 +544,7 @@ exports.admin = function(req, res) {
 // TODO : à effacer car tous les pays doivent etre créer
 exports.newCountry = function(req, res) {
     let item = {
-        name : req.body.name
+        code : req.body.code
     }
     let newCountry = new Countries(item);
     newCountry.save(function(err, country) {
@@ -738,22 +736,60 @@ exports.updateGender = function(req, res){
 
 // TODO : à debugger
 exports.updateGeneral = function(req, res){
-
-    let query = Countries.find(
+    var query = { _id : req.body.id , general : { $elemMatch: { year : req.body.year }}};    
+    let update = {        
+        source : req.body.source,
+        data : {
+            area : Number(req.body.area),
+            population : Number(req.body.population),
+            pib : Number(req.body.pib),
+            ppa : Number(req.body.ppa),
+            idh : Number(req.body.idh),
+            country_unemployment : Number(req.body.country_unemployment)
+        }
+    };
+    var options = { new: false };
+   /*  Countries.findOneAndUpdate(query, update, options, function (err, country) {
+        if (err) { 
+            throw err;
+        }
+        else { 
+            console.log("updated!" + country);
+        }
+    }); */
+    Countries.updateOne(
+        { _id : req.body.id , general : { $elemMatch: { year : req.body.year }} }, 
+        { $set: { "general.$.data.area" : 0 } }, function(err, country){
+        
+            if (err) { 
+            throw err;
+        }
+        else {
+            
+            console.log("updated 2 :", country);
+        }
+    })
+   /*  let query = Countries.find(
             { _id : req.body.id },
             { general : { $elemMatch: { year : req.body.year }} }
         )
         query.exec(function (err,country) {
+            console.log('nouveau')
             if (err){
                 res.send(err);
             }
-            for (let key in country) {
-                console.log(country[key])
-
+            for (let i in country) {
+                for(let j in country[i].general){
+                    country[i].general[j].source = req.body.source; 
+                    country[i].general[j].data.area = req.body.area; 
+                    country[i].general[j].data.population = req.body.population;
+                    country[i].general[j].save();
+                    return 
+                }
             }
-            //res.json(country.year);
+           
         });
-
+ */
 
    /*  query.exec(function (err,country) {
         if (err) {

@@ -26,8 +26,8 @@
             <h3>New Country</h3>
             <form action="/admin/new-country" method="post">
                 <div class="input">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name">
+                    <label for="code">Name</label>
+                    <input type="text" id="code" name="code">
                 </div>                                         
                 <button type="submit">INSERT</button>
             </form>
@@ -143,7 +143,28 @@
                     </div>                                    
                     <button type="submit">DELETE</button>
                 </form>
-        </section>                   
+        </section>
+        <section class="insert">
+                <h3>Update General</h3>
+                <form action="/admin/update-general" method="post">
+                    
+                    <div class="input">
+                        <label>ID County :<input type="text" id="id" name="id"></label><br>
+                        <label>Year :<input type="text" id="year" name="year"></label><br>
+                        <label>Source :<input type="text" id="source" name="source"></label>                 
+                    </div>                
+                    <div class="input">
+                        <h4>Data :</h4>
+                        <label>Area : <input type="text" id="area" name="area"></label><br>
+                        <label>Population : <input type="text" id="population" name="population"></label><br>
+                        <label>PIB : <input type="text" id="pib" name="pib"></label><br>
+                        <label>PPA : <input type="text" id="ppa" name="ppa"></label><br>
+                        <label>IDH : <input type="text" id="idh" name="idh"></label><br>
+                        <label>Country unemployment : <input type="text" id="country_unemployment" name="country_unemployment"></label>                                        
+                    </div>                                             
+                    <button type="submit">INSERT</button>
+                </form>
+            </section>                   
     </div>
 </body>
 </html>
