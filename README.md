@@ -40,7 +40,7 @@ START :
 $ mongod
 
 Import :
-mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JSON FILE>
+mongoimport --db ecv-api --collection countries --type json --file <JSON FILE>
 
 
 
