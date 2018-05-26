@@ -37,5 +37,7 @@ module.exports = function(app) {
 
     app.route('/admin/update-general').post(femme.updateGeneral)
 
+    app.route('/admin/update-gender').post(femme.updateGender)
+
     app.route('/admin/delete-country').post(femme.deleteCountry)
 };

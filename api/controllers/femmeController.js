@@ -559,7 +559,7 @@ exports.newCountry = function(req, res) {
 exports.addGender = function(req, res){
     let id = req.body.id,
     item = {
-        year: req.body.year,
+        year: parseInt(req.body.year),
         data: [
             {
                 type: 'victimization',
@@ -713,32 +713,19 @@ exports.deleteCountry = function(req, res){
 
 // TODO : à debugger
 exports.updateGender = function(req, res){
-    let id = req.body.id,
-        year = req.body.year;
-
-    Countries.find( { name : req.params.country },
-        { gender : { $elemMatch: { year : req.params.year }}});
-
-    query.exec(function (err,country) {
-        if (err) {
-            console.error('error, country/year not found');
+    Countries.update({_id : req.body.id},{"$pull":{"gender":{year: parseInt(req.body.year)}}}, function (err, country){
+        if(country != null){
+            exports.addGender(req, res);
         }
-        for(let i = 0; i < 12; i++){
-            country.data[i].source = req.body.source_+i;
-            country.data[i].data.m = req.body.dataM_+i;
-            country.data[i].data.f = req.body.dataF_+i;
-        }
-        country.save();
-        res.redirect('/admin');
-    });
-
+    })   
 }
 
 // TODO : à debugger
 exports.updateGeneral = function(req, res){    
     Countries.updateOne(
         { _id : req.body.id , general : { $elemMatch: { year : req.body.year }} }, 
-        { $set: { "general.$.data.area" : req.body.area,  
+        { $set: { "general.$.source" : req.body.source,  
+                  "general.$.data.area" : req.body.area,  
                   "general.$.data.population" : req.body.population, 
                   "general.$.data.pib" : req.body.pib,
                   "general.$.data.ppa" : req.body.ppa,
