@@ -83,7 +83,7 @@ app.use(function(req, res) {
 
 
 
-app.listen(PORT, host, function () {
+app.listen(PORT, function () {
 
     // update les cors
     let cors = require('./api/controllers/corsController')
