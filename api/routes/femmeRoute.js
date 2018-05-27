@@ -1,9 +1,8 @@
 
 'use strict'
-const mcache          = require('memory-cache'),
-      time_cache      = 10;
+const mcache          = require('memory-cache');      
 
-let cache = (duration) => {
+let cache = () => {
     return (req, res, next) => {
         let key = '__express__' + req.originalUrl || req.url
         let cachedBody = mcache.get(key)
@@ -12,7 +11,7 @@ let cache = (duration) => {
         } else {
             res.sendResponse = res.send
             res.send = (body) => {
-                mcache.put(key, body, duration * 1000);
+                mcache.put(key, body);
                 res.sendResponse(body)
             }
             next()
@@ -26,16 +25,16 @@ module.exports = function(app) {
     const user      = require('../controllers/userController')
 
     // ROUTE ACCUEIL
-    app.get("/", cache(time_cache), femme.showRoutes)
+    app.get("/", cache(), femme.showRoutes)
 
     // RECUPERER LES CODES DES PAYS
-    app.get("/codes", user.checkCors, cache(time_cache), femme.getCountriesCode)
+    app.get("/codes", user.checkCors, cache(), femme.getCountriesCode)
 
     // RECUPERER UNIQUEMENT LES SOURCES
-    app.get("/sources", user.checkCors, cache(time_cache), femme.getSources)
+    app.get("/sources", user.checkCors, femme.getSources)
 
     // RECUPERER DES DONNES
-    app.get("/countries", user.checkCors, cache(time_cache), femme.getData)
+    app.get("/countries", user.checkCors, femme.getData)
 
     // ENREGISTRER UN UTILISATEUR
     app.post("/users", user.register)
@@ -49,15 +48,18 @@ module.exports = function(app) {
     // EFFACER SON COMPTE
     app.delete("/users", user.checkAuth, user.delete)
 
-
-    // il faut mettre user.checkAuth
-    app.get('/admin', cache(time_cache), femme.admin)
-
+    // PAGE ADMIN
+    app.get('/admin', cache(), femme.admin)
+    
+    // RAJOUTER DONNES GENDER
     app.post('/admin/add-gender',femme.addGender)
-
+    
+    // RAJOUTER DONNES GENERAL
     app.post('/admin/add-general',femme.addGeneral)
 
+    // METTRE A JOUR DES DONNES GENDER
     app.post('/admin/update-general',femme.updateGeneral)
-
+    
+    // METTRE A JOUR DES DONNES GENDER
     app.post('/admin/update-gender',femme.updateGender)
 };

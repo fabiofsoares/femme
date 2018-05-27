@@ -81,6 +81,23 @@ exports.showRoutes = function( req, res ) {
             "Autorization": "token"
         }
     }
+    
+    routes.admin = {
+        "method": "GET",
+        "url": domaine + "/admin"
+    }
+
+    routes.addGender = {
+        "method" : "POST",
+        "url": domaine + "/admin/add-gender",
+        "params" : {
+            "code": "international country code coma separated values",
+            "year": "yyyy",
+            "source_0": "source of victimization dates",
+            "dataM_0" : "male date of victimization",
+            "dataF_0" : "female date of victimization"
+        }
+    }
 
     res.json( routes )
 }
@@ -593,6 +610,7 @@ exports.admin = function(req, res) {
 }
 
 exports.addGender = function(req, res){
+    let getDataResponse = {};
     let code = req.body.code,
     item = {
         year: parseInt(req.body.year),
@@ -695,18 +713,29 @@ exports.addGender = function(req, res){
             }
         ]
     };
-    Countries.find(code, function(err, country){
-        if(err){
-            console.error('error, country not found !');
+    Countries.find(code, function(err, country){      
+        
+        if (err) {
+            getDataResponse.status      = "error"
+            getDataResponse.message     = err
+
+            res.status(400)
+            res.json( getDataResponse )
+            return null
         }
-        country.gender.push(item);
-        country.save();
-        res.json(country)
-        //res.redirect('/admin');
+        else {
+            country.gender.push(item);
+            country.save();
+
+            getDataResponse.status     = "success"
+            getDataResponse.data       = country
+            res.json(  getDataResponse )
+        }
     })
 }
 
 exports.addGeneral = function(req, res){
+    let getDataResponse = {};
     let code = req.body.code;
     let item = {
         year: parseInt(req.body.year),
@@ -721,27 +750,51 @@ exports.addGeneral = function(req, res){
         }
     };
     Countries.find(code, function(err, country){
-        if(err){
-            console.error('error, country not found !');
+        if (err) {
+            getDataResponse.status      = "error"
+            getDataResponse.message     = err
+
+            res.status(400)
+            res.json( getDataResponse )
+
+            return null
         }
-        country.general.push(item);
-        country.save();
-        res.json(country)
-        //res.redirect('/admin', country);
+        else {
+            country.general.push(item);
+            country.save();
+
+            getDataResponse.status     = "success"
+            getDataResponse.data       = country
+
+            res.json(  getDataResponse )
+        }       
     })
 }
 
 // Update donnes Gender
 exports.updateGender = function(req, res){
+    let getDataResponse = {};
     Countries.update({code : req.body.code},{"$pull":{"gender":{year: parseInt(req.body.year)}}}, function (err, country){
-        if(country != null){
-            exports.addGender(req, res);
+        
+        if (err) {
+            getDataResponse.status      = "error"
+            getDataResponse.message     = err
+
+            res.status(400)
+            res.json( getDataResponse )
+            return null
         }
+        else {
+            if(country != null){
+                exports.addGender(req, res);
+            }
+        }        
     })
 }
 
 // Update donnes General
 exports.updateGeneral = function(req, res){
+    let getDataResponse = {};
     Countries.updateOne(
         { code : req.body.code , general : { $elemMatch: { year : parseInt(req.body.year) }} },
         { $set: { "general.$.source" : parseFloat(req.body.source),
@@ -755,11 +808,18 @@ exports.updateGeneral = function(req, res){
         },
         function(err, country){
             if (err) {
-            throw err;
+                getDataResponse.status      = "error"
+                getDataResponse.message     = err
+    
+                res.status(400)
+                res.json( getDataResponse )
+                return null
+            }
+            else {
+                getDataResponse.status     = "success"
+                getDataResponse.data       = country
+                res.json(  getDataResponse )
+            }
         }
-        else {
-            res.json(country)
-            //res.redirect('/admin');
-        }
-    })
+    )
 }

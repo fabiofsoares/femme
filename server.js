@@ -48,6 +48,26 @@ app.use(function(req, res) {
         {
             'name': 'users',
             'distance': Infinity
+        },
+        {
+            'name': 'admin',
+            'distance': Infinity
+        },
+        {
+            'name': 'admin/add-gender',
+            'distance': Infinity
+        },
+        {
+            'name': 'admin/add-general',
+            'distance': Infinity
+        },
+        {
+            'name': 'admin/update-gender',
+            'distance': Infinity
+        },
+        {
+            'name': 'admin/update-general',
+            'distance': Infinity
         }
     ]
 
