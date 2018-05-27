@@ -212,8 +212,8 @@ exports.update = function(req, res) {
             if (password) user.password = bcrypt.hashSync(password, 8)
             if (name) user.name = name
             if (dns) {
-                user.dns += dns
 
+                user.dns.push(dns)
                 cors.updateAllowedOrigins(dns)
             }
 
