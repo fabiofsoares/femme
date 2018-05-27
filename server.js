@@ -2,7 +2,7 @@ const   express         = require('express'),
         mongoose        = require('mongoose'),
         bodyParser      = require('body-parser'),
         app             = express(),
-        PORT            = process.env.PORT || '8080',
+        PORT            = process.env.PORT || 3000,
         host            = 'safe-hamlet-93581.herokuapp.com',
         levenshtein     = require('fast-levenshtein'),
         jwt             = require('jsonwebtoken'),
@@ -17,7 +17,7 @@ const   express         = require('express'),
 
 mongoose.Promise = global.Promise
 // mongoose.connect("mongodb://127.0.0.1:27017/ecv-api")
-mongoose.connect("mongodb://charline-laporte:Charline73!@ds137600.mlab.com:37600/ecv-api")
+mongoose.connect("mongodb://femme:femme@ds137600.mlab.com:37600/ecv-api")
 
 
 app.use( bodyParser.urlencoded({ extended: true }) )
