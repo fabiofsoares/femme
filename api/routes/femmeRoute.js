@@ -53,11 +53,11 @@ module.exports = function(app) {
     // il faut mettre user.checkAuth
     app.get('/admin', cache(time_cache), femme.admin)
 
-    app.post('/admin/add-gender',femme.addGender)
+    app.post('/admin/add-gender', femme.addGender)
 
-    app.post('/admin/add-general',femme.addGeneral)
+    app.post('/admin/add-general', femme.addGeneral)
 
-    app.post('/admin/update-general',femme.updateGeneral)
+    app.post('/admin/update-general', femme.updateGeneral)
 
-    app.post('/admin/update-gender',femme.updateGender)
+    app.post('/admin/update-gender', femme.updateGender)
 };

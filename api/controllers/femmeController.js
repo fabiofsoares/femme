@@ -24,7 +24,6 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
-
     routes.countries = {
         "method": "GET",
         "url": domaine + "/countries?{countries}/{years}/{general}/{gender}/{sex}/{operator}",

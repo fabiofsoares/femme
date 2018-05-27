@@ -10,7 +10,6 @@ exports.updateAllowedOrigins = function(dns){
     for (let domaine of dns) {
         exports.allowedOrigins.push(domaine)
     }
-
 }
 
 
