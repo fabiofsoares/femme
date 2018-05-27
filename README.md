@@ -55,10 +55,8 @@ mongoimport --db ecv-api --collection countries --type json --file <JSON FILE>
 - OK    : Token
 - OK    : User login + register + update + delete + add adresse
 - OK    : CORS ? -> avec l'enregistrement des users
-- Autocomplétion ?
-- heroku 
-- HTTPS /!\ : let's encrypt >>> pour avoir un certificat https
-- Cross Site Request Forgery CSRF : voir si plugin
+- OK    : heroku 
+- Sécuriser API
 
 
 ## todo Fabio 
