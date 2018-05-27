@@ -1,7 +1,7 @@
 'use strict'
 const   mongoose    = require('mongoose'),
         Countries   = mongoose.model('Countries'),
-        domaine     = 'http://127.0.0.1:3000'
+        domaine     = 'https://safe-hamlet-93581.herokuapp.com'
 
 
 // A REMPLIR A CHAQUE NOUVELLE ROUTE

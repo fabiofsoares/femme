@@ -2,8 +2,8 @@ const   express         = require('express'),
         mongoose        = require('mongoose'),
         bodyParser      = require('body-parser'),
         app             = express(),
-        port            = process.env.PORT || 3000,
-        host            = '127.0.0.1',
+        PORT            = process.env.PORT||'8080',
+        host            = 'https://safe-hamlet-93581.herokuapp.com',
         levenshtein     = require('fast-levenshtein'),
         jwt             = require('jsonwebtoken'),
         bcrypt          = require('bcryptjs'),
@@ -73,7 +73,7 @@ app.use(function(req, res) {
     // si suggestiont rouvée on la met dans le message
     if ( closest.distance !== Infinity) {
 
-        notFoundResponse.suggestion = "Did you mean http://"+ host + ':' + port +"/" + closest.name + " ?"
+        notFoundResponse.suggestion = "Did you mean http://"+ host + ':' + PORT +"/" + closest.name + " ?"
     }
 
     res.status(404)
@@ -82,12 +82,12 @@ app.use(function(req, res) {
 
 
 
-app.listen(port, host, function () {
+app.listen(PORT, host, function () {
 
     // update les cors
     let cors = require('./api/controllers/corsController')
     cors.loadAllowedOrigins()
 
     // message d'accueil
-    console.log('Femme app listening on : ' + host + ':' + port)
+    console.log('Femme app listening on : ' + host + ':' + PORT)
 })
