@@ -596,6 +596,10 @@ exports.getData = function( req, res ) {
                     }
                 }
             }
+
+            getDataResponse.status      = "success"
+            getDataResponse.data        = datasResponse
+
             res.json( datasResponse )
         }
     })
