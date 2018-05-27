@@ -542,7 +542,7 @@ exports.admin = function(req, res) {
 }
 
 exports.addGender = function(req, res){
-    let id = req.body.id,
+    let code = req.body.code,
     item = {
         year: parseInt(req.body.year),
         data: [
@@ -644,18 +644,19 @@ exports.addGender = function(req, res){
             }
         ]
     };
-    Countries.findById(id, function(err, country){
+    Countries.find(code, function(err, country){
         if(err){
             console.error('error, country not found !');
         }
         country.gender.push(item);
         country.save();
-        res.redirect('/admin');
+        res.json(country)
+        //res.redirect('/admin');
     })
 }
 
 exports.addGeneral = function(req, res){
-    let id = req.body.id;
+    let code = req.body.code;
     let item = {
         year: parseInt(req.body.year),
         source : req.body.source,
@@ -668,7 +669,7 @@ exports.addGeneral = function(req, res){
             country_unemployment : parseFloat(req.body.country_unemployment)
         }
     };
-    Countries.findById(id, function(err, country){
+    Countries.find(code, function(err, country){
         if(err){
             console.error('error, country not found !');
         }
@@ -681,7 +682,7 @@ exports.addGeneral = function(req, res){
 
 // Update donnes Gender
 exports.updateGender = function(req, res){
-    Countries.update({_id : req.body.id},{"$pull":{"gender":{year: parseInt(req.body.year)}}}, function (err, country){
+    Countries.update({code : req.body.code},{"$pull":{"gender":{year: parseInt(req.body.year)}}}, function (err, country){
         if(country != null){
             exports.addGender(req, res);
         }
@@ -691,7 +692,7 @@ exports.updateGender = function(req, res){
 // Update donnes General
 exports.updateGeneral = function(req, res){    
     Countries.updateOne(
-        { _id : req.body.id , general : { $elemMatch: { year : parseInt(req.body.year) }} }, 
+        { code : req.body.code , general : { $elemMatch: { year : parseInt(req.body.year) }} }, 
         { $set: { "general.$.source" : parseFloat(req.body.source),  
                   "general.$.data.area" : parseFloat(req.body.area),  
                   "general.$.data.population" : parseFloat(req.body.population), 
