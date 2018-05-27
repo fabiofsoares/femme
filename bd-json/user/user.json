@@ -2,5 +2,5 @@
   "name" : "en",
   "email": "a@gmail.gom",
   "password": "password",
-  "dns": ["http://www.google.fr", "http://www.google.fr" ]
+  "dns": ["http://www.google.fr"]
 }

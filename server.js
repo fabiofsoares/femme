@@ -2,8 +2,8 @@ const   express         = require('express'),
         mongoose        = require('mongoose'),
         bodyParser      = require('body-parser'),
         app             = express(),
-        PORT            = process.env.PORT||'8080',
-        host            = 'https://safe-hamlet-93581.herokuapp.com',
+        PORT            = process.env.PORT || '8080',
+        host            = 'safe-hamlet-93581.herokuapp.com',
         levenshtein     = require('fast-levenshtein'),
         jwt             = require('jsonwebtoken'),
         bcrypt          = require('bcryptjs'),
@@ -16,7 +16,8 @@ const   express         = require('express'),
 
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://127.0.0.1:27017/ecv-api")
+// mongoose.connect("mongodb://127.0.0.1:27017/ecv-api")
+mongoose.connect("mongodb://charline-laporte:Charline73!@ds137600.mlab.com:37600/ecv-api")
 
 
 app.use( bodyParser.urlencoded({ extended: true }) )
