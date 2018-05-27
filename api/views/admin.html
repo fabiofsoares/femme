@@ -8,35 +8,25 @@
 
     <style>
         .container{
-            display: flex;
-            flex-wrap: wrap;
-            width: 1100px;
+            width: 900px;
             margin: 0 auto;
         }
         section {
             border: 1px solid #000;
-            width: 49%;
+            width: 100%;
+            margin: 20px 0;
+            padding: 15px;
         }
     </style>
 </head>
 <body>
     <h1>Page Admin</h1>
-    <div class="container">       
-        <section class="insert">
-            <h3>New Country</h3>
-            <form action="/admin/new-country" method="post">
-                <div class="input">
-                    <label for="code">Name</label>
-                    <input type="text" id="code" name="code">
-                </div>                                         
-                <button type="submit">INSERT</button>
-            </form>
-        </section>
-        <section class="insert">
+    <div class="container">
+        <section>
             <h3>Add Gender</h3>
             <form action="/admin/add-gender" method="post">
                 <div class="input">
-                        <label>ID County :<input type="text" id="id" name="id"></label>
+                    <label>Code County :<input type="text" id="id" name="code"></label><br>
                         <label>Year :<input type="text" id="year" name="year"></label>                   
                 </div>
                 <div class="input">
@@ -114,12 +104,12 @@
                 <button type="submit">INSERT</button>
             </form>
         </section>
-        <section class="insert">
+        <section>
             <h3>Add General</h3>
             <form action="/admin/add-general" method="post">
                 
                 <div class="input">
-                    <label>ID County :<input type="text" id="id" name="id"></label><br>
+                    <label>Code County :<input type="text" id="id" name="code"></label><br>
                     <label>Year :<input type="text" id="year" name="year"></label><br>
                     <label>Source :<input type="text" id="source" name="source"></label>                 
                 </div>                
@@ -135,21 +125,13 @@
                 <button type="submit">INSERT</button>
             </form>
         </section>
-        <section class="insert">
-                <h3>Delete Country</h3>
-                <form action="/admin/delete-country" method="post">                   
-                    <div class="input">
-                        <label>ID County :<input type="text" id="id" name="id"></label>                        
-                    </div>                                    
-                    <button type="submit">DELETE</button>
-                </form>
-        </section>
-        <section class="insert">
+       
+        <section>
                 <h3>Update General</h3>
                 <form action="/admin/update-general" method="post">
                     
                     <div class="input">
-                        <label>ID County :<input type="text" id="id" name="id" value="5b0444663282eb59f14bbb13"></label><br>
+                        <label>Code County :<input type="text" id="id" name="code" ></label><br>
                         <label>Year :<input type="text" id="year" name="year" value="2016"></label><br>
                         <label>Source :<input type="text" id="source" name="source"></label>                 
                     </div>                
@@ -162,14 +144,14 @@
                         <label>IDH : <input type="text" id="idh" name="idh"></label><br>
                         <label>Country unemployment : <input type="text" id="country_unemployment" name="country_unemployment"></label>                                        
                     </div>                                             
-                    <button type="submit">INSERT</button>
+                    <button type="submit">UPDATE</button>
                 </form>
             </section>
-            <section class="insert">
-                    <h3>Add Gender</h3>
+            <section>
+                    <h3>Update Gender</h3>
                     <form action="/admin/update-gender" method="post">
                         <div class="input">
-                                <label>ID County :<input type="text" id="id" name="id"></label>
+                                <label>Code County :<input type="text" id="id" name="code" ></label><br>
                                 <label>Year :<input type="text" id="year" name="year"></label>                   
                         </div>
                         <div class="input">
@@ -244,7 +226,7 @@
                             <input placeholder='Male' class="input_data" type="text" id="dataM_11" name="dataM_11">
                             <input placeholder='Female' class="input_data" type="text" id="dataF_11" name="dataF_11">
                         </div>                                            
-                        <button type="submit">INSERT</button>
+                        <button type="submit">UPDATE</button>
                     </form>
                 </section>                   
     </div>
