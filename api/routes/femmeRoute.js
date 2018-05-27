@@ -1,22 +1,43 @@
 'use strict'
+const mcache          = require('memory-cache'),
+      time_cache      = 10;  
+
+let cache = (duration) => {
+    return (req, res, next) => {
+        let key = '__express__' + req.originalUrl || req.url
+        let cachedBody = mcache.get(key)
+        if (cachedBody) {
+            res.send(cachedBody)
+            return
+        } else {
+            res.sendResponse = res.send
+            res.send = (body) => {
+                mcache.put(key, body, duration * 1000);
+                res.sendResponse(body)
+            }
+            next()  
+        }
+    }
+}
 
 module.exports = function(app) {
 
     let femme = require('../controllers/femmeController')
     let user = require('../controllers/userController')
 
-    app.get("/", femme.showRoutes)
+    //app.get("/", cache(10), femme.showRoutes)
+    app.get("/", cache(time_cache), femme.showRoutes)
     app.post("/", femme.showRoutes)
 
-    app.get("/codes", user.checkAuth, femme.getCountriesCode)
+    app.get("/codes", cache(time_cache), user.checkAuth, femme.getCountriesCode)
     app.post("/codes", user.checkAuth, femme.getCountriesCode)
 
 
     // TODO : revoir trop de paramètres optionnels
-    app.get("/sources/:countries?/:years?/:categories?", user.checkAuth, femme.getSources)
+    app.get("/sources/:countries?/:years?/:categories?", cache(time_cache), user.checkAuth, femme.getSources)
     app.post("/sources/:countries?/:years?/:categories?", user.checkAuth, femme.getSources)
 
-    app.get("/countries/:countries?/:years?/:general?/:gender?/:sex?/:operator?", user.checkAuth, femme.getData)
+    app.get("/countries/:countries?/:years?/:general?/:gender?/:sex?/:operator?", cache(time_cache), user.checkAuth, femme.getData)
     app.post("/countries/:countries?/:years?/:general?/:gender?/:sex?/:operator?", user.checkAuth, femme.getData)
 
 
@@ -26,18 +47,14 @@ module.exports = function(app) {
 
     app.delete("/users/:email", user.checkAuth, user.delete)
 
+    // il faut mettre user.checkAuth
+    app.get('/admin', cache(time_cache), femme.admin)    
 
-    app.route('/admin').get(femme.admin)
+    app.post('/admin/add-gender',femme.addGender)
 
-    app.route('/admin/new-country').post(femme.newCountry)
+    app.post('/admin/add-general',femme.addGeneral)
 
-    app.route('/admin/add-gender').post(femme.addGender)
+    app.post('/admin/update-general',femme.updateGeneral)
 
-    app.route('/admin/add-general').post(femme.addGeneral)
-
-    app.route('/admin/update-general').post(femme.updateGeneral)
-
-    app.route('/admin/update-gender').post(femme.updateGender)
-
-    app.route('/admin/delete-country').post(femme.deleteCountry)
+    app.post('/admin/update-gender',femme.updateGender)    
 };

@@ -541,21 +541,6 @@ exports.admin = function(req, res) {
     res.sendFile('views/admin.html', { root: 'api'})
 }
 
-// TODO : à effacer car tous les pays doivent etre créer
-exports.newCountry = function(req, res) {
-    let item = {
-        code : req.body.code
-    }
-    let newCountry = new Countries(item);
-    newCountry.save(function(err, country) {
-      if (err){
-        res.send(err);
-      }
-      res.redirect('/');
-    });
-}
-// FIN A EFFACER
-
 exports.addGender = function(req, res){
     let id = req.body.id,
     item = {
@@ -565,96 +550,96 @@ exports.addGender = function(req, res){
                 type: 'victimization',
                 source: req.body.source_0,
                 data:{
-                        m: req.body.dataM_0,
-                        f: req.body.dataF_0
+                        m: parseFloat(req.body.dataM_0),
+                        f: parseFloat(req.body.dataF_0)
                     }
             },
             {
                 type: 'health_care',
                 source: req.body.source_1,
                 data:{
-                        m: req.body.dataM_1,
-                        f: req.body.dataF_1
+                        m: parseFloat(req.body.dataM_1),
+                        f: parseFloat(req.body.dataF_1)
                     }
             },
             {
                 type: 'primary_school',
                 source: req.body.source_2,
                 data:{
-                        m: req.body.dataM_2,
-                        f: req.body.dataF_2
+                        m: parseFloat(req.body.dataM_2),
+                        f: parseFloat(req.body.dataF_2)
                     }
             },
             {
                 type: 'secondary_school',
                 source: req.body.source_3,
                 data:{
-                        m: req.body.dataM_3,
-                        f: req.body.dataF_3
+                        m: parseFloat(req.body.dataM_3),
+                        f: parseFloat(req.body.dataF_3)
                     }
             },
             {
                 type: 'higher_education',
                 source: req.body.source_4,
                 data:{
-                        m: req.body.dataM_4,
-                        f: req.body.dataF_4
+                        m: parseFloat(req.body.dataM_4),
+                        f: parseFloat(req.body.dataF_4)
                     }
             },
             {
                 type: 'salary',
                 source: req.body.source_5,
                 data:{
-                        m: req.body.dataM_5,
-                        f: req.body.dataF_5
+                        m: parseFloat(req.body.dataM_5),
+                        f: parseFloat(req.body.dataF_5)
                     }
             },
             {
                 type: 'unemployment',
                 source: req.body.source_6,
                 data:{
-                        m: req.body.dataM_6,
-                        f: req.body.dataF_6
+                        m: parseFloat(req.body.dataM_6),
+                        f: parseFloat(req.body.dataF_6)
                     }
             },
             {
                 type: 'work_time',
                 source: req.body.source_7,
                 data:{
-                        m: req.body.dataM_7,
-                        f: req.body.dataF_7
+                        m: parseFloat(req.body.dataM_7),
+                        f: parseFloat(req.body.dataF_7)
                     }
             },
             {
                 type: 'occupational_integration',
                 source: req.body.source_8,
                 data:{
-                        m: req.body.dataM_8,
-                        f: req.body.dataF_8
+                        m: parseFloat(req.body.dataM_8),
+                        f: parseFloat(req.body.dataF_8)
                     }
             },
             {
                 type: 'poverty',
                 source: req.body.source_9,
                 data:{
-                        m: req.body.dataM_9,
-                        f: req.body.dataF_9
+                        m: parseFloat(req.body.dataM_9),
+                        f: parseFloat(req.body.dataF_9)
                     }
             },
             {
                 type: 'population_percent',
                 source: req.body.source_10,
                 data:{
-                        m: req.body.dataM_10,
-                        f: req.body.dataF_10
+                        m: parseFloat(req.body.dataM_10),
+                        f: parseFloat(req.body.dataF_10)
                     }
             },
             {
                 type: 'politic',
                 source: req.body.source_11,
                 data:{
-                        m: req.body.dataM_11,
-                        f: req.body.dataF_11
+                        m: parseFloat(req.body.dataM_11),
+                        f: parseFloat(req.body.dataF_11)
                     }
             }
         ]
@@ -672,15 +657,15 @@ exports.addGender = function(req, res){
 exports.addGeneral = function(req, res){
     let id = req.body.id;
     let item = {
-        year: req.body.year,
+        year: parseInt(req.body.year),
         source : req.body.source,
         data : {
-            area : req.body.area,
-            population : req.body.population,
-            pib : req.body.pib,
-            ppa : req.body.ppa,
-            idh : req.body.idh,
-            country_unemployment : req.body.country_unemployment
+            area : parseFloat(req.body.area),
+            population : parseFloat(req.body.population),
+            pib : parseFloat(req.body.pib),
+            ppa : parseFloat(req.body.ppa),
+            idh : parseFloat(req.body.idh),
+            country_unemployment : parseFloat(req.body.country_unemployment)
         }
     };
     Countries.findById(id, function(err, country){
@@ -689,29 +674,12 @@ exports.addGeneral = function(req, res){
         }
         country.general.push(item);
         country.save();
-        res.redirect('/admin');
+        res.json(country)
+        //res.redirect('/admin', country);
     })
 }
 
-exports.deleteCountry = function(req, res){
-    let id = req.body.id;
-    Countries.findByIdAndRemove(id).exec();
-    res.redirect('/admin');
-}
-
-// exports.updateCountry = function(req, res){
-//     let id = req.body.id;
-//     Countries.findById(id, function(err, country) {
-//         if (err) {
-//             console.error('error, country not found');
-//         }
-//         country.name = req.body.name;
-//         country.save();
-//     })
-//     res.redirect('/admin');
-// }
-
-// TODO : à debugger
+// Update donnes Gender
 exports.updateGender = function(req, res){
     Countries.update({_id : req.body.id},{"$pull":{"gender":{year: parseInt(req.body.year)}}}, function (err, country){
         if(country != null){
@@ -720,25 +688,26 @@ exports.updateGender = function(req, res){
     })   
 }
 
-// TODO : à debugger
+// Update donnes General
 exports.updateGeneral = function(req, res){    
     Countries.updateOne(
-        { _id : req.body.id , general : { $elemMatch: { year : req.body.year }} }, 
-        { $set: { "general.$.source" : req.body.source,  
-                  "general.$.data.area" : req.body.area,  
-                  "general.$.data.population" : req.body.population, 
-                  "general.$.data.pib" : req.body.pib,
-                  "general.$.data.ppa" : req.body.ppa,
-                  "general.$.data.idh" : req.body.idh,
-                  "general.$.data.country_unemployment" : req.body.country_unemployment
+        { _id : req.body.id , general : { $elemMatch: { year : parseInt(req.body.year) }} }, 
+        { $set: { "general.$.source" : parseFloat(req.body.source),  
+                  "general.$.data.area" : parseFloat(req.body.area),  
+                  "general.$.data.population" : parseFloat(req.body.population), 
+                  "general.$.data.pib" : parseFloat(req.body.pib),
+                  "general.$.data.ppa" : parseFloat(req.body.ppa),
+                  "general.$.data.idh" : parseFloat(req.body.idh),
+                  "general.$.data.country_unemployment" : parseFloat(req.body.country_unemployment)
                 } 
         }, 
         function(err, country){        
             if (err) { 
             throw err;
         }
-        else {            
-            res.redirect('/admin');
+        else {
+            res.json(country)            
+            //res.redirect('/admin');
         }
     })   
 }
