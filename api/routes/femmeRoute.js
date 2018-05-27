@@ -1,30 +1,35 @@
+
 'use strict'
 
 module.exports = function(app) {
 
-    let femme = require('../controllers/femmeController')
-    let user = require('../controllers/userController')
+    const femme     = require('../controllers/femmeController')
+    const user      = require('../controllers/userController')
 
+    // ROUTE ACCUEIL
     app.get("/", femme.showRoutes)
-    app.post("/", femme.showRoutes)
 
-    app.get("/codes", user.checkAuth, femme.getCountriesCode)
-    app.post("/codes", user.checkAuth, femme.getCountriesCode)
+    // RECUPERER LES CODES DES PAYS
+    app.get("/codes", user.checkCors, femme.getCountriesCode)
 
+    // RECUPERER UNIQUEMENT LES SOURCES
+    app.get("/sources", user.checkCors, femme.getSources)
 
-    // TODO : revoir trop de paramètres optionnels
-    app.get("/sources/:countries?/:years?/:categories?", user.checkAuth, femme.getSources)
-    app.post("/sources/:countries?/:years?/:categories?", user.checkAuth, femme.getSources)
+    // RECUPERER DES DONNES
+    app.get("/countries", user.checkCors, femme.getData)
 
-    app.get("/countries/:countries?/:years?/:general?/:gender?/:sex?/:operator?", user.checkAuth, femme.getData)
-    app.post("/countries/:countries?/:years?/:general?/:gender?/:sex?/:operator?", user.checkAuth, femme.getData)
+    // ENREGISTRER UN UTILISATEUR
+    app.post("/users", user.register)
 
+    // SE CONNECTER
+    app.post("/users/:email", user.login)
 
-    // TODO : authentification puis token
-    // TODO : changer mdp
-    app.put("/users/:email/:password/:name?/", user.register)
+    // METTRE A JOUR SON MOT DE PASSE / NOM / DNS
+    app.put("/users", user.checkAuth, user.update)
 
-    app.delete("/users/:email", user.checkAuth, user.delete)
+    // EFFACER SON COMPTE
+    app.delete("/users", user.checkAuth, user.delete)
+
 
 
     app.route('/admin').get(femme.admin)

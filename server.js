@@ -10,23 +10,26 @@ const   express         = require('express'),
         routes          = require('./api/routes/femmeRoute'),
         Countries       = require('./api/models/femmeModel'),
         Users           = require('./api/models/userModel'),
-        femme           = require('./api/controllers/femmeController')
+        femme           = require('./api/controllers/femmeController'),
+        cors            = require('cors')
+
 
 
 mongoose.Promise = global.Promise
 mongoose.connect("mongodb://127.0.0.1:27017/ecv-api")
-        
+
+
 app.use( bodyParser.urlencoded({ extended: true }) )
+
 app.use( bodyParser.json() )
 
 routes(app)
-
 
 app.use(function(req, res) {
 
     let notFoundResponse = {
         "status": "error",
-        "url" : req.originalUrl,
+        "url" : req.originalUrl + " not found",
     }
 
     const routes = [
@@ -56,29 +59,35 @@ app.use(function(req, res) {
     }
 
 
-    // trouve la plus proche : max 4
-    let closest = { "distance" : -Infinity }
+    // trouve la plus proche : max 5
+    let closest = { "distance" : Infinity }
 
     for (let route of routes ) {
 
-        if ( route.distance <= 4 && route.distance > closest.distance ) {
+        if ( route.distance <= 5 && route.distance < closest.distance ) {
 
             closest = route
         }
     }
 
     // si suggestiont rouvée on la met dans le message
-    if ( closest.distance !== -Infinity) {
+    if ( closest.distance !== Infinity) {
 
-        notFoundResponse.suggestion = "Did you mean /" + closest.name + " ?"
+        notFoundResponse.suggestion = "Did you mean http://"+ host + ':' + port +"/" + closest.name + " ?"
     }
 
     res.status(404)
     res.send( notFoundResponse )
-});
+})
 
 
 
 app.listen(port, host, function () {
+
+    // update les cors
+    let cors = require('./api/controllers/corsController')
+    cors.loadAllowedOrigins()
+
+    // message d'accueil
     console.log('Femme app listening on : ' + host + ':' + port)
 })

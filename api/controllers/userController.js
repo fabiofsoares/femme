@@ -3,44 +3,18 @@ const   mongoose    = require('mongoose'),
         Users       = mongoose.model('Users'),
         validator   = require('validator'),
         jwt         = require('jsonwebtoken'),
-        bcrypt      = require('bcryptjs')
+        bcrypt      = require('bcryptjs'),
+        cors        = require('../controllers/corsController')
 
 
 
-// TOKEN TEST :
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMDM0OWU1M2MyMDFiNjUwNDA2MjhkMyIsImlhdCI6MTUyNjk0MjE4MSwiZXhwIjoxNTI3MDI4NTgxfQ.HP0Lg8hozp1ZgFfa50wfo9EJODJTl326sCUCXz0MRJ4
-
-// TODO : protéger la variable
 let secret = "charline"
-
-exports.checkAuth = function(req, res, next) {
-
-    let testTokenResponse = {}
-
-    let token = exports.getToken( req.headers.authorization )
-
-    jwt.verify(token, secret, function(err, decoded) {
-
-        if (err) {
-            testTokenResponse.status     = "error"
-            testTokenResponse.message    = err
-
-            res.status(400)
-            res.json( testTokenResponse )
-        }
-
-        else {
-            req.decoded = decoded
-            next()
-        }
-    })
-}
 
 exports.register = function(req, res) {
 
-    let name = req.params.name ? req.params.name : 'the girl has no name'
-    let email = validator.isEmail(req.params.email) ? req.params.email : false
-    let password = req.params.password
+    let name = req.body.name ? req.body.name : 'the girl has no name'
+    let email = validator.isEmail(req.body.email) ? req.body.email : false
+    let password = req.body.password
 
     let registerResponse = {}
 
@@ -107,6 +81,7 @@ exports.register = function(req, res) {
                         function (err, user) {
 
                             if (err) {
+
                                 registerResponse.status     = "error"
                                 registerResponse.message    = "There was a problem during the registration, please come back later"
 
@@ -116,14 +91,8 @@ exports.register = function(req, res) {
 
                             else {
 
-                                let token = jwt.sign(
-                                    { id: user._id },
-                                    secret,
-                                    {expiresIn: 86400})
-
                                 registerResponse.status     = "success"
                                 registerResponse.message    = "Congatulations " + user.name + " you have your account !"
-                                registerResponse.token      = token
 
                                 res.json( registerResponse )
                             }
@@ -134,84 +103,240 @@ exports.register = function(req, res) {
         })
 }
 
+exports.login = function(req, res) {
 
-
-exports.delete = function(req, res) {
-
-    let deleteResponse = {}
-
-    let token = req.decoded
+    let loginResponse = {}
 
     let email = validator.isEmail(req.params.email) ? req.params.email : false
+    let password = req.body.password
 
+    let resExpress = res
 
+    if (!email) {
 
-    if ( !email ) {
+        loginResponse.status     = "error"
+        loginResponse.message    = "Please enter a valid email"
 
-        deleteResponse.status     = "error"
-        deleteResponse.message    = "Please give a valid email"
-
-        res.status(400)
-        res.json( deleteResponse )
+        resExpress.status(400)
+        resExpress.json(loginResponse)
         return null
     }
 
+    Users.
+    findOne({}).
+    and( [ {email: email} ]).
+    exec( function ( err, user ) {
 
+        if (err) {
+
+            loginResponse.status     = "error"
+            loginResponse.message    = err
+
+            resExpress.status(400)
+            resExpress.json(loginResponse)
+        }
+
+        else if ( !user ) {
+
+            loginResponse.status     = "error"
+            loginResponse.message    = "No user has been found for the email " + email
+
+            resExpress.status(400)
+            resExpress.json(loginResponse)
+        }
+
+        else {
+
+            bcrypt.compare(password, user.password, function(err, res) {
+
+                if (res) {
+
+                    let token = jwt.sign(
+                        { id: user._id },
+                        secret,
+                        {expiresIn: 86400})
+
+                    loginResponse.status    = "success"
+                    loginResponse.message   = user.name + " your are connected !"
+                    loginResponse.token     = token
+
+                    resExpress.json(loginResponse)
+                }
+
+                else {
+
+                    loginResponse.status     = "error"
+                    loginResponse.message    = "Identifiants invalid"
+
+                    resExpress.status(400)
+                    resExpress.json(loginResponse)
+                }
+
+            })
+        }
+    })
+}
+
+exports.update = function(req, res) {
+
+    let updateResponse = {}
+
+    let password    = req.body.password     ? req.body.password         : false
+    let name        = req.body.name         ? req.body.name             : false
+    let dns         = req.body.dns          ? req.body.dns.split(',')   : false
+    let decoded     = req.decoded
+
+
+    Users.findById(decoded.id, function (err, user) {
+
+        if (err) {
+
+            updateResponse.status     = "error"
+            updateResponse.message    = err
+
+            res.status(400)
+            res.json(updateResponse)
+        }
+
+        else if (!user) {
+
+            updateResponse.status     = "error"
+            updateResponse.message    = "No user has been found with this token "
+
+            res.status(400)
+            res.json(updateResponse)
+        }
+
+        else {
+
+            if (password) user.password = bcrypt.hashSync(password, 8)
+            if (name) user.name = name
+            if (dns) {
+                user.dns += dns
+
+                cors.updateAllowedOrigins(dns)
+            }
+
+
+
+            user.save(function (err, updateUser) {
+
+                if (err) {
+
+                    updateResponse.status = "error"
+                    updateResponse.message = err
+
+                    res.status(400)
+                    res.json(updateResponse)
+                    return null
+                }
+
+                else {
+
+                    updateResponse.status = "success"
+                    updateResponse.message = user.email
+
+                    if (password) updateResponse.message += " your password has been updated"
+                    if (name) updateResponse.message += " your name has been updated"
+                    if (dns) updateResponse.message += " your dns have been updated"
+
+                    res.json(updateResponse)
+                }
+            })
+        }
+    })
+}
+
+// TODO : refaire une seconde sécurité avec demande de mot de passe ?
+exports.delete = function(req, res) {
+
+    let deleteResponse = {}
+    let token = req.decoded
 
     Users.
-        findOne( {} ).
-        and( [{ _id: token.id }] ).
-        exec( function ( err, data ) {
+        remove({_id: token.id}).
+        exec( function (err, data) {
 
-            // si err
-            if ( err ) {
+            if (err) {
 
                 deleteResponse.status     = "error"
-                deleteResponse.message    = "There was a problem during the deletion, please try again later"
+                deleteResponse.message    = err
 
                 res.status(400)
                 res.json( deleteResponse )
             }
 
-            // si pas de user
-            else if ( !data ) {
-                deleteResponse.status     = "error"
-                deleteResponse.message    = "No user has been found for the email " + email
-
-                res.status(400)
-                res.json( deleteResponse )
-            }
-
-            // si pas le meme mot de passe
-            else if ( email !== data.email ) {
-                deleteResponse.status     = "error"
-                deleteResponse.message    = "Wrong token and user"
-
-                res.status(400)
-                res.json( deleteResponse )
-            }
-
-            // efface le user
             else {
 
-                Users.
-                    remove({_id: token.id}).
-                    exec( function (err, data) {
-
-                        deleteResponse.status     = "succes"
-                        deleteResponse.message    = "Your account has been deleted, so sad to see you leaving :("
-                        res.json( deleteResponse )
-                })
+                deleteResponse.status     = "succes"
+                deleteResponse.message    = "Your account has been deleted, so sad to see you leaving :("
+                res.json( deleteResponse )
             }
         })
 }
 
+exports.checkAuth = function(req, res, next) {
 
-exports.getToken = function(tokenFull) {
+    let testTokenResponse = {}
+
+    let token = req.headers.authorization ? getToken( req.headers.authorization ) : false
+
+    if (!token) {
+
+        testTokenResponse.status     = "error"
+        testTokenResponse.message    = "Please send a token"
+
+        res.status(400)
+        res.json(testTokenResponse)
+        return null
+    }
+
+    jwt.verify(token, secret, function(err, decoded) {
+
+        if (err) {
+
+            testTokenResponse.status     = "error"
+            testTokenResponse.message    = err
+
+            res.status(400)
+            res.json( testTokenResponse )
+        }
+
+        else {
+
+            req.decoded = decoded
+            next()
+        }
+    })
+}
+
+exports.checkCors = function(req, res, next) {
+
+    let allowedOrigins = cors.allowedOrigins
+
+    console.log('allowedOrigins', allowedOrigins)
+
+    let origin = req.headers.origin
+
+    if( allowedOrigins.indexOf( origin ) > -1 ){
+        res.header( 'Access-Control-Allow-Origin', origin )
+    }
+    else {
+        res.header( 'Access-Control-Allow-Origin', 'adress or your account' )
+    }
+
+    res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept")
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, UPDATE")
+    res.header("Access-Control-Allow-Credentials", true)
+
+    next()
+}
+
+
+// TOOLS :
+function getToken(tokenFull) {
 
     let tokenSpaceIndex = tokenFull.indexOf(' ')
 
     return tokenFull.slice(tokenSpaceIndex + 1, tokenFull.length )
 }
-
-

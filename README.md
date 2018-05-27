@@ -45,16 +45,17 @@ mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JS
 
 
 ## todo charline 
-- OK : grosse requete country + filtre en / 
-- OK : enlever toutes les ID dans les renvoie de données
-- OK : gestion des erreurs messages personnalisés + renvoyer code HTTP
-- OK : wrapper
-- OK : 404 -> proposition de routes
-- OK : premiere requete / 
-- OK : token
-- CORS ? -> avec l'enregistrement des users
+- OK    : grosse requete country + filtre en / 
+- OK    : enlever toutes les ID dans les renvoie de données
+- OK    : gestion des erreurs messages personnalisés + renvoyer code HTTP
+- OK    : wrapper
+- OK    : 404 -> proposition de routes
+- OK    : premiere requete / 
+- OK    : repasser les requêtes en paramètres !!
+- OK    : Token
+- OK    : User login + register + update + delete + add adresse
+- OK    : CORS ? -> avec l'enregistrement des users
 - Autocomplétion ?
-- repasser les requêtes en paramètres !!
 - heroku 
 - HTTPS /!\ : let's encrypt >>> pour avoir un certificat https
 - Cross Site Request Forgery CSRF : voir si plugin
@@ -70,10 +71,11 @@ mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JS
 
 ## mel : 
 - remplir 5 pays minimun
-- rajouter requêtes F. dans /
-- rajouter routes dans 404
+- https://www.scaleway.com/
+- heroku ?
 
 
-
-
-## TOKEN : A REVORI SI TOUT OK
+## todo Global : 
+- renvoyer données triées avec status + message si erreur et data si ok 
+- OK    : écrire routes dans /
+- OK    : écrire routes dans 404

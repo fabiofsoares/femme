@@ -9,23 +9,81 @@ exports.showRoutes = function( req, res ) {
 
     let routes = {}
 
-    routes.codes        = domaine + "/codes"
-    routes.sources      = domaine + "/sources/{country_code}/{year}/{cateogory}"
-    routes.countries    = domaine + "/countries/{country_code}/{year}/{general_filter}/{gender_filter}/{gender_compare_sex}/{gender_compare_oparator}"
+    routes.codes = {
+        "method": "GET",
+        "url": domaine + "/codes"
+    }
 
-    routes.values = {
-        "country_code" : "international code",
-        "year" : "yyyy",
-        "cateogory" : "gender or general",
-        "general_filters" : "all or none or coma separated values",
-        "gender_filters" : "all or none or coma separated values",
-        "gender_compare_sex" : "f or m",
-        "gender_compare_operator" : "> or >= or < or <= or ="
+    routes.sources = {
+        "method": "GET",
+        "url": domaine + "/sources?{countries}{years}{category}",
+        "query" : {
+            "countries" : "international country code coma separated values",
+            "years" : "yyyy",
+            "category" : "gender or general",
+        }
+    }
+
+
+    routes.countries = {
+        "method": "GET",
+        "url": domaine + "/countries?{countries}/{years}/{general}/{gender}/{sex}/{operator}",
+        "query" : {
+            "countries" : "international country code coma separated values",
+            "years" : "yyyy",
+            "category" : "gender or general",
+            "general" : "none or coma separated values",
+            "gender" : "none or coma separated values",
+            "sex" : "f or m",
+            "operator" : "> or >= or < or <= or ="
+        }
+    }
+
+    routes.register = {
+        "method" : "POST",
+        "url": domaine + "/users",
+        "params" : {
+            "email": "unique and valid format",
+            "password": "of your choice",
+            "name": "if you want"
+        }
+    }
+
+    routes.login = {
+        "method" : "POST",
+        "url": domaine + "/users/{email}",
+        "query" : {
+            "email": "of your registration"
+        },
+        "params" : {
+            "values": "password"
+        }
+    }
+
+    routes.update = {
+        "method" : "PUT",
+        "url": domaine + "/users",
+        "headers": {
+            "Autorization": "token"
+        },
+        "params" : {
+            "name": "name",
+            "password": "password",
+            "dns": "list of origin - coma separated value"
+        }
+    }
+
+
+    routes.delete = {
+        "method" : "DELETE",
+        "url": domaine + "/users",
+        "headers": {
+            "Autorization": "token"
+        }
     }
 
     res.json( routes )
 }
-
 
 
 // GET DATA
@@ -70,15 +128,13 @@ exports.getSources = function( req, res ) {
 
 
     // récupération des filtres
-    let filterCountries     = req.params.countries      === 'all'   || !req.params.countries    ? false : req.params.countries.split(",")
-    let filterYears         = req.params.years          === 'all'   || !req.params.years        ? false : req.params.years.split(",")
-    let filterCategories    = req.params.categories     === 'all'   || !req.params.categories   ? false : req.params.categories.split(",")
-
+    let filterCountries     = req.query.countries   ? req.query.countries.split(",")    : false
+    let filterYears         = req.query.years       ? req.query.years.split(",")        : false
+    let filterCategory      = req.query.category    ? req.query.category                : false
 
 
     // convertir les année en nombre
     for (let indexYears in filterYears) {
-
 
         // GESTION ERREUR : si année pas encore finie / passée et pas au format yyyy
         if ( filterYears[indexYears] >= ( new Date() ).getFullYear() || filterYears[indexYears].length < 4 ) {
@@ -96,12 +152,9 @@ exports.getSources = function( req, res ) {
 
 
     // 1 - si filtre par catégories
-    if ( filterCategories ) {
+    if ( filterCategory ) {
 
-        for ( let category of filterCategories) {
-
-            select += " " + category
-        }
+        select += " " + filterCategory
     }
 
     else {
@@ -151,7 +204,7 @@ exports.getSources = function( req, res ) {
                     let genderData = datasResponse[indexCountry].gender
 
                     // general
-                    if ( !filterCategories || filterCategories.indexOf('general') > 0 ) {
+                    if ( !filterCategory || filterCategory === 'general' ) {
 
                         for ( let indexGeneral = 0; indexGeneral <  generalData.length; indexGeneral++) {
 
@@ -167,7 +220,7 @@ exports.getSources = function( req, res ) {
 
 
                     // gender
-                    if ( !filterCategories || filterCategories.indexOf('gender') > 0 ) {
+                    if ( !filterCategory || filterCategory === 'gender' ) {
 
                         for ( let indexGender = 0; indexGender <  genderData.length; indexGender++) {
 
@@ -245,17 +298,15 @@ exports.getSources = function( req, res ) {
 
 exports.getData = function( req, res ) {
 
-
     let getDataResponse = {}
     let filters = [{}]
     let select = " -_id code"
 
 
-
     // gestion des filtres
 
     // 1 - pays
-    let filterCountries = req.params.countries  === 'all' || !req.params.countries ? false : req.params.countries.split(",")
+    let filterCountries = req.query.countries ? req.query.countries.split(",") : false
 
     if ( filterCountries ) {
 
@@ -265,7 +316,7 @@ exports.getData = function( req, res ) {
 
 
     // 2 - années
-    let filterYears = req.params.years === 'all' || !req.params.years ? false : req.params.years.split(",")
+    let filterYears = req.query.years ? req.query.years.split(",") : false
 
     for (let indexYears in filterYears) {
 
@@ -286,21 +337,19 @@ exports.getData = function( req, res ) {
 
 
 
-
     // 3 - données : GENERAL
     let showGeneral = true
     let generalFilters = []
 
-    if ( req.params.general ) {
+    if ( req.query.general ) {
 
-        if ( req.params.general === "none" ) {
+        if ( req.query.general === "none" ) {
 
             showGeneral = false
         }
 
-        else if ( req.params.general !== "all" ) {
-
-            generalFilters = req.params.general.split(",")
+        else {
+            generalFilters = req.query.general.split(",")
         }
     }
 
@@ -310,16 +359,15 @@ exports.getData = function( req, res ) {
     let showGender = true
     let genderFilters = []
 
-    if ( req.params.gender ) {
+    if ( req.query.gender ) {
 
-        if ( req.params.gender === "none" ) {
+        if ( req.query.gender === "none" ) {
 
             showGender = false
         }
 
-        else if ( req.params.gender !== "all" ) {
-
-            genderFilters = req.params.gender.split(",")
+        else {
+            genderFilters = req.query.gender.split(",")
         }
     }
 
@@ -342,11 +390,13 @@ exports.getData = function( req, res ) {
 
     // 5 - Comparaison des sexes
     let isGenderCompare = false
-    let sex = req.params.sex ? req.params.sex : false
-    let operator = req.params.operator ? req.params.operator : false
-    operator = operator === "=" ? "===" : operator
+
+    let sex         = req.query.sex         ? req.query.sex : false
+    let operator    = req.query.operator    ? req.query.operator : false
 
     let allowedOperator = ["<", "<=", ">", ">=", "="]
+
+
 
     // GESTION DES ERREURS :
 
@@ -373,7 +423,7 @@ exports.getData = function( req, res ) {
     }
 
     // si mauvais genre fournis
-    else if ( sex && ( sex === "f" || sex !== "m" ) ) {
+    else if ( sex && ( sex !== "f" && sex !== "m" ) ) {
         getDataResponse.status       = "error"
         getDataResponse.message      = "Sex value can only be f or m"
 
@@ -394,6 +444,7 @@ exports.getData = function( req, res ) {
 
     else if ( sex && showGender && operator ) {
         isGenderCompare = true
+        operator = operator === "=" ? "===" : operator
     }
 
 
@@ -529,8 +580,6 @@ exports.getData = function( req, res ) {
                     }
                 }
             }
-
-            // TODO : vérifie si l'on renvoie bien des données
             res.json( datasResponse )
         }
     })
@@ -541,6 +590,10 @@ exports.getData = function( req, res ) {
 // ADMIN
 exports.admin = function(req, res) {
     res.sendFile('views/admin.html', { root: 'api'})
+}
+
+exports.login = function(req, res) {
+    res.sendFile('views/login.html', { root: 'api'})
 }
 
 // TODO : à effacer car tous les pays doivent etre créer
