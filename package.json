@@ -27,6 +27,7 @@
     "fast-levenshtein": "^2.0.6",
     "generate-schema": "^2.6.0",
     "jsonwebtoken": "^8.2.1",
+    "memory-cache": "^0.2.0",
     "mongoose": "^5.0.18",
     "validator": "^10.2.0"
   }

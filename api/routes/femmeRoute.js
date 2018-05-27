@@ -1,5 +1,24 @@
 
 'use strict'
+const mcache          = require('memory-cache'),
+      time_cache      = 10;
+
+let cache = (duration) => {
+    return (req, res, next) => {
+        let key = '__express__' + req.originalUrl || req.url
+        let cachedBody = mcache.get(key)
+        if (cachedBody) {
+            res.send(cachedBody)
+        } else {
+            res.sendResponse = res.send
+            res.send = (body) => {
+                mcache.put(key, body, duration * 1000);
+                res.sendResponse(body)
+            }
+            next()
+        }
+    }
+}
 
 module.exports = function(app) {
 
@@ -7,16 +26,16 @@ module.exports = function(app) {
     const user      = require('../controllers/userController')
 
     // ROUTE ACCUEIL
-    app.get("/", femme.showRoutes)
+    app.get("/", cache(time_cache), femme.showRoutes)
 
     // RECUPERER LES CODES DES PAYS
-    app.get("/codes", user.checkCors, femme.getCountriesCode)
+    app.get("/codes", user.checkCors, cache(time_cache), femme.getCountriesCode)
 
     // RECUPERER UNIQUEMENT LES SOURCES
-    app.get("/sources", user.checkCors, femme.getSources)
+    app.get("/sources", user.checkCors, cache(time_cache), femme.getSources)
 
     // RECUPERER DES DONNES
-    app.get("/countries", user.checkCors, femme.getData)
+    app.get("/countries", user.checkCors, cache(time_cache), femme.getData)
 
     // ENREGISTRER UN UTILISATEUR
     app.post("/users", user.register)
@@ -31,16 +50,14 @@ module.exports = function(app) {
     app.delete("/users", user.checkAuth, user.delete)
 
 
+    // il faut mettre user.checkAuth
+    app.get('/admin', cache(time_cache), femme.admin)
 
-    app.route('/admin').get(femme.admin)
+    app.post('/admin/add-gender',femme.addGender)
 
-    app.route('/admin/new-country').post(femme.newCountry)
+    app.post('/admin/add-general',femme.addGeneral)
 
-    app.route('/admin/add-gender').post(femme.addGender)
+    app.post('/admin/update-general',femme.updateGeneral)
 
-    app.route('/admin/add-general').post(femme.addGeneral)
-
-    app.route('/admin/update-general').post(femme.updateGeneral)
-
-    app.route('/admin/delete-country').post(femme.deleteCountry)
+    app.post('/admin/update-gender',femme.updateGender)
 };

@@ -40,7 +40,7 @@ START :
 $ mongod
 
 Import :
-mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JSON FILE>
+mongoimport --db ecv-api --collection countries --type json --file <JSON FILE>
 
 
 
@@ -62,8 +62,11 @@ mongoimport --db <DB NAME> --collection <COLLECTION NAME> --type json --file <JS
 
 
 ## todo Fabio 
-- put
-- delete 
+OK put
+OK put-general
+OK put-gender
+- update-general  
+- update-gender  
 - cache : sur 2 ou 3 des routes > si pas de cache on le spécifie aussi
 - à vérifier avec le cache control
 +++ ETag > forcer à enlever le cache si la ressource à été modifiée
