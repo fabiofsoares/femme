@@ -54,7 +54,10 @@ app.use( bodyParser.json() )
 
 routes(app)
 
-app.use(function(req, res) {
+app.use(function(req, res, next) {
+    
+    res.contentType('application/json');
+    next();
 
     let notFoundResponse = {
         "status": "error",
@@ -124,7 +127,7 @@ app.use(function(req, res) {
 
         notFoundResponse.suggestion = "Did you mean http://"+ host + ':' + PORT +"/" + closest.name + " ?"
     }
-
+    
     res.status(404)
     res.send( notFoundResponse )
 })
