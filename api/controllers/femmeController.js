@@ -92,9 +92,119 @@ exports.showRoutes = function( req, res ) {
         "params" : {
             "code": "international country code coma separated values",
             "year": "yyyy",
-            "source_0": "source of victimization dates",
-            "dataM_0" : "male date of victimization",
-            "dataF_0" : "female date of victimization"
+            "source_victimization": "source of victimization dates",
+            "dataM_victimization" : "male date of victimization",
+            "dataF_victimization" : "female date of victimization",
+            "source_health_care": "source of health care dates",
+            "dataM_health_care" : "male date of health care",
+            "dataF_health_care" : "female date of health care",
+            "source_primary_school": "source of primary school dates",
+            "dataM_primary_school" : "male date of primary school",
+            "dataF_primary_school" : "female date of primary school",
+            "source_secondary_school": "source of secondary school dates",
+            "dataM_secondary_school" : "male date of secondary school",
+            "dataF_secondary_school" : "female date of secondary school",
+            "source_higher_education": "source of higher education dates",
+            "dataM_higher_education" : "male date of higher education ",
+            "dataF_higher_education" : "female date of higher education",
+            "source_salary": "source of salary dates",
+            "dataM_salary" : "male date of salary",
+            "dataF_salary" : "female date of salary",
+            "source_unemployment": "source of unemployment dates",
+            "dataM_unemployment" : "male date of unemployment",
+            "dataF_unemployment" : "female date of unemployment",
+            "source_work_time": "source of work time dates",
+            "dataM_work_time" : "male date of work time",
+            "dataF_work_time" : "female date of work time",
+            "source_occupational_integration": "source of occupational integration dates",
+            "dataM_occupational_integration" : "male date of occupational integration",
+            "dataF_occupational_integration" : "female date of occupational integration",
+            "source_poverty": "source of poverty dates",
+            "dataM_poverty" : "male date of poverty",
+            "dataF_poverty" : "female date of poverty",
+            "source_population_percent": "source of population percent dates",
+            "dataM_population_percent" : "male date of population percent",
+            "dataF_population_percent" : "female date of population percent",
+            "source_politic": "source of politic dates",
+            "dataM_politic" : "male date of politic",
+            "dataF_politic" : "female date of politic"
+        }
+    }
+
+    routes.updateGender = {
+        "method" : "POST",
+        "url": domaine + "/admin/update-gender",
+        "params" : {
+            "code": "international country code coma separated values",
+            "year": "yyyy",
+            "source_victimization": "source of victimization dates",
+            "dataM_victimization" : "male date of victimization",
+            "dataF_victimization" : "female date of victimization",
+            "source_health_care": "source of health care dates",
+            "dataM_health_care" : "male date of health care",
+            "dataF_health_care" : "female date of health care",
+            "source_primary_school": "source of primary school dates",
+            "dataM_primary_school" : "male date of primary school",
+            "dataF_primary_school" : "female date of primary school",
+            "source_secondary_school": "source of secondary school dates",
+            "dataM_secondary_school" : "male date of secondary school",
+            "dataF_secondary_school" : "female date of secondary school",
+            "source_higher_education": "source of higher education dates",
+            "dataM_higher_education" : "male date of higher education ",
+            "dataF_higher_education" : "female date of higher education",
+            "source_salary": "source of salary dates",
+            "dataM_salary" : "male date of salary",
+            "dataF_salary" : "female date of salary",
+            "source_unemployment": "source of unemployment dates",
+            "dataM_unemployment" : "male date of unemployment",
+            "dataF_unemployment" : "female date of unemployment",
+            "source_work_time": "source of work time dates",
+            "dataM_work_time" : "male date of work time",
+            "dataF_work_time" : "female date of work time",
+            "source_occupational_integration": "source of occupational integration dates",
+            "dataM_occupational_integration" : "male date of occupational integration",
+            "dataF_occupational_integration" : "female date of occupational integration",
+            "source_poverty": "source of poverty dates",
+            "dataM_poverty" : "male date of poverty",
+            "dataF_poverty" : "female date of poverty",
+            "source_population_percent": "source of population percent dates",
+            "dataM_population_percent" : "male date of population percent",
+            "dataF_population_percent" : "female date of population percent",
+            "source_politic": "source of politic dates",
+            "dataM_politic" : "male date of politic",
+            "dataF_politic" : "female date of politic"
+        }
+    }
+
+    routes.addGeneral = {
+        "method" : "POST",
+        "url": domaine + "/admin/add-general",
+        "params" : {
+            "code": "international country code coma separated values",
+            "year": "yyyy",
+            "area": "area of the country",
+            "population": "number of the population of the country",
+            "pib": "number of the  PIB of the country",
+            "ppa": "number of the  PPA of the country",
+            "idh": "number of the  IDH of the country",
+            "country_unemployment": "number of the  country unemployment of the country"
+            
+        }
+    }
+
+    routes.updateGeneral = {
+        "method" : "POST",
+        "url": domaine + "/admin/update-general",
+        "params" : {
+            "code": "international country code coma separated values",
+            "year": "yyyy",
+            "area": "area of the country",
+            "population": "number of the population of the country",
+            "pib": "number of the  PIB of the country",
+            "ppa": "number of the  PPA of the country",
+            "idh": "number of the  IDH of the country",
+            "country_unemployment": "number of the  country unemployment of the country"
+            
         }
     }
 
@@ -620,98 +730,98 @@ exports.addGender = function(req, res){
         data: [
             {
                 type: 'victimization',
-                source: req.body.source_0,
+                source: req.body.source_victimization,
                 data:{
-                        m: parseFloat(req.body.dataM_0),
-                        f: parseFloat(req.body.dataF_0)
+                        m: parseFloat(req.body.dataM_victimization),
+                        f: parseFloat(req.body.dataF_victimization)
                     }
             },
             {
                 type: 'health_care',
-                source: req.body.source_1,
+                source: req.body.source_health_care,
                 data:{
-                        m: parseFloat(req.body.dataM_1),
-                        f: parseFloat(req.body.dataF_1)
+                        m: parseFloat(req.body.dataM_health_care),
+                        f: parseFloat(req.body.dataF_health_care)
                     }
             },
             {
                 type: 'primary_school',
-                source: req.body.source_2,
+                source: req.body.source_primary_school,
                 data:{
-                        m: parseFloat(req.body.dataM_2),
-                        f: parseFloat(req.body.dataF_2)
+                        m: parseFloat(req.body.dataM_primary_school),
+                        f: parseFloat(req.body.dataF_primary_school)
                     }
             },
             {
                 type: 'secondary_school',
-                source: req.body.source_3,
+                source: req.body.source_secondary_school,
                 data:{
-                        m: parseFloat(req.body.dataM_3),
-                        f: parseFloat(req.body.dataF_3)
+                        m: parseFloat(req.body.dataM_secondary_school),
+                        f: parseFloat(req.body.dataF_secondary_school)
                     }
             },
             {
                 type: 'higher_education',
-                source: req.body.source_4,
+                source: req.body.source_higher_education,
                 data:{
-                        m: parseFloat(req.body.dataM_4),
-                        f: parseFloat(req.body.dataF_4)
+                        m: parseFloat(req.body.dataM_higher_education),
+                        f: parseFloat(req.body.dataF_higher_education)
                     }
             },
             {
                 type: 'salary',
-                source: req.body.source_5,
+                source: req.body.source_salary,
                 data:{
-                        m: parseFloat(req.body.dataM_5),
-                        f: parseFloat(req.body.dataF_5)
+                        m: parseFloat(req.body.dataM_salary),
+                        f: parseFloat(req.body.dataF_salary)
                     }
             },
             {
                 type: 'unemployment',
-                source: req.body.source_6,
+                source: req.body.source_unemployment,
                 data:{
-                        m: parseFloat(req.body.dataM_6),
-                        f: parseFloat(req.body.dataF_6)
+                        m: parseFloat(req.body.dataM_unemployment),
+                        f: parseFloat(req.body.dataF_unemployment)
                     }
             },
             {
                 type: 'work_time',
-                source: req.body.source_7,
+                source: req.body.source_work_time,
                 data:{
-                        m: parseFloat(req.body.dataM_7),
-                        f: parseFloat(req.body.dataF_7)
+                        m: parseFloat(req.body.dataM_work_time),
+                        f: parseFloat(req.body.dataF_work_time)
                     }
             },
             {
                 type: 'occupational_integration',
-                source: req.body.source_8,
+                source: req.body.source_occupational_integration,
                 data:{
-                        m: parseFloat(req.body.dataM_8),
-                        f: parseFloat(req.body.dataF_8)
+                        m: parseFloat(req.body.dataM_occupational_integration),
+                        f: parseFloat(req.body.dataF_occupational_integration)
                     }
             },
             {
                 type: 'poverty',
-                source: req.body.source_9,
+                source: req.body.source_poverty,
                 data:{
-                        m: parseFloat(req.body.dataM_9),
-                        f: parseFloat(req.body.dataF_9)
+                        m: parseFloat(req.body.dataM_poverty),
+                        f: parseFloat(req.body.dataF_poverty)
                     }
             },
             {
                 type: 'population_percent',
-                source: req.body.source_10,
+                source: req.body.source_population_percent,
                 data:{
-                        m: parseFloat(req.body.dataM_10),
-                        f: parseFloat(req.body.dataF_10)
+                        m: parseFloat(req.body.dataM_population_percent),
+                        f: parseFloat(req.body.dataF_population_percent)
                     }
             },
             {
                 type: 'politic',
-                source: req.body.source_11,
+                source: req.body.source_politic,
                 data:{
-                        m: parseFloat(req.body.dataM_11),
-                        f: parseFloat(req.body.dataF_11)
+                        m: parseFloat(req.body.dataM_politic),
+                        f: parseFloat(req.body.dataF_politic)
                     }
             }
         ]
