@@ -273,7 +273,7 @@ exports.delete = function(req, res) {
                 // deleteResponse.message    = "Your account has been deleted, so sad to see you leaving :("
 
                 res.status(204)
-                // res.json( deleteResponse )
+                res.send()
             }
         })
 }
