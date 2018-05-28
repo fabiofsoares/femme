@@ -314,15 +314,13 @@ exports.checkCors = function(req, res, next) {
 
     let allowedOrigins = cors.allowedOrigins
 
-    console.log('allowedOrigins', allowedOrigins)
-
     let origin = req.headers.origin
 
     if( allowedOrigins.indexOf( origin ) > -1 ){
-        res.header( 'Access-Control-Allow-Origin', origin )
+        res.header( "Access-Control-Allow-Origin", origin )
     }
     else {
-        res.header( 'Access-Control-Allow-Origin', 'adress or your account' )
+        res.header( "Access-Control-Allow-Origin", "adress of your account" )
     }
 
     res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept")

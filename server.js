@@ -11,14 +11,42 @@ const   express         = require('express'),
         Countries       = require('./api/models/femmeModel'),
         Users           = require('./api/models/userModel'),
         femme           = require('./api/controllers/femmeController'),
-        cors            = require('cors')
+        cors            = require('cors'),
+        RateLimit       = require('express-rate-limit')
 
+
+
+let limiter = new RateLimit({
+    windowMs: 2*60*1000,
+    max: 2,
+    delayMs: 0,
+    headers: true,
+    handler: function (req, res) {
+
+        let delay = this.windowMs / 1000
+
+        let limiterResponse = {
+            "status": "error",
+            "message": "Too many request from this IP, please try again after " + delay + "s"
+        }
+
+        if (this.headers) {
+            res.header('Retry-After', delay)
+        }
+
+        res.status(429)
+        res.json(limiterResponse)
+    }
+})
 
 
 mongoose.Promise = global.Promise
 // mongoose.connect("mongodb://127.0.0.1:27017/ecv-api")
 mongoose.connect("mongodb://femme:femme@ds137600.mlab.com:37600/ecv-api")
 
+app.enable('trust proxy')
+
+app.use(limiter)
 
 app.use( bodyParser.urlencoded({ extended: true }) )
 

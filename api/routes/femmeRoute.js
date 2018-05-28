@@ -1,6 +1,6 @@
-
 'use strict'
-const mcache          = require('memory-cache');
+
+const mcache          = require('memory-cache')
 
 let cache = () => {
     return (req, res, next) => {
@@ -11,7 +11,7 @@ let cache = () => {
         } else {
             res.sendResponse = res.send
             res.send = (body) => {
-                mcache.put(key, body);
+                mcache.put(key, body)
                 res.sendResponse(body)
             }
             next()
