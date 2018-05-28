@@ -1,7 +1,8 @@
 'use strict'
 const   mongoose    = require('mongoose'),
         Countries   = mongoose.model('Countries'),
-        domaine     = 'https://safe-hamlet-93581.herokuapp.com'
+        domaine     = 'https://safe-hamlet-93581.herokuapp.com',
+        escape      = require('escape-html');
 
 
 // A REMPLIR A CHAQUE NOUVELLE ROUTE
@@ -9,12 +10,12 @@ exports.showRoutes = function( req, res ) {
 
     let routes = {}
 
-    routes.codes = {
+    routes.get_countries_code = {
         "method": "GET",
         "url": domaine + "/codes"
     }
 
-    routes.sources = {
+    routes.get_sources = {
         "method": "GET",
         "url": domaine + "/sources?{countries}{years}{category}",
         "query" : {
@@ -24,7 +25,7 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
-    routes.countries = {
+    routes.get_data_countries = {
         "method": "GET",
         "url": domaine + "/countries?{countries}/{years}/{general}/{gender}/{sex}/{operator}",
         "query" : {
@@ -38,7 +39,7 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
-    routes.register = {
+    routes.user_register = {
         "method" : "POST",
         "url": domaine + "/users",
         "params" : {
@@ -48,7 +49,7 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
-    routes.login = {
+    routes.user_login = {
         "method" : "POST",
         "url": domaine + "/users/{email}",
         "query" : {
@@ -59,7 +60,7 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
-    routes.update = {
+    routes.user_update = {
         "method" : "PUT",
         "url": domaine + "/users",
         "headers": {
@@ -73,7 +74,7 @@ exports.showRoutes = function( req, res ) {
     }
 
 
-    routes.delete = {
+    routes.user_delete = {
         "method" : "DELETE",
         "url": domaine + "/users",
         "headers": {
@@ -81,12 +82,12 @@ exports.showRoutes = function( req, res ) {
         }
     }
     
-    routes.admin = {
+    routes.admin_view = {
         "method": "GET",
         "url": domaine + "/admin"
     }
 
-    routes.addGender = {
+    routes.admin_add_gender = {
         "method" : "POST",
         "url": domaine + "/admin/add-gender",
         "params" : {
@@ -134,7 +135,7 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
-    routes.updateGender = {
+    routes.admin_update_gender = {
         "method" : "POST",
         "url": domaine + "/admin/update-gender",
         "params" : {
@@ -179,7 +180,7 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
-    routes.addGeneral = {
+    routes.admin_add_general = {
         "method" : "POST",
         "url": domaine + "/admin/add-general",
         "params" : {
@@ -195,7 +196,7 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
-    routes.updateGeneral = {
+    routes.admin_update_general = {
         "method" : "POST",
         "url": domaine + "/admin/update-general",
         "params" : {
@@ -230,7 +231,7 @@ exports.getCountriesCode = function( req, res ) {
             getCountriesNameResponse.status     = "error"
             getCountriesNameResponse.message    = err
 
-            res.status(400)
+            res.status(500)
             res.json( getCountriesNameResponse )
         }
 
@@ -244,6 +245,7 @@ exports.getCountriesCode = function( req, res ) {
 
             getCountriesNameResponse.status     = "success"
             getCountriesNameResponse.data       = codes
+
             res.json( getCountriesNameResponse )
         }
     })
@@ -283,9 +285,20 @@ exports.getSources = function( req, res ) {
     // 1 - si filtre par catégories
     if ( filterCategory ) {
 
-        select += " " + filterCategory
-    }
+        if ( filterCategory !== "general" && filterCategory !== "gender") {
 
+            getSourcesResponse.status       = "error"
+            getSourcesResponse.message      = "Filter category must be equals to gender or general"
+
+            res.status(400)
+            res.json(getSourcesResponse)
+            return null
+        }
+
+        else {
+            select += " " + filterCategory
+        }
+    }
     else {
 
         select += " general gender"
@@ -415,7 +428,7 @@ exports.getSources = function( req, res ) {
                 getSourcesResponse.status   = "error"
                 getSourcesResponse.message  = "Empty result please remove some filters to get better results"
 
-                res.status(400)
+                res.status(404)
                 res.json( getSourcesResponse )
                 return null
             }
@@ -509,7 +522,6 @@ exports.getData = function( req, res ) {
         getDataResponse.status       = "error"
         getDataResponse.message      = "You must select at least gender or general to get"
 
-
         res.status(400)
         res.json( getDataResponse )
         return null
@@ -553,6 +565,7 @@ exports.getData = function( req, res ) {
 
     // si mauvais genre fournis
     else if ( sex && ( sex !== "f" && sex !== "m" ) ) {
+
         getDataResponse.status       = "error"
         getDataResponse.message      = "Sex value can only be f or m"
 
@@ -563,6 +576,7 @@ exports.getData = function( req, res ) {
 
     // si mauvais operateur fournis
     else if ( operator && ( allowedOperator.indexOf(operator) < 0 ) ) {
+
         getDataResponse.status       = "error"
         getDataResponse.message      = "Operator value can only be : " + allowedOperator.toString()
 
@@ -572,6 +586,7 @@ exports.getData = function( req, res ) {
     }
 
     else if ( sex && showGender && operator ) {
+
         isGenderCompare = true
         operator = operator === "=" ? "===" : operator
     }
@@ -589,7 +604,7 @@ exports.getData = function( req, res ) {
             getDataResponse.status       = "error"
             getDataResponse.message      = err
 
-            res.status(400)
+            res.status(500)
             res.json( getDataResponse )
             return null
         }
@@ -727,6 +742,7 @@ exports.admin = function(req, res) {
 }
 
 exports.addGender = function(req, res){
+
     let getDataResponse = {};
     //Recupère le code du pays
     let code = req.body.code,
@@ -843,14 +859,14 @@ exports.addGender = function(req, res){
     };
 
     //Cherche le pays avec le code envoyé
-    Countries.find(code, function(err, country){      
+    Countries.findOne({code: code}, function(err, country){
         
         //Gestion d'erreur
         if (err) {
             getDataResponse.status      = "error"
             getDataResponse.message     = err
 
-            res.status(400)
+            res.status(500)
             res.json( getDataResponse )
             return null
         }
@@ -866,7 +882,6 @@ exports.addGender = function(req, res){
         }
     })
 }
-
 
 exports.addGeneral = function(req, res){
     let getDataResponse = {};
@@ -886,13 +901,13 @@ exports.addGeneral = function(req, res){
         }
     };
      //Cherche le pays avec le code envoyé
-    Countries.find(code, function(err, country){
+    Countries.findOne({code: code}, function(err, country){
         //Gestion d'erreur
         if (err) {
             getDataResponse.status      = "error"
             getDataResponse.message     = err
 
-            res.status(400)
+            res.status(500)
             res.json( getDataResponse )
 
             return null
@@ -921,7 +936,7 @@ exports.updateGender = function(req, res){
             getDataResponse.status      = "error"
             getDataResponse.message     = err
 
-            res.status(400)
+            res.status(500)
             res.json( getDataResponse )
             return null
         }
@@ -955,7 +970,7 @@ exports.updateGeneral = function(req, res){
                 getDataResponse.status      = "error"
                 getDataResponse.message     = err
     
-                res.status(400)
+                res.status(500)
                 res.json( getDataResponse )
                 return null
             }

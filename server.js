@@ -1,24 +1,25 @@
 const   express         = require('express'),
-        mongoose        = require('mongoose'),
-        bodyParser      = require('body-parser'),
-        app             = express(),
-        PORT            = process.env.PORT || 3000,
-        host            = 'safe-hamlet-93581.herokuapp.com',
-        levenshtein     = require('fast-levenshtein'),
-        jwt             = require('jsonwebtoken'),
-        bcrypt          = require('bcryptjs'),
-        routes          = require('./api/routes/femmeRoute'),
-        Countries       = require('./api/models/femmeModel'),
-        Users           = require('./api/models/userModel'),
-        femme           = require('./api/controllers/femmeController'),
-        cors            = require('cors'),
-        RateLimit       = require('express-rate-limit')
+    mongoose        = require('mongoose'),
+    bodyParser      = require('body-parser'),
+    app             = express(),
+    PORT            = process.env.PORT || 3000,
+    host            = 'safe-hamlet-93581.herokuapp.com',
+    levenshtein     = require('fast-levenshtein'),
+    jwt             = require('jsonwebtoken'),
+    bcrypt          = require('bcryptjs'),
+    routes          = require('./api/routes/femmeRoute'),
+    Countries       = require('./api/models/femmeModel'),
+    Users           = require('./api/models/userModel'),
+    femme           = require('./api/controllers/femmeController'),
+    cors            = require('cors'),
+    RateLimit       = require('express-rate-limit'),
+    helmet          = require('helmet')
 
 
 
 let limiter = new RateLimit({
-    windowMs: 2*60*1000,
-    max: 2,
+    windowMs: 1000,
+    max: 1,
     delayMs: 0,
     headers: true,
     handler: function (req, res) {
@@ -46,13 +47,17 @@ mongoose.connect("mongodb://femme:femme@ds137600.mlab.com:37600/ecv-api")
 
 app.enable('trust proxy')
 
-app.use(limiter)
+app.use( limiter )
 
 app.use( bodyParser.urlencoded({ extended: true }) )
 
 app.use( bodyParser.json() )
 
-routes(app)
+app.use( helmet({
+    noCache: false
+}) )
+
+routes( app )
 
 app.use(function(req, res) {
 
