@@ -92,6 +92,9 @@ exports.showRoutes = function( req, res ) {
         "params" : {
             "code": "international country code coma separated values",
             "year": "yyyy",
+            "source_life_expectancy": "source of life expectancy dates",
+            "dataM_life_expectancy" : "male date of life expectancy",
+            "dataF_life_expectancy" : "female date of life expectancy",
             "source_victimization": "source of victimization dates",
             "dataM_victimization" : "male date of victimization",
             "dataF_victimization" : "female date of victimization",
@@ -108,14 +111,14 @@ exports.showRoutes = function( req, res ) {
             "dataM_higher_education" : "male date of higher education ",
             "dataF_higher_education" : "female date of higher education",
             "source_salary": "source of salary dates",
-            "dataM_salary" : "male date of salary",
-            "dataF_salary" : "female date of salary",
+            "dataM_salary" : "male date of salary (by MONTH/EUROS)",
+            "dataF_salary" : "female date of salary (by MONTH/EUROS)",
             "source_unemployment": "source of unemployment dates",
             "dataM_unemployment" : "male date of unemployment",
             "dataF_unemployment" : "female date of unemployment",
             "source_work_time": "source of work time dates",
-            "dataM_work_time" : "male date of work time",
-            "dataF_work_time" : "female date of work time",
+            "dataM_work_time" : "male date of work time (by HOUR/DAY)",
+            "dataF_work_time" : "female date of work time (by HOUR/DAY)",
             "source_occupational_integration": "source of occupational integration dates",
             "dataM_occupational_integration" : "male date of occupational integration",
             "dataF_occupational_integration" : "female date of occupational integration",
@@ -171,8 +174,8 @@ exports.showRoutes = function( req, res ) {
             "dataM_population_percent" : "male date of population percent",
             "dataF_population_percent" : "female date of population percent",
             "source_politic": "source of politic dates",
-            "dataM_politic" : "male date of politic",
-            "dataF_politic" : "female date of politic"
+            "dataM_politic" : "male date of politic (%)",
+            "dataF_politic" : "female date of politic (%)"
         }
     }
 
@@ -732,6 +735,14 @@ exports.addGender = function(req, res){
     item = {
         year: parseInt(req.body.year),
         data: [
+            {
+                type: 'life_expectancy',
+                source: req.body.life_expectancy,
+                data:{
+                        m: parseFloat(req.body.dataM_life_expectancy),
+                        f: parseFloat(req.body.dataF_life_expectancy)
+                    }
+            },
             {
                 type: 'victimization',
                 source: req.body.source_victimization,
