@@ -719,12 +719,16 @@ exports.getData = function( req, res ) {
 
 // ADMIN
 exports.admin = function(req, res) {
+    //Retour a la page admin
     res.sendFile('views/admin.html', { root: 'api'})
 }
 
 exports.addGender = function(req, res){
     let getDataResponse = {};
+    //Recupère le code du pays
     let code = req.body.code,
+    
+    //Prepare l'objet avec les parametres envoyés
     item = {
         year: parseInt(req.body.year),
         data: [
@@ -826,8 +830,11 @@ exports.addGender = function(req, res){
             }
         ]
     };
+
+    //Cherche le pays avec le code envoyé
     Countries.find(code, function(err, country){      
         
+        //Gestion d'erreur
         if (err) {
             getDataResponse.status      = "error"
             getDataResponse.message     = err
@@ -837,9 +844,11 @@ exports.addGender = function(req, res){
             return null
         }
         else {
+            // rajoute l'item sur le pays trouvé
             country.gender.push(item);
             country.save();
 
+            //envoye json du pays 
             getDataResponse.status     = "success"
             getDataResponse.data       = country
             res.json(  getDataResponse )
@@ -847,9 +856,12 @@ exports.addGender = function(req, res){
     })
 }
 
+
 exports.addGeneral = function(req, res){
     let getDataResponse = {};
+     //Recupère le code du pays
     let code = req.body.code;
+    //Prepare l'objet general avec les paremetres envoyes
     let item = {
         year: parseInt(req.body.year),
         source : req.body.source,
@@ -862,7 +874,9 @@ exports.addGeneral = function(req, res){
             country_unemployment : parseFloat(req.body.country_unemployment)
         }
     };
+     //Cherche le pays avec le code envoyé
     Countries.find(code, function(err, country){
+        //Gestion d'erreur
         if (err) {
             getDataResponse.status      = "error"
             getDataResponse.message     = err
@@ -873,9 +887,11 @@ exports.addGeneral = function(req, res){
             return null
         }
         else {
+             // rajoute l'item sur le pays trouvé
             country.general.push(item);
             country.save();
 
+             //envoye json du pays 
             getDataResponse.status     = "success"
             getDataResponse.data       = country
 
@@ -887,8 +903,9 @@ exports.addGeneral = function(req, res){
 // Update donnes Gender
 exports.updateGender = function(req, res){
     let getDataResponse = {};
+    //Cherche l'item GENDER du pays et le supprime
     Countries.update({code : req.body.code},{"$pull":{"gender":{year: parseInt(req.body.year)}}}, function (err, country){
-        
+         //Gestion d'erreur
         if (err) {
             getDataResponse.status      = "error"
             getDataResponse.message     = err
@@ -898,6 +915,7 @@ exports.updateGender = function(req, res){
             return null
         }
         else {
+            //Rajoute un nouveau item GENDER
             if(country != null){
                 exports.addGender(req, res);
             }
@@ -908,6 +926,7 @@ exports.updateGender = function(req, res){
 // Update donnes General
 exports.updateGeneral = function(req, res){
     let getDataResponse = {};
+    //Mettre a jour les donnes general
     Countries.updateOne(
         { code : req.body.code , general : { $elemMatch: { year : parseInt(req.body.year) }} },
         { $set: { "general.$.source" : parseFloat(req.body.source),
@@ -920,6 +939,7 @@ exports.updateGeneral = function(req, res){
                 }
         },
         function(err, country){
+             //Gestion d'erreur
             if (err) {
                 getDataResponse.status      = "error"
                 getDataResponse.message     = err
@@ -929,6 +949,7 @@ exports.updateGeneral = function(req, res){
                 return null
             }
             else {
+                 //envoye json du pays 
                 getDataResponse.status     = "success"
                 getDataResponse.data       = country
                 res.json(  getDataResponse )
