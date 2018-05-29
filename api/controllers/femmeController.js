@@ -220,6 +220,7 @@ exports.showRoutes = function( req, res ) {
         "4": "allowed to use api"
     }
 
+    res.header('Cache-Control', 'public, max-age=31557600')
     res.header('Content-Type', 'application/json; charset=utf-8')
     res.json( routes )
 }
