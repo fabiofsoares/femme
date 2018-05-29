@@ -26,7 +26,7 @@ module.exports = function(app) {
     const user      = require('../controllers/userController')
 
     // ROUTE ACCUEIL
-    app.get("/", cache(), femme.showRoutes)
+    app.get("/", user.checkCors, cache(), femme.showRoutes)
 
     // RECUPERER LES CODES DES PAYS
     app.get("/codes", user.checkCors, cache(), femme.getCountriesCode)
