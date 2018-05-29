@@ -59,10 +59,10 @@ app.use( helmet({
 
 routes( app )
 
-app.use(function(req, res, next) {
+app.use(function(req, res) {
     
-    res.contentType('application/json');
-    next();
+    // res.contentType('application/json');
+    // next();
 
     let notFoundResponse = {
         "status": "error",
