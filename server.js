@@ -33,27 +33,28 @@ let limiter = new RateLimit({
 
         if (this.headers) {
 
-            res.header('Cache-Control', 'public, max-age=31557600')
-            res.header('Content-Type', 'application/json; charset=utf-8')
-
-
-            let allowedOrigins = cors.allowedOrigins
-
-            let origin = req.headers.origin
-
-            if( allowedOrigins.indexOf( origin ) > -1 ){
-                res.header( "Access-Control-Allow-Origin", origin )
-            }
-            else {
-                res.header( "Access-Control-Allow-Origin", "adress of your account" )
-            }
-
-            res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept")
-            res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
-            res.header("Access-Control-Allow-Credentials", true)
-
             res.header('Retry-After', delay)
         }
+
+
+        res.header('Cache-Control', 'public, max-age=31557600')
+        res.header('Content-Type', 'application/json; charset=utf-8')
+
+
+        let allowedOrigins = cors.allowedOrigins
+
+        let origin = req.headers.origin
+
+        if( allowedOrigins.indexOf( origin ) > -1 ){
+            res.header( "Access-Control-Allow-Origin", origin )
+        }
+        else {
+            res.header( "Access-Control-Allow-Origin", "adress of your account" )
+        }
+
+        res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept")
+        res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+        res.header("Access-Control-Allow-Credentials", true)
 
         res.status(429)
         res.json(limiterResponse)
