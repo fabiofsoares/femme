@@ -213,6 +213,13 @@ exports.showRoutes = function( req, res ) {
         }
     }
 
+    routes.use = {
+        "1": "create a account",
+        "2": "login and get your token",
+        "3": "add your domaine name",
+        "4": "allowed to use api"
+    }
+
     res.json( routes )
 }
 
@@ -471,7 +478,6 @@ exports.getData = function( req, res ) {
     }
 
 
-
     // 2 - années
     let filterYears = req.query.years ? req.query.years.split(",") : false
 
@@ -487,7 +493,6 @@ exports.getData = function( req, res ) {
             res.json( getDataResponse )
             return null
         }
-
 
         let escapeValue = escape(filterYears[indexYears])
         filterYears[indexYears] = Number(escapeValue)
