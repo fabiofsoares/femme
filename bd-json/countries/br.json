@@ -70,10 +70,10 @@
         },
         {
           "type": "work_time",
-          "source": "",
+          "source": "http://agenciabrasil.ebc.com.br/geral/noticia/2017-03/mulheres-trabalham-75-horas-mais-que-homens-devido-dupla-jornada",
           "data": {            
-            "m": 0,
-            "f": 0
+            "m": 9.22,
+            "f": 11.32
           }
         },
         {
@@ -109,129 +109,19 @@
           }
         }
       ]
-    },
-    {
-      "year": 2016,
-      "data": [
-        {		
-          "type": "life_expectancy",
-          "source": "https://www.insee.fr/fr/statistiques/1906668?sommaire=1906743",
-          "data": {
-            "m": 80,
-            "f": 85.6
-          }
-        },
-        {
-          "type": "victimization",
-          "source": "http://www.lepoint.fr/societe/123-femmes-et-34-hommes-sont-morts-en-2016-victimes-de-leur-conjoint-01-09-2017-2153889_23.php",
-          "data": {
-            "m": 22,
-            "f": 122
-          }
-        },
-        {
-          "type": "health_care",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 42,
-            "f": 30
-          }
-        },
-        {
-          "type": "primary_school",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 100,
-            "f": 100
-          }
-        },
-        {
-          "type": "secondary_school",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 90,
-            "f": 100
-          }
-        },
-        {
-          "type": "higher_education",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 100,
-            "f": 80
-          }
-        },
-        {
-          "type": "salary",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 1400,
-            "f": 1000
-          }
-        },
-        {
-          "type": "unemployment",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 12,
-            "f": 60,
-            "ratio": 5
-          }
-        },
-        {
-          "type": "work_time",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 42,
-            "f": 28
-          }
-        },
-        {
-          "type": "occupational_integration",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 98,
-            "f": 75
-          }
-        },
-        {
-          "type": "poverty",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 22,
-            "f": 30
-          }
-        },
-        {
-          "type": "population_percent",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 49,
-            "f": 51
-          }
-        },
-        {
-          "type": "politic",
-          "source": "http://www.google.fr",
-          "data": {
-            "m": 1400,
-            "f": 230
-          }
-        }
-      ]
-    }
+    }    
   ],
   "general": [
     {
       "year": 2018,
-      "source": "https://fr.wikipedia.org/wiki/France",
+      "source": "https://fr.wikipedia.org/wiki/Br%C3%A9sil",
       "data": {
-        "area": 672051,
-        "population": 6779000,
-        "pib": 2575000000,
-        "ppa": 41180.697,
-        "idh": 0.897,
-        "country_unemployment": 8.9
+        "area": 8514876,
+        "population": 206081432,
+        "pib": 2353.025,
+        "ppa": 16096.321,
+        "idh": 0.755,
+        "country_unemployment": 12.6
       }
     }
   ]

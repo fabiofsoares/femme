@@ -1,0 +1,128 @@
+{
+  "code": "es",
+  "gender": [
+    {
+      "year": 2017,
+      "data": [
+      	{		
+          "type": "life_expectancy",
+          "source": "http://www.who.int/gho/publications/world_health_statistics/2016/EN_WHS2016_AnnexB.pdf?ua=1",
+          "data": {
+            "m": 80.1,
+            "f": 85.5
+          }
+        },
+        {
+          "type": "victimization",
+          "source": "http://www.abc.es/sociedad/abci-crece-violencia-machista-espana-mas-150000-victimas-201803051255_noticia.html",
+          "data": {
+            "m": 0,
+            "f": 119213
+          }
+        },
+        {
+          "type": "health_care",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/#economy=ESP",
+          "data": {
+            "m": 70.6,
+            "f": 74.1
+          }
+        },
+        {
+          "type": "primary_school",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/#economy=ESP",
+          "data": {
+            "m": 92.2,
+            "f": 88.8
+          }
+        },
+        {
+          "type": "secondary_school",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/#economy=ESP",
+          "data": {
+            "m": 48.4,
+            "f": 47.3
+          }
+        },
+        {
+          "type": "higher_education",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/#economy=ESP",
+          "data": {
+            "m": 12.8,
+            "f": 16.2
+          }
+        },
+        {
+          "type": "salary",
+          "source": "https://www.libremercado.com/2017-11-13/sirven-para-algo-las-estadisticas-sobre-brecha-salarial-1276608944/",
+          "data": {
+            "m": 2166.06,
+            "f": 1670.94
+          }
+        },
+        {
+          "type": "unemployment",
+          "source": "http://www.ine.es/jaxiT3/Datos.htm?t=4247",
+          "data": {
+            "m": 15.18,
+            "f": 18.54
+          }
+        },
+        {
+          "type": "work_time",
+          "source": "http://agenciabrasil.ebc.com.br/geral/noticia/2017-03/mulheres-trabalham-75-horas-mais-que-homens-devido-dupla-jornada",
+          "data": {            
+            "m": 8.13,
+            "f": 8.38
+          }
+        },
+        {
+          "type": "occupational_integration",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/#economy=ESP",
+          "data": {
+            "m": 16.1,
+            "f": 32.0
+          }
+        },
+        {
+          "type": "poverty",
+          "source": "http://www.ine.es/jaxiT3/Datos.htm?t=9958",
+          "data": {
+            "m": 22.6,
+            "f": 22.1
+          }
+        },
+        {
+          "type": "population_percent",
+          "source": "http://www.brasil.gov.br/cidadania-e-justica/2015/03/mulheres-sao-maioria-da-populacao-e-ocupam-mais-espaco-no-mercado-de-trabalho",
+          "data": {
+            "m": 50.34,
+            "f": 49.66            
+          }
+        },
+        {
+          "type": "politic",
+          "source": "http://www.elmundo.es/espana/verano/2017/07/30/5978c253e5fdeaf8078b45bb.html",
+          "data": {
+            "m": 61.56,
+            "f": 38.44
+          }
+        }
+      ]
+    }    
+  ],
+  "general": [
+    {
+      "year": 2018,
+      "source": "https://es.wikipedia.org/wiki/Espa%C3%B1a",
+      "data": {
+        "area": 505370,
+        "population": 46549045,
+        "pib": 1232,
+        "ppa": 26528.49,
+        "idh": 0.884,
+        "country_unemployment": 16.4
+      }
+    }
+  ]
+}
