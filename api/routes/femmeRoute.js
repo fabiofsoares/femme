@@ -6,12 +6,13 @@ let cache = () => {
     return (req, res, next) => {
         let key = '__express__' + req.originalUrl || req.url
         let cachedBody = mcache.get(key)
+        let time = 31557600
         if (cachedBody) {
             res.send(cachedBody)
         } else {
             res.sendResponse = res.send
             res.send = (body) => {
-                mcache.put(key, body)
+                mcache.put(key, body, time)
                 res.sendResponse(body)
             }
             next()
