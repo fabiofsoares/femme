@@ -220,6 +220,7 @@ exports.showRoutes = function( req, res ) {
         "4": "allowed to use api"
     }
 
+    res.header('Content-Type', 'application/json; charset=utf-8')
     res.json( routes )
 }
 
