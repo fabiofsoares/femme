@@ -2,22 +2,23 @@
 
 const mcache          = require('memory-cache')
 
-let cache = () => {
+var cache = (duration) => {
     return (req, res, next) => {
-        let key = '__express__' + req.originalUrl || req.url
-        let cachedBody = mcache.get(key)
-        if (cachedBody) {
-            res.send(cachedBody)
-        } else {
-            res.sendResponse = res.send
-            res.send = (body) => {
-                mcache.put(key, body)
-                res.sendResponse(body)
-            }
-            next()
+      let key = '__express__' + req.originalUrl || req.url
+      let cachedBody = mcache.get(key)
+      if (cachedBody) {
+        res.send(cachedBody)
+        return
+      } else {
+        res.sendResponse = res.send
+        res.send = (body) => {
+          mcache.put(key, body, duration * 1000);
+          res.sendResponse(body)
         }
+        next()
+      }
     }
-}
+  }
 
 module.exports = function(app) {
 
@@ -25,7 +26,7 @@ module.exports = function(app) {
     const user      = require('../controllers/userController')
 
     // ROUTE ACCUEIL
-    app.get("/", cache(), femme.showRoutes)
+    app.get("/", cache(10), femme.showRoutes)
 
     // RECUPERER LES CODES DES PAYS
     app.get("/codes", user.checkCors, cache(), femme.getCountriesCode)
