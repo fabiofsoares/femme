@@ -6,106 +6,106 @@
       "data": [
       	{		
           "type": "life_expectancy",
-          "source": "https://www.insee.fr/fr/statistiques/1906668?sommaire=1906743",
+          "source": "http://www.who.int/gho/publications/world_health_statistics/2016/EN_WHS2016_AnnexB.pdf?ua=1",
           "data": {
-            "m": 80,
-            "f": 85.6
+            "m": 71.4,
+            "f": 78.7
           }
         },
         {
           "type": "victimization",
-          "source": "http://www.egalite-femmes-hommes.gouv.fr/etude-nationale-sur-les-morts-violentes-au-sein-du-couple/",
+          "source": "https://g1.globo.com/monitor-da-violencia/noticia/cresce-n-de-mulheres-vitimas-de-homicidio-no-brasil-dados-de-feminicidio-sao-subnotificados.ghtml",
           "data": {
-            "m": 29,
-            "f": 109
+            "m": null,
+            "f": 4473
           }
         },
         {
           "type": "health_care",
-          "source": "http://reports.weforum.org/global-gender-gap-report-2016/economies/#economy=FRA",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/?doing_wp_cron=1527538967.9022068977355957031250#economy=BRA",
           "data": {
-            "m": 69,
-            "f": 74
+            "m": 63.1,
+            "f": 67.8
           }
         },
         {
           "type": "primary_school",
-          "source": "http://reports.weforum.org/global-gender-gap-report-2016/economies/#economy=FRA",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/?doing_wp_cron=1527538967.9022068977355957031250#economy=BRA",
           "data": {
-            "m": 99,
-            "f": 99
+            "m": 76.2,
+            "f": 77.5
           }
         },
         {
           "type": "secondary_school",
-          "source": "http://reports.weforum.org/global-gender-gap-report-2016/economies/#economy=FRA",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/?doing_wp_cron=1527538967.9022068977355957031250#economy=BRA",
           "data": {
-            "m": 99,
-            "f": 99
+            "m": 40.3,
+            "f": 44.6
           }
         },
         {
           "type": "higher_education",
-          "source": "http://reports.weforum.org/global-gender-gap-report-2016/economies/#economy=FRA",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/?doing_wp_cron=1527538967.9022068977355957031250#economy=BRA",
           "data": {
-            "m": 58,
-            "f": 71
+            "m": 7.9,
+            "f": 12.4
           }
         },
         {
           "type": "salary",
-          "source": "https://www.journaldunet.fr/patrimoine/guide-des-finances-personnelles/1166094-salaire-moyen/",
+          "source": "https://g1.globo.com/economia/noticia/diferenca-de-salario-medio-de-homens-e-mulheres-pode-chegar-a-quase-r-1-mil-no-pais-aponta-ibge.ghtml",
           "data": {
-            "m": 2371,
-            "f": 1940
+            "m": 414.32,
+            "f": 356.30
           }
         },
         {
           "type": "unemployment",
-          "source": "http://reports.weforum.org/global-gender-gap-report-2016/economies/#economy=FRA",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/?doing_wp_cron=1527538967.9022068977355957031250#economy=BRA",
           "data": {
-            "m": 9,
-            "f": 8
+            "m": 10.1,
+            "f": 13.4
           }
         },
         {
           "type": "work_time",
-          "source": "http://reports.weforum.org/global-gender-gap-report-2016/economies/#economy=FRA",
+          "source": "",
           "data": {            
-            "m": 6.26,
-            "f": 6.75
+            "m": 0,
+            "f": 0
           }
         },
         {
           "type": "occupational_integration",
-          "source": "http://reports.weforum.org/global-gender-gap-report-2016/economies/#economy=FRA",
+          "source": "http://reports.weforum.org/global-gender-gap-report-2017/dataexplorer/?doing_wp_cron=1527538967.9022068977355957031250#economy=BRA",
           "data": {
-            "m": 26,
-            "f": 42
+            "m": 11.5,
+            "f": 22.3
           }
         },
         {
           "type": "poverty",
-          "source": "https://www.inegalites.fr/La-pauvrete-selon-le-sexe",
+          "source": "http://www.spm.gov.br/arquivos-diversos/.arquivos/integra_genero_pobreza",
           "data": {
-            "m": 2405,
-            "f": 2615
+            "m": 48.68,
+            "f": 51.32
           }
         },
         {
           "type": "population_percent",
-          "source": "https://www.insee.fr/fr/statistiques/1892086?sommaire=1912926",
+          "source": "http://www.brasil.gov.br/cidadania-e-justica/2015/03/mulheres-sao-maioria-da-populacao-e-ocupam-mais-espaco-no-mercado-de-trabalho",
           "data": {
-            "m": 370264,
-            "f": 724490
+            "m": 102100000,
+            "f": 103500000            
           }
         },
         {
           "type": "politic",
-          "source": "https://www.insee.fr/fr/statistiques/1906670?sommaire=1906743",
+          "source": "http://www.politize.com.br/participacao-das-mulheres-na-politica-brasileira/",
           "data": {
-            "m": 75,
-            "f": 25
+            "m": 90,
+            "f": 10
           }
         }
       ]
