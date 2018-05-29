@@ -4,15 +4,15 @@ const   mongoose    = require('mongoose'),
         validator   = require('validator'),
         jwt         = require('jsonwebtoken'),
         bcrypt      = require('bcryptjs'),
-        cors        = require('../controllers/corsController')
-
+        cors        = require('../controllers/corsController'),
+        escape      = require('mongo-escape').escape
 
 
 let secret = "charline"
 
 exports.register = function(req, res) {
 
-    let name = req.body.name ? req.body.name : 'the girl has no name'
+    let name = req.body.name ? escape(req.body.name) : 'the girl has no name'
     let email = validator.isEmail(req.body.email) ? req.body.email : false
     let password = req.body.password
 
@@ -183,10 +183,17 @@ exports.update = function(req, res) {
     let updateResponse = {}
 
     let password    = req.body.password     ? req.body.password         : false
-    let name        = req.body.name         ? req.body.name             : false
+    let name        = req.body.name         ? escape(req.body.name)     : false
     let dns         = req.body.dns          ? req.body.dns.split(',')   : false
     let decoded     = req.decoded
 
+    // escape les dns
+    if (dns) {
+        for (let i=0; i < dns.length; i++) {
+
+            dns[i] = escape(dns[i])
+        }
+    }
 
     Users.findById(decoded.id, function (err, user) {
 
@@ -218,8 +225,6 @@ exports.update = function(req, res) {
                 cors.updateAllowedOrigins(dns)
             }
 
-
-
             user.save(function (err, updateUser) {
 
                 if (err) {
@@ -248,7 +253,6 @@ exports.update = function(req, res) {
     })
 }
 
-// TODO : refaire une seconde sécurité avec demande de mot de passe ?
 exports.delete = function(req, res) {
 
     let deleteResponse = {}

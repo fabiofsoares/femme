@@ -2,7 +2,8 @@
 const   mongoose    = require('mongoose'),
         Countries   = mongoose.model('Countries'),
         domaine     = 'https://safe-hamlet-93581.herokuapp.com',
-        escape      = require('escape-html');
+        escape      = require('mongo-escape').escape
+
 
 
 // A REMPLIR A CHAQUE NOUVELLE ROUTE
@@ -257,7 +258,6 @@ exports.getSources = function( req, res ) {
     let filters = [{}]
     let select = " -_id code"
 
-
     // récupération des filtres
     let filterCountries     = req.query.countries   ? req.query.countries.split(",")    : false
     let filterYears         = req.query.years       ? req.query.years.split(",")        : false
@@ -268,7 +268,7 @@ exports.getSources = function( req, res ) {
     for (let indexYears in filterYears) {
 
         // GESTION ERREUR : si année pas encore finie / passée et pas au format yyyy
-        if ( filterYears[indexYears] >= ( new Date() ).getFullYear() || filterYears[indexYears].length < 4 ) {
+        if ( filterYears[indexYears] >= ( new Date() ).getFullYear() || filterYears[indexYears].length !== 4 ) {
 
             getSourcesResponse.status       = "error"
             getSourcesResponse.message      = "You must enter a previous year and respecting the format : yyyy "
@@ -278,7 +278,8 @@ exports.getSources = function( req, res ) {
             return null
         }
 
-        filterYears[indexYears] = Number(filterYears[indexYears])
+        let escapeValue = escape(filterYears[indexYears])
+        filterYears[indexYears] = Number(escapeValue)
     }
 
 
@@ -307,6 +308,13 @@ exports.getSources = function( req, res ) {
 
     // 2 - si filtre par pays
     if ( filterCountries ) {
+
+        if (filterCountries) {
+            for (let i=0; i < filterCountries.length; i++) {
+
+                filterCountries[i] = escape(filterCountries[i])
+            }
+        }
 
         filters.push( {code: { $in: filterCountries }} )
     }
@@ -452,6 +460,13 @@ exports.getData = function( req, res ) {
 
     if ( filterCountries ) {
 
+        if (filterCountries) {
+            for (let i=0; i < filterCountries.length; i++) {
+
+                filterCountries[i] = escape(filterCountries[i])
+            }
+        }
+
         filters.push( {code: { $in: filterCountries }} )
     }
 
@@ -463,7 +478,7 @@ exports.getData = function( req, res ) {
     for (let indexYears in filterYears) {
 
         // GESTION ERREUR : si année pas encore finie / passée et pas au format yyyy
-        if ( filterYears[indexYears] >= ( new Date() ).getFullYear() || filterYears[indexYears].length < 4 ) {
+        if ( filterYears[indexYears] >= ( new Date() ).getFullYear() || filterYears[indexYears].length !== 4 ) {
 
             getDataResponse.status      = "error"
             getDataResponse.message     = "You must enter a previous year and respecting the format : yyyy "
@@ -474,7 +489,8 @@ exports.getData = function( req, res ) {
         }
 
 
-        filterYears[indexYears] = Number(filterYears[indexYears])
+        let escapeValue = escape(filterYears[indexYears])
+        filterYears[indexYears] = Number(escapeValue)
     }
 
 
@@ -491,7 +507,13 @@ exports.getData = function( req, res ) {
         }
 
         else {
+
             generalFilters = req.query.general.split(",")
+
+            for (let i=0; i < generalFilters.length; i++) {
+
+                generalFilters[i] = escape(generalFilters[i])
+            }
         }
     }
 
@@ -510,6 +532,11 @@ exports.getData = function( req, res ) {
 
         else {
             genderFilters = req.query.gender.split(",")
+
+            for (let i=0; i < genderFilters.length; i++) {
+
+                genderFilters[i] = escape(genderFilters[i])
+            }
         }
     }
 
@@ -545,7 +572,7 @@ exports.getData = function( req, res ) {
     if ( sex && !operator || !sex && operator ) {
 
         getDataResponse.status       = "error"
-        getDataResponse.message      = "If who want to filter with gender compare you must give sex parameter and operator parameter"
+        getDataResponse.message      = "If you want to filter with gender compare you must give sex parameter and operator parameter"
 
         res.status(400)
         res.json( getDataResponse )
@@ -723,12 +750,84 @@ exports.getData = function( req, res ) {
                         }
                     }
                 }
+
+
+                // verification si vide
+                if ( showGender && datasResponse[indexCountry].gender !== undefined) {
+
+                    for( let indexData = 0; indexData < datasResponse[indexCountry].gender.length; indexData++ ) {
+
+                        if ( datasResponse[indexCountry].gender[indexData].data.length === 0 ) {
+
+                            datasResponse[indexCountry].gender.splice(indexData, 1)
+                            indexData--
+                        }
+                    }
+
+                    if ( datasResponse[indexCountry].gender.length === 0 ) {
+
+                        datasResponse[indexCountry].gender = undefined
+                    }
+                }
+
+                if ( showGeneral && datasResponse[indexCountry].general !== undefined ) {
+
+                    for( let indexData = 0; indexData < datasResponse[indexCountry].general.length; indexData++ ) {
+
+                        let hasValue = false
+
+                        for (let values in datasResponse[indexCountry].general[indexData].data ) {
+
+                            if (hasValue) {
+
+                                break
+                            }
+
+                            if ( datasResponse[indexCountry].general[indexData].data[values] !== undefined && datasResponse[indexCountry].general[indexData].data[values] ) {
+
+                                hasValue = true
+                            }
+                        }
+
+                        if ( !hasValue ) {
+
+                            datasResponse[indexCountry].general.splice(indexData, 1)
+                            indexData--
+                        }
+                    }
+
+                    if ( datasResponse[indexCountry].general.length === 0 ) {
+
+                        datasResponse[indexCountry].general = undefined
+                    }
+                }
+
+                if (
+                    ( datasResponse[indexCountry].gender === undefined || datasResponse[indexCountry].gender.length === 0 ) &&
+                    ( datasResponse[indexCountry].general === undefined || datasResponse[indexCountry].general.length === 0 ) ) {
+
+                    datasResponse.splice(indexCountry, 1)
+                    indexCountry--
+                }
             }
 
-            getDataResponse.status      = "success"
-            getDataResponse.data        = datasResponse
 
-            res.json( getDataResponse )
+            if ( datasResponse.length === 0 ) {
+
+                getDataResponse.status   = "error"
+                getDataResponse.message  = "Empty result please remove some filters to get better results"
+
+                res.status(404)
+                res.json( getDataResponse )
+                return null
+            }
+            else {
+
+                getDataResponse.status      = "success"
+                getDataResponse.data        = datasResponse
+
+                res.json( getDataResponse )
+            }
         }
     })
 }
