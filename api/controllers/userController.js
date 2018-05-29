@@ -16,12 +16,14 @@ exports.register = function(req, res) {
     let email = validator.isEmail(req.body.email) ? req.body.email : false
     let password = req.body.password
 
+    console.log('password', password)
+
     let registerResponse = {}
 
     // si manque des elements
     if ( !email || !password ) {
         registerResponse.status     = "error"
-        registerResponse.message    = "You must give 3 valid paramaters : email + name + password"
+        registerResponse.message    = "You must give 2 valid paramaters : email + password"
 
         res.status(400)
         res.json( registerResponse )
@@ -172,7 +174,6 @@ exports.login = function(req, res) {
                     resExpress.status(401)
                     resExpress.json(loginResponse)
                 }
-
             })
         }
     })

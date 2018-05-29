@@ -127,7 +127,7 @@ app.use(function(req, res, next) {
         }
     }
 
-    // si suggestiont rouvée on la met dans le message
+    // si suggestion trouvée on la met dans le message
     if ( closest.distance !== Infinity) {
 
         notFoundResponse.suggestion = "Did you mean http://"+ host + ':' + PORT +"/" + closest.name + " ?"
