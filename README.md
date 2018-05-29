@@ -71,12 +71,13 @@ OK put-gender
 
 
 ## mel : 
-- remplir 5 pays minimun
-- https://www.scaleway.com/
-- heroku ?
+- update bdd 
+
 
 
 ## todo Global : 
 - renvoyer données triées avec status + message si erreur et data si ok 
 - OK    : écrire routes dans /
 - OK    : écrire routes dans 404
+
+

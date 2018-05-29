@@ -4,15 +4,15 @@ const   mongoose    = require('mongoose'),
         validator   = require('validator'),
         jwt         = require('jsonwebtoken'),
         bcrypt      = require('bcryptjs'),
-        cors        = require('../controllers/corsController')
-
+        cors        = require('../controllers/corsController'),
+        escape      = require('mongo-escape').escape
 
 
 let secret = "charline"
 
 exports.register = function(req, res) {
 
-    let name = req.body.name ? req.body.name : 'the girl has no name'
+    let name = req.body.name ? escape(req.body.name) : 'the girl has no name'
     let email = validator.isEmail(req.body.email) ? req.body.email : false
     let password = req.body.password
 
@@ -38,7 +38,7 @@ exports.register = function(req, res) {
                 registerResponse.status     = "error"
                 registerResponse.message    = err
 
-                res.status(400)
+                res.status(500)
                 res.json( registerResponse )
                 return null
             }
@@ -85,7 +85,7 @@ exports.register = function(req, res) {
                                 registerResponse.status     = "error"
                                 registerResponse.message    = "There was a problem during the registration, please come back later"
 
-                                res.status(400)
+                                res.status(500)
                                 res.json( registerResponse )
                             }
 
@@ -94,6 +94,7 @@ exports.register = function(req, res) {
                                 registerResponse.status     = "success"
                                 registerResponse.message    = "Congatulations " + user.name + " you have your account !"
 
+                                res.status(201)
                                 res.json( registerResponse )
                             }
                         }
@@ -132,7 +133,7 @@ exports.login = function(req, res) {
             loginResponse.status     = "error"
             loginResponse.message    = err
 
-            resExpress.status(400)
+            resExpress.status(500)
             resExpress.json(loginResponse)
         }
 
@@ -141,7 +142,7 @@ exports.login = function(req, res) {
             loginResponse.status     = "error"
             loginResponse.message    = "No user has been found for the email " + email
 
-            resExpress.status(400)
+            resExpress.status(401)
             resExpress.json(loginResponse)
         }
 
@@ -168,7 +169,7 @@ exports.login = function(req, res) {
                     loginResponse.status     = "error"
                     loginResponse.message    = "Identifiants invalid"
 
-                    resExpress.status(400)
+                    resExpress.status(401)
                     resExpress.json(loginResponse)
                 }
 
@@ -182,10 +183,17 @@ exports.update = function(req, res) {
     let updateResponse = {}
 
     let password    = req.body.password     ? req.body.password         : false
-    let name        = req.body.name         ? req.body.name             : false
+    let name        = req.body.name         ? escape(req.body.name)     : false
     let dns         = req.body.dns          ? req.body.dns.split(',')   : false
     let decoded     = req.decoded
 
+    // escape les dns
+    if (dns) {
+        for (let i=0; i < dns.length; i++) {
+
+            dns[i] = escape(dns[i])
+        }
+    }
 
     Users.findById(decoded.id, function (err, user) {
 
@@ -194,7 +202,7 @@ exports.update = function(req, res) {
             updateResponse.status     = "error"
             updateResponse.message    = err
 
-            res.status(400)
+            res.status(500)
             res.json(updateResponse)
         }
 
@@ -203,7 +211,7 @@ exports.update = function(req, res) {
             updateResponse.status     = "error"
             updateResponse.message    = "No user has been found with this token "
 
-            res.status(400)
+            res.status(401)
             res.json(updateResponse)
         }
 
@@ -217,8 +225,6 @@ exports.update = function(req, res) {
                 cors.updateAllowedOrigins(dns)
             }
 
-
-
             user.save(function (err, updateUser) {
 
                 if (err) {
@@ -226,7 +232,7 @@ exports.update = function(req, res) {
                     updateResponse.status = "error"
                     updateResponse.message = err
 
-                    res.status(400)
+                    res.status(500)
                     res.json(updateResponse)
                     return null
                 }
@@ -247,7 +253,6 @@ exports.update = function(req, res) {
     })
 }
 
-// TODO : refaire une seconde sécurité avec demande de mot de passe ?
 exports.delete = function(req, res) {
 
     let deleteResponse = {}
@@ -262,15 +267,17 @@ exports.delete = function(req, res) {
                 deleteResponse.status     = "error"
                 deleteResponse.message    = err
 
-                res.status(400)
+                res.status(500)
                 res.json( deleteResponse )
             }
 
             else {
 
-                deleteResponse.status     = "succes"
-                deleteResponse.message    = "Your account has been deleted, so sad to see you leaving :("
-                res.json( deleteResponse )
+                // deleteResponse.status     = "succes"
+                // deleteResponse.message    = "Your account has been deleted, so sad to see you leaving :("
+
+                res.status(204)
+                res.send()
             }
         })
 }
@@ -286,7 +293,7 @@ exports.checkAuth = function(req, res, next) {
         testTokenResponse.status     = "error"
         testTokenResponse.message    = "Please send a token"
 
-        res.status(400)
+        res.status(401)
         res.json(testTokenResponse)
         return null
     }
@@ -298,7 +305,7 @@ exports.checkAuth = function(req, res, next) {
             testTokenResponse.status     = "error"
             testTokenResponse.message    = err
 
-            res.status(400)
+            res.status(500)
             res.json( testTokenResponse )
         }
 
@@ -324,7 +331,7 @@ exports.checkCors = function(req, res, next) {
     }
 
     res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept")
-    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, UPDATE")
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
     res.header("Access-Control-Allow-Credentials", true)
 
     next()
