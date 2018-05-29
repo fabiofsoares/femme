@@ -3,7 +3,7 @@
 const   mongoose    = require('mongoose'),
         Users       = mongoose.model('Users')
 
-exports.allowedOrigins = ["http://starglider.outofpluto.com","https://starglider.outofpluto.com"]
+exports.allowedOrigins = []
 
 exports.updateAllowedOrigins = function(dns){
 

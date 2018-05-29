@@ -26,10 +26,10 @@ module.exports = function(app) {
     const user      = require('../controllers/userController')
 
     // ROUTE ACCUEIL
-    app.get("/", cache(10), user.checkCors, femme.showRoutes)
+    app.get("/", user.checkCors, femme.showRoutes)
 
     // RECUPERER LES CODES DES PAYS
-    app.get("/codes", user.checkCors, cache(), femme.getCountriesCode)
+    app.get("/codes", user.checkCors, femme.getCountriesCode)
 
     // RECUPERER UNIQUEMENT LES SOURCES
     app.get("/sources", user.checkCors, femme.getSources)
@@ -50,7 +50,7 @@ module.exports = function(app) {
     app.delete("/users", user.checkAuth, user.delete)
 
     // PAGE ADMIN
-    app.get('/admin', cache(), femme.admin)
+    app.get('/admin', femme.admin)
 
     // RAJOUTER DONNES GENDER
     app.post('/admin/add-gender',femme.addGender)
