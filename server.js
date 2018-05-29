@@ -41,7 +41,8 @@ let limiter = new RateLimit({
         res.header('Content-Type', 'application/json; charset=utf-8')
 
 
-        let allowedOrigins = cors.allowedOrigins
+        let corsController = require('../controllers/corsController')
+        let allowedOrigins = corsController.allowedOrigins
 
         let origin = req.headers.origin
 
