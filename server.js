@@ -19,7 +19,7 @@ const   express         = require('express'),
 
 let limiter = new RateLimit({
     windowMs: 1000,
-    max: 100,
+    max: 200,
     delayMs: 0,
     headers: true,
     handler: function (req, res) {
@@ -51,7 +51,7 @@ let limiter = new RateLimit({
             res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept")
             res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
             res.header("Access-Control-Allow-Credentials", true)
-            
+
             res.header('Retry-After', delay)
         }
 
