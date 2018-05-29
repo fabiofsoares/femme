@@ -13,7 +13,7 @@ exports.updateAllowedOrigins = function(dns){
 }
 
 
-exports.loadAllowedOrigins = function(dns){
+exports.loadAllowedOrigins = function(){
 
     Users.
         find({}).
@@ -27,5 +27,7 @@ exports.loadAllowedOrigins = function(dns){
                     exports.allowedOrigins.push(user.dns[i])
                 }
             }
+
+            console.log(exports.allowedOrigins)
         })
 }

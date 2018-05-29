@@ -16,7 +16,7 @@ exports.register = function(req, res) {
     let email = validator.isEmail(req.body.email) ? req.body.email : false
     let password = req.body.password
 
-    console.log('password', password)
+    // console.log(req.body.email)
 
     let registerResponse = {}
 

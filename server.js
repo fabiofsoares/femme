@@ -60,7 +60,7 @@ app.use( helmet({
 
 routes( app )
 
-app.use(function(req, res) {
+app.use(function(req, res, next) {
     
     res.contentType('application/json; charset=utf-8');
     next();
