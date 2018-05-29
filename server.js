@@ -62,8 +62,8 @@ routes( app )
 
 app.use(function(req, res) {
     
-    // res.contentType('application/json');
-    // next();
+    res.contentType('application/json; charset=utf-8');
+    next();
 
     let notFoundResponse = {
         "status": "error",
