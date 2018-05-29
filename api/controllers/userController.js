@@ -188,13 +188,13 @@ exports.update = function(req, res) {
     let dns         = req.body.dns          ? req.body.dns.split(',')   : false
     let decoded     = req.decoded
 
-    // escape les dns
-    if (dns) {
-        for (let i=0; i < dns.length; i++) {
-
-            dns[i] = escape(dns[i])
-        }
-    }
+    // // escape les dns
+    // if (dns) {
+    //     for (let i=0; i < dns.length; i++) {
+    //
+    //         dns[i] = escape(dns[i])
+    //     }
+    // }
 
     Users.findById(decoded.id, function (err, user) {
 
